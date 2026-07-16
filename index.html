@@ -1,366 +1,363 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nalli Sarees · Fine Silk Sarees</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap');
-        :root { --primary: #9f1239; }
-        .tail-container { font-family: 'Inter', system-ui, sans-serif; }
-        .heading-font { font-family: 'Playfair Display', sans-serif; }
-        .hero-slide { transition: opacity 0.8s ease-in-out; }
-        .product-card { transition: all 0.3s ease; }
-        .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
-        .nav-link { position: relative; }
-        .nav-link:after { content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 0; background-color: #9f1239; transition: all 0.3s ease; }
-        .nav-link:hover:after { width: 100%; }
-        .carousel-container { position: relative; overflow: hidden; }
-        /* dropdown menu */
-        .dropdown-group:hover .dropdown-menu { display: block; }
-        .dropdown-menu { display: none; min-width: 180px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Nalli Sarees · Fine Silk Sarees</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+    :root { --primary: #9f1239; }
+    .tail-container { font-family: 'Inter', system-ui, sans-serif; }
+    .heading-font { font-family: 'Playfair Display', sans-serif; }
+    .hero-slide { transition: opacity 0.8s ease-in-out; }
+    .product-card { transition: all 0.3s ease; }
+    .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+    .nav-link { position: relative; }
+    .nav-link:after { content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 0; background-color: #9f1239; transition: all 0.3s ease; }
+    .nav-link:hover:after { width: 100%; }
+    .carousel-container { position: relative; overflow: hidden; }
+    /* dropdown */
+    .dropdown-group:hover .dropdown-menu { display: block; }
+    .dropdown-menu { display: none; min-width: 160px; }
+    /* mobile responsive tweaks */
+    @media (max-width: 640px) {
+      .hero-slide { background-position: center center !important; }
+      .product-card img { height: 200px !important; }
+      .category-grid .h-80 { height: 180px !important; }
+    }
+    @media (max-width: 768px) {
+      .nav-menu { gap: 0.75rem !important; flex-wrap: wrap; justify-content: center; }
+      .dropdown-menu { left: 0; right: auto; min-width: 140px; }
+    }
+  </style>
 </head>
 <body class="tail-container bg-gray-50 text-gray-800">
 
 <!-- HEADER -->
 <header class="bg-white shadow-sm sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto">
-        <!-- Top Bar -->
-        <div class="bg-red-900 text-white text-sm py-2 text-center tracking-wide">
-            Free Shipping above ₹4,999 (India) · Timeless Elegance · 200 New Arrivals Today
-        </div>
-
-        <!-- Main Header -->
-        <div class="flex items-center justify-between px-6 py-4">
-            <!-- Logo: Nalli with icon (updated) -->
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-red-900 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-md">N</div>
-                <div>
-                    <span class="text-3xl font-bold tracking-tight heading-font text-red-900">Nalli</span>
-                    <span class="block text-[10px] uppercase tracking-widest text-gray-500 -mt-1">since 1928</span>
-                </div>
-            </div>
-
-            <!-- Search -->
-            <div class="flex-1 max-w-xl mx-8">
-                <div class="relative">
-                    <input type="text" id="searchInput"
-                           class="w-full border border-gray-300 rounded-full py-3 px-6 pl-12 focus:outline-none focus:border-red-900 focus:ring-1 focus:ring-red-900/20"
-                           placeholder="Search beautiful silk sarees..." />
-                    <i class="fa-solid fa-magnifying-glass absolute left-5 top-4 text-gray-400"></i>
-                </div>
-            </div>
-
-            <!-- Right Icons -->
-            <div class="flex items-center gap-8 text-xl">
-                <a href="#" class="hover:text-red-900 transition-colors"><i class="fa-regular fa-user"></i></a>
-                <a href="#" class="relative hover:text-red-900 transition-colors">
-                    <i class="fa-regular fa-heart"></i>
-                    <span class="absolute -top-1 -right-1 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">3</span>
-                </a>
-                <a href="#" class="relative hover:text-red-900 transition-colors">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span class="absolute -top-1 -right-1 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">2</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- NAVIGATION: 4 pages with dropdown on Shop -->
-        <nav class="border-t border-gray-200">
-            <div class="max-w-7xl mx-auto px-6">
-                <ul class="flex items-center justify-center gap-12 text-sm font-medium py-4">
-                    <!-- 1. HOME -->
-                    <li><a href="#" class="nav-link text-red-900 font-semibold">HOME</a></li>
-
-                    <!-- 2. SHOP with dropdown (categories) -->
-                    <li class="relative dropdown-group">
-                        <a href="#" class="nav-link hover:text-red-900 transition-colors flex items-center gap-1">
-                            SHOP <i class="fa-solid fa-chevron-down text-[10px] ml-0.5"></i>
-                        </a>
-                        <div class="dropdown-menu absolute left-0 top-full mt-1 bg-white shadow-lg rounded-xl border border-gray-100 py-2 z-40">
-                            <a href="#" class="block px-5 py-2 hover:bg-red-50 hover:text-red-900 text-sm">Ikat</a>
-                            <a href="#" class="block px-5 py-2 hover:bg-red-50 hover:text-red-900 text-sm">Kanjivaram</a>
-                            <a href="#" class="block px-5 py-2 hover:bg-red-50 hover:text-red-900 text-sm">Banarasi</a>
-                            <a href="#" class="block px-5 py-2 hover:bg-red-50 hover:text-red-900 text-sm">Chiffon</a>
-                            <a href="#" class="block px-5 py-2 hover:bg-red-50 hover:text-red-900 text-sm">Bridal Collection</a>
-                            <a href="#" class="block px-5 py-2 hover:bg-red-50 hover:text-red-900 text-sm">Best Sellers</a>
-                        </div>
-                    </li>
-
-                    <!-- 3. ABOUT US -->
-                    <li><a href="#" class="nav-link hover:text-red-900 transition-colors">ABOUT US</a></li>
-
-                    <!-- 4. CONTACT -->
-                    <li><a href="#" class="nav-link hover:text-red-900 transition-colors">CONTACT</a></li>
-                </ul>
-            </div>
-        </nav>
+  <div class="max-w-7xl mx-auto">
+    <!-- Top Bar -->
+    <div class="bg-red-900 text-white text-xs sm:text-sm py-2 px-2 text-center tracking-wide">
+      Free Shipping above ₹4,999 (India) · Timeless Elegance · 200 New Arrivals Today
     </div>
+
+    <!-- Main Header -->
+    <div class="flex flex-wrap items-center justify-between px-4 py-3 gap-3">
+      <!-- Logo -->
+      <div class="flex items-center gap-2">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 bg-red-900 rounded-full flex items-center justify-center text-white font-bold text-xl sm:text-2xl shadow-md">N</div>
+        <div>
+          <span class="text-2xl sm:text-3xl font-bold tracking-tight heading-font text-red-900">Nalli</span>
+          <span class="block text-[8px] sm:text-[10px] uppercase tracking-widest text-gray-500 -mt-1">since 1928</span>
+        </div>
+      </div>
+
+      <!-- Search (hidden on small, visible on md+) -->
+      <div class="hidden md:block flex-1 max-w-xl mx-4">
+        <div class="relative">
+          <input type="text" id="searchInput"
+                 class="w-full border border-gray-300 rounded-full py-2.5 px-5 pl-10 focus:outline-none focus:border-red-900 focus:ring-1 focus:ring-red-900/20 text-sm"
+                 placeholder="Search beautiful silk sarees..." />
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-gray-400 text-sm"></i>
+        </div>
+      </div>
+
+      <!-- Right Icons -->
+      <div class="flex items-center gap-5 sm:gap-6 text-lg sm:text-xl">
+        <a href="#" class="hover:text-red-900 transition-colors"><i class="fa-regular fa-user"></i></a>
+        <a href="#" class="relative hover:text-red-900 transition-colors">
+          <i class="fa-regular fa-heart"></i>
+          <span class="absolute -top-1 -right-1.5 bg-red-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">3</span>
+        </a>
+        <a href="#" class="relative hover:text-red-900 transition-colors">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="absolute -top-1 -right-1.5 bg-red-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- NAVIGATION: responsive -->
+    <nav class="border-t border-gray-200">
+      <div class="max-w-7xl mx-auto px-3">
+        <ul class="flex flex-wrap items-center justify-center gap-2 sm:gap-8 md:gap-12 text-xs sm:text-sm font-medium py-3 nav-menu">
+          <!-- HOME -->
+          <li><a href="#" class="nav-link text-red-900 font-semibold">HOME</a></li>
+
+          <!-- SHOP with dropdown -->
+          <li class="relative dropdown-group">
+            <a href="#" class="nav-link hover:text-red-900 transition-colors flex items-center gap-0.5">
+              SHOP <i class="fa-solid fa-chevron-down text-[8px] sm:text-[10px] ml-0.5"></i>
+            </a>
+            <div class="dropdown-menu absolute left-0 top-full mt-1 bg-white shadow-lg rounded-xl border border-gray-100 py-1.5 z-40 w-40 sm:w-44">
+              <a href="#" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Ikat</a>
+              <a href="#" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Kanjivaram</a>
+              <a href="#" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Banarasi</a>
+              <a href="#" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Chiffon</a>
+              <a href="#" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Bridal Collection</a>
+              <a href="#" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Best Sellers</a>
+            </div>
+          </li>
+
+          <!-- ABOUT US -->
+          <li><a href="#" class="nav-link hover:text-red-900 transition-colors">ABOUT US</a></li>
+          <!-- CONTACT -->
+          <li><a href="#" class="nav-link hover:text-red-900 transition-colors">CONTACT</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
 </header>
 
-<!-- HERO CAROUSEL (5 slides) -->
-<section class="carousel-container relative h-screen">
-    <div id="slide1" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center" style="background-image: url('https://sareestoredemo.netlify.app/banner%201.webp')">
-        <div class="max-w-7xl mx-auto px-6 text-white"><div class="max-w-lg"></div></div>
-    </div>
-    <div id="slide2" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%202.1.webp')">
-        <div class="max-w-7xl mx-auto px-6 text-white"><div class="max-w-lg"></div></div>
-    </div>
-    <div id="slide3" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%203.webp')">
-        <div class="max-w-7xl mx-auto px-6 text-white"><div class="max-w-lg"></div></div>
-    </div>
-    <div id="slide4" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%204.webp')">
-        <div class="max-w-7xl mx-auto px-6 text-white"><div class="max-w-lg"></div></div>
-    </div>
-    <div id="slide5" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%205.webp')">
-        <div class="max-w-7xl mx-auto px-6 text-white"><div class="max-w-lg"></div></div>
-    </div>
+<!-- HERO CAROUSEL (5 slides) - fully responsive -->
+<section class="carousel-container relative h-[40vh] sm:h-[60vh] md:h-[80vh] lg:h-screen">
+  <div id="slide1" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center" style="background-image: url('https://sareestoredemo.netlify.app/banner%201.webp')"></div>
+  <div id="slide2" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%202.1.webp')"></div>
+  <div id="slide3" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%203.webp')"></div>
+  <div id="slide4" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%204.webp')"></div>
+  <div id="slide5" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%205.webp')"></div>
 
-    <!-- controls -->
-    <button onclick="prevSlide()" class="absolute left-8 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-red-900 p-4 rounded-full text-2xl shadow-lg z-10">
-        <i class="fa-solid fa-chevron-left"></i>
-    </button>
-    <button onclick="nextSlide()" class="absolute right-8 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-red-900 p-4 rounded-full text-2xl shadow-lg z-10">
-        <i class="fa-solid fa-chevron-right"></i>
-    </button>
-    <!-- dots -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-10">
-        <button onclick="goToSlide(1)" class="w-4 h-4 rounded-full bg-white border-2 border-white" id="dot1"></button>
-        <button onclick="goToSlide(2)" class="w-4 h-4 rounded-full bg-white/50 hover:bg-white/80" id="dot2"></button>
-        <button onclick="goToSlide(3)" class="w-4 h-4 rounded-full bg-white/50 hover:bg-white/80" id="dot3"></button>
-        <button onclick="goToSlide(4)" class="w-4 h-4 rounded-full bg-white/50 hover:bg-white/80" id="dot4"></button>
-        <button onclick="goToSlide(5)" class="w-4 h-4 rounded-full bg-white/50 hover:bg-white/80" id="dot5"></button>
-    </div>
+  <!-- controls -->
+  <button onclick="prevSlide()" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-red-900 p-2 sm:p-3.5 rounded-full text-base sm:text-xl shadow-lg z-10">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+  <button onclick="nextSlide()" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-red-900 p-2 sm:p-3.5 rounded-full text-base sm:text-xl shadow-lg z-10">
+    <i class="fa-solid fa-chevron-right"></i>
+  </button>
+  <!-- dots -->
+  <div class="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3 z-10">
+    <button onclick="goToSlide(1)" class="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-white border-2 border-white" id="dot1"></button>
+    <button onclick="goToSlide(2)" class="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-white/50 hover:bg-white/80" id="dot2"></button>
+    <button onclick="goToSlide(3)" class="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-white/50 hover:bg-white/80" id="dot3"></button>
+    <button onclick="goToSlide(4)" class="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-white/50 hover:bg-white/80" id="dot4"></button>
+    <button onclick="goToSlide(5)" class="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-white/50 hover:bg-white/80" id="dot5"></button>
+  </div>
 </section>
 
-<!-- CATEGORIES -->
-<section class="max-w-7xl mx-auto px-6 py-16">
-    <h2 class="text-4xl heading-font font-bold text-center mb-12">Shop by Category</h2>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-        <div class="group cursor-pointer">
-            <div class="h-80 bg-cover bg-center rounded-2xl overflow-hidden" style="background-image: url('https://picsum.photos/id/1015/600/800')">
-                <div class="bg-gradient-to-t from-black/70 h-full flex items-end p-6"><h3 class="text-white text-2xl font-semibold">Ikat Sarees</h3></div>
-            </div>
-        </div>
-        <div class="group cursor-pointer">
-            <div class="h-80 bg-cover bg-center rounded-2xl overflow-hidden" style="background-image: url('https://picsum.photos/id/106/600/800')">
-                <div class="bg-gradient-to-t from-black/70 h-full flex items-end p-6"><h3 class="text-white text-2xl font-semibold">Kanjivaram</h3></div>
-            </div>
-        </div>
-        <div class="group cursor-pointer">
-            <div class="h-80 bg-cover bg-center rounded-2xl overflow-hidden" style="background-image: url('https://picsum.photos/id/201/600/800')">
-                <div class="bg-gradient-to-t from-black/70 h-full flex items-end p-6"><h3 class="text-white text-2xl font-semibold">Banarasi</h3></div>
-            </div>
-        </div>
-        <div class="group cursor-pointer">
-            <div class="h-80 bg-cover bg-center rounded-2xl overflow-hidden" style="background-image: url('https://picsum.photos/id/133/600/800')">
-                <div class="bg-gradient-to-t from-black/70 h-full flex items-end p-6"><h3 class="text-white text-2xl font-semibold">Chiffon</h3></div>
-            </div>
-        </div>
-        <div class="group cursor-pointer">
-            <div class="h-80 bg-cover bg-center rounded-2xl overflow-hidden" style="background-image: url('https://picsum.photos/id/180/600/800')">
-                <div class="bg-gradient-to-t from-black/70 h-full flex items-end p-6"><h3 class="text-white text-2xl font-semibold">Bridal Collection</h3></div>
-            </div>
-        </div>
+<!-- CATEGORIES - responsive grid -->
+<section class="max-w-7xl mx-auto px-4 py-10 sm:py-16">
+  <h2 class="text-2xl sm:text-4xl heading-font font-bold text-center mb-8 sm:mb-12">Shop by Category</h2>
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-5 category-grid">
+    <div class="group cursor-pointer">
+      <div class="h-40 sm:h-60 lg:h-80 bg-cover bg-center rounded-xl sm:rounded-2xl overflow-hidden" style="background-image: url('https://picsum.photos/id/1015/600/800')">
+        <div class="bg-gradient-to-t from-black/70 h-full flex items-end p-3 sm:p-5"><h3 class="text-white text-base sm:text-2xl font-semibold">Ikat Sarees</h3></div>
+      </div>
     </div>
+    <div class="group cursor-pointer">
+      <div class="h-40 sm:h-60 lg:h-80 bg-cover bg-center rounded-xl sm:rounded-2xl overflow-hidden" style="background-image: url('https://picsum.photos/id/106/600/800')">
+        <div class="bg-gradient-to-t from-black/70 h-full flex items-end p-3 sm:p-5"><h3 class="text-white text-base sm:text-2xl font-semibold">Kanjivaram</h3></div>
+      </div>
+    </div>
+    <div class="group cursor-pointer">
+      <div class="h-40 sm:h-60 lg:h-80 bg-cover bg-center rounded-xl sm:rounded-2xl overflow-hidden" style="background-image: url('https://picsum.photos/id/201/600/800')">
+        <div class="bg-gradient-to-t from-black/70 h-full flex items-end p-3 sm:p-5"><h3 class="text-white text-base sm:text-2xl font-semibold">Banarasi</h3></div>
+      </div>
+    </div>
+    <div class="group cursor-pointer">
+      <div class="h-40 sm:h-60 lg:h-80 bg-cover bg-center rounded-xl sm:rounded-2xl overflow-hidden" style="background-image: url('https://picsum.photos/id/133/600/800')">
+        <div class="bg-gradient-to-t from-black/70 h-full flex items-end p-3 sm:p-5"><h3 class="text-white text-base sm:text-2xl font-semibold">Chiffon</h3></div>
+      </div>
+    </div>
+    <div class="group cursor-pointer">
+      <div class="h-40 sm:h-60 lg:h-80 bg-cover bg-center rounded-xl sm:rounded-2xl overflow-hidden" style="background-image: url('https://picsum.photos/id/180/600/800')">
+        <div class="bg-gradient-to-t from-black/70 h-full flex items-end p-3 sm:p-5"><h3 class="text-white text-base sm:text-2xl font-semibold">Bridal Collection</h3></div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- FEATURED PRODUCTS -->
-<section id="featured" class="bg-white py-16">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="flex justify-between items-end mb-10">
-            <h2 class="text-4xl heading-font font-bold">Featured Products</h2>
-            <a href="#" class="text-red-900 font-medium hover:underline">View All →</a>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8" id="featuredProducts"></div>
+<section id="featured" class="bg-white py-10 sm:py-16">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex flex-wrap justify-between items-end mb-6 sm:mb-10">
+      <h2 class="text-2xl sm:text-4xl heading-font font-bold">Featured Products</h2>
+      <a href="#" class="text-red-900 font-medium hover:underline text-sm sm:text-base">View All →</a>
     </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6" id="featuredProducts"></div>
+  </div>
 </section>
 
 <!-- BEST SELLERS -->
-<section class="max-w-7xl mx-auto px-6 py-16">
-    <h2 class="text-4xl heading-font font-bold text-center mb-12">Best Sellers</h2>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8" id="bestSellers"></div>
+<section class="max-w-7xl mx-auto px-4 py-10 sm:py-16">
+  <h2 class="text-2xl sm:text-4xl heading-font font-bold text-center mb-8 sm:mb-12">Best Sellers</h2>
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6" id="bestSellers"></div>
 </section>
 
-<!-- PRODUCT MODAL -->
-<div id="productModal" class="hidden fixed inset-0 bg-black/70 z-[100] flex items-center justify-center">
-    <div class="bg-white max-w-4xl w-full mx-4 rounded-3xl overflow-hidden">
-        <div class="flex">
-            <div class="w-1/2 bg-gray-100 p-8" id="modalImage"></div>
-            <div class="w-1/2 p-8">
-                <button onclick="closeModal()" class="float-right text-3xl text-gray-400 hover:text-gray-600">&times;</button>
-                <h2 id="modalTitle" class="text-3xl heading-font font-bold mb-2"></h2>
-                <p id="modalPrice" class="text-2xl text-red-900 font-semibold mb-6"></p>
-                <p id="modalDesc" class="text-gray-600 mb-8"></p>
-                <div class="mb-8">
-                    <p class="font-medium mb-3">Select Color</p>
-                    <div class="flex gap-3">
-                        <div class="w-8 h-8 bg-red-900 rounded-full cursor-pointer border-2 border-white shadow"></div>
-                        <div class="w-8 h-8 bg-teal-700 rounded-full cursor-pointer"></div>
-                        <div class="w-8 h-8 bg-amber-800 rounded-full cursor-pointer"></div>
-                    </div>
-                </div>
-                <button onclick="addToCart()" class="w-full bg-red-900 text-white py-4 rounded-full font-semibold text-lg hover:bg-red-800 transition-colors">
-                    ADD TO CART - ₹4,999
-                </button>
-            </div>
+<!-- PRODUCT MODAL - responsive -->
+<div id="productModal" class="hidden fixed inset-0 bg-black/70 z-[100] flex items-center justify-center p-2">
+  <div class="bg-white max-w-4xl w-full rounded-2xl sm:rounded-3xl overflow-hidden">
+    <div class="flex flex-col sm:flex-row">
+      <div class="w-full sm:w-1/2 bg-gray-100 p-4 sm:p-8" id="modalImage"></div>
+      <div class="w-full sm:w-1/2 p-4 sm:p-8">
+        <button onclick="closeModal()" class="float-right text-2xl sm:text-3xl text-gray-400 hover:text-gray-600">&times;</button>
+        <h2 id="modalTitle" class="text-xl sm:text-3xl heading-font font-bold mb-1 sm:mb-2"></h2>
+        <p id="modalPrice" class="text-xl sm:text-2xl text-red-900 font-semibold mb-3 sm:mb-6"></p>
+        <p id="modalDesc" class="text-gray-600 text-sm sm:text-base mb-4 sm:mb-8"></p>
+        <div class="mb-4 sm:mb-8">
+          <p class="font-medium mb-2 sm:mb-3 text-sm sm:text-base">Select Color</p>
+          <div class="flex gap-2 sm:gap-3">
+            <div class="w-6 h-6 sm:w-8 sm:h-8 bg-red-900 rounded-full cursor-pointer border-2 border-white shadow"></div>
+            <div class="w-6 h-6 sm:w-8 sm:h-8 bg-teal-700 rounded-full cursor-pointer"></div>
+            <div class="w-6 h-6 sm:w-8 sm:h-8 bg-amber-800 rounded-full cursor-pointer"></div>
+          </div>
         </div>
+        <button onclick="addToCart()" class="w-full bg-red-900 text-white py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:bg-red-800 transition-colors">
+          ADD TO CART - ₹4,999
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- FOOTER -->
 <footer class="bg-gray-900 text-gray-300">
-    <div class="max-w-7xl mx-auto px-6 pt-16 pb-8">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
-            <div>
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-red-900 font-bold text-lg">N</div>
-                    <span class="text-2xl font-bold text-white heading-font">Nalli</span>
-                </div>
-                <p class="text-sm">Handpicked finest silk sarees from the heart of India since 1928.</p>
-            </div>
-            <div>
-                <h4 class="font-semibold text-white mb-4">Shop</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-white">All Sarees</a></li>
-                    <li><a href="#" class="hover:text-white">New Arrivals</a></li>
-                    <li><a href="#" class="hover:text-white">Best Sellers</a></li>
-                    <li><a href="#" class="hover:text-white">Sale</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-semibold text-white mb-4">Explore</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-white">About Us</a></li>
-                    <li><a href="#" class="hover:text-white">Our Heritage</a></li>
-                    <li><a href="#" class="hover:text-white">Blog</a></li>
-                    <li><a href="#" class="hover:text-white">Contact</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-semibold text-white mb-4">Support</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-white">Shipping Policy</a></li>
-                    <li><a href="#" class="hover:text-white">Returns</a></li>
-                    <li><a href="#" class="hover:text-white">Track Order</a></li>
-                    <li><a href="#" class="hover:text-white">FAQs</a></li>
-                </ul>
-            </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-6 sm:pb-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-10">
+      <div class="col-span-2 sm:col-span-1">
+        <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+          <div class="w-7 h-7 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center text-red-900 font-bold text-base sm:text-lg">N</div>
+          <span class="text-xl sm:text-2xl font-bold text-white heading-font">Nalli</span>
         </div>
-        <div class="border-t border-gray-800 mt-12 pt-8 text-xs flex flex-col md:flex-row justify-between items-center gap-4">
-            <p>© 2026 Nalli Sarees. All rights reserved.</p>
-            <div class="flex gap-6">
-                <i class="fa-brands fa-instagram cursor-pointer hover:text-white"></i>
-                <i class="fa-brands fa-facebook cursor-pointer hover:text-white"></i>
-                <i class="fa-brands fa-whatsapp cursor-pointer hover:text-white"></i>
-            </div>
-        </div>
+        <p class="text-xs sm:text-sm">Handpicked finest silk sarees from the heart of India since 1928.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-white mb-3 sm:mb-4 text-sm sm:text-base">Shop</h4>
+        <ul class="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
+          <li><a href="#" class="hover:text-white">All Sarees</a></li>
+          <li><a href="#" class="hover:text-white">New Arrivals</a></li>
+          <li><a href="#" class="hover:text-white">Best Sellers</a></li>
+          <li><a href="#" class="hover:text-white">Sale</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-white mb-3 sm:mb-4 text-sm sm:text-base">Explore</h4>
+        <ul class="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
+          <li><a href="#" class="hover:text-white">About Us</a></li>
+          <li><a href="#" class="hover:text-white">Our Heritage</a></li>
+          <li><a href="#" class="hover:text-white">Blog</a></li>
+          <li><a href="#" class="hover:text-white">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-white mb-3 sm:mb-4 text-sm sm:text-base">Support</h4>
+        <ul class="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
+          <li><a href="#" class="hover:text-white">Shipping Policy</a></li>
+          <li><a href="#" class="hover:text-white">Returns</a></li>
+          <li><a href="#" class="hover:text-white">Track Order</a></li>
+          <li><a href="#" class="hover:text-white">FAQs</a></li>
+        </ul>
+      </div>
     </div>
+    <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-[10px] sm:text-xs flex flex-col sm:flex-row justify-between items-center gap-3">
+      <p>© 2026 Nalli Sarees. All rights reserved.</p>
+      <div class="flex gap-4 sm:gap-6">
+        <i class="fa-brands fa-instagram cursor-pointer hover:text-white"></i>
+        <i class="fa-brands fa-facebook cursor-pointer hover:text-white"></i>
+        <i class="fa-brands fa-whatsapp cursor-pointer hover:text-white"></i>
+      </div>
+    </div>
+  </div>
 </footer>
 
 <script>
-    // ----- PRODUCT DATA -----
-    const products = [
-        { id: 1, name: "Red & Black Ikat Silk Saree", price: "₹4,999", image: "https://picsum.photos/id/1015/600/800", category: "Ikat" },
-        { id: 2, name: "Teal Kanjivaram Pure Silk", price: "₹12,999", image: "https://picsum.photos/id/106/600/800", category: "Kanjivaram" },
-        { id: 3, name: "Cream Banarasi Wedding Saree", price: "₹8,499", image: "https://picsum.photos/id/201/600/800", category: "Banarasi" },
-        { id: 4, name: "Peach Chiffon Printed Saree", price: "₹2,999", image: "https://picsum.photos/id/133/600/800", category: "Chiffon" },
-        { id: 5, name: "Royal Blue Silk Saree", price: "₹5,999", image: "https://picsum.photos/id/180/600/800", category: "Ikat" }
-    ];
+  // ----- PRODUCT DATA -----
+  const products = [
+    { id: 1, name: "Red & Black Ikat Silk Saree", price: "₹4,999", image: "https://picsum.photos/id/1015/600/800", category: "Ikat" },
+    { id: 2, name: "Teal Kanjivaram Pure Silk", price: "₹12,999", image: "https://picsum.photos/id/106/600/800", category: "Kanjivaram" },
+    { id: 3, name: "Cream Banarasi Wedding Saree", price: "₹8,499", image: "https://picsum.photos/id/201/600/800", category: "Banarasi" },
+    { id: 4, name: "Peach Chiffon Printed Saree", price: "₹2,999", image: "https://picsum.photos/id/133/600/800", category: "Chiffon" },
+    { id: 5, name: "Royal Blue Silk Saree", price: "₹5,999", image: "https://picsum.photos/id/180/600/800", category: "Ikat" }
+  ];
 
-    function renderProducts(containerId, items) {
-        const container = document.getElementById(containerId);
-        if (!container) return;
-        container.innerHTML = '';
-        items.forEach(product => {
-            const card = document.createElement('div');
-            card.className = 'product-card bg-white rounded-2xl overflow-hidden border border-gray-100 cursor-pointer';
-            card.innerHTML = `
-                <div class="relative">
-                    <img src="${product.image}" class="w-full h-80 object-cover" alt="${product.name}" />
-                    <div class="absolute top-4 right-4 bg-white px-3 py-1 text-xs font-medium rounded-full shadow">${product.category}</div>
-                </div>
-                <div class="p-5">
-                    <h3 class="font-semibold leading-tight mb-1">${product.name}</h3>
-                    <p class="text-red-900 font-bold text-lg">${product.price}</p>
-                </div>
-            `;
-            card.onclick = () => showProductModal(product);
-            container.appendChild(card);
-        });
-    }
-
-    renderProducts('featuredProducts', products);
-    renderProducts('bestSellers', products);
-
-    // ----- CAROUSEL (5 slides) -----
-    let currentSlide = 1;
-    const totalSlides = 5;
-
-    function showSlide(slideIndex) {
-        for (let i = 1; i <= totalSlides; i++) {
-            const slide = document.getElementById(`slide${i}`);
-            const dot = document.getElementById(`dot${i}`);
-            if (slide) slide.classList.add('hidden');
-            if (dot) {
-                dot.classList.remove('bg-white', 'border-2', 'border-white');
-                dot.classList.add('bg-white/50');
-            }
-        }
-        const activeSlide = document.getElementById(`slide${slideIndex}`);
-        const activeDot = document.getElementById(`dot${slideIndex}`);
-        if (activeSlide) activeSlide.classList.remove('hidden');
-        if (activeDot) {
-            activeDot.classList.add('bg-white', 'border-2', 'border-white');
-            activeDot.classList.remove('bg-white/50');
-        }
-        currentSlide = slideIndex;
-    }
-
-    function nextSlide() { let next = currentSlide + 1; if (next > totalSlides) next = 1; showSlide(next); }
-    function prevSlide() { let prev = currentSlide - 1; if (prev < 1) prev = totalSlides; showSlide(prev); }
-    function goToSlide(n) { showSlide(n); }
-
-    // Auto play
-    setInterval(() => { nextSlide(); }, 5000);
-    showSlide(1);
-
-    // ----- MODAL -----
-    function showProductModal(product) {
-        document.getElementById('modalTitle').textContent = product.name;
-        document.getElementById('modalPrice').textContent = product.price;
-        document.getElementById('modalDesc').textContent = `Beautiful ${product.category} silk saree with intricate handwoven patterns. Perfect for any special occasion.`;
-        document.getElementById('modalImage').innerHTML = `<img src="${product.image}" class="w-full h-full object-cover rounded-2xl" alt="${product.name}" />`;
-        const modal = document.getElementById('productModal');
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-    }
-
-    function closeModal() {
-        const modal = document.getElementById('productModal');
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-    }
-
-    function addToCart() {
-        alert('Added to cart! 🎉');
-        closeModal();
-    }
-
-    // ESC to close modal
-    document.addEventListener('keydown', function(e) {
-        if (e.key === "Escape") closeModal();
+  function renderProducts(containerId, items) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    container.innerHTML = '';
+    items.forEach(product => {
+      const card = document.createElement('div');
+      card.className = 'product-card bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-gray-100 cursor-pointer';
+      card.innerHTML = `
+        <div class="relative">
+          <img src="${product.image}" class="w-full h-48 sm:h-64 lg:h-80 object-cover" alt="${product.name}" loading="lazy" />
+          <div class="absolute top-2 sm:top-4 right-2 sm:right-4 bg-white px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium rounded-full shadow">${product.category}</div>
+        </div>
+        <div class="p-3 sm:p-5">
+          <h3 class="font-semibold leading-tight text-sm sm:text-base mb-0.5">${product.name}</h3>
+          <p class="text-red-900 font-bold text-base sm:text-lg">${product.price}</p>
+        </div>
+      `;
+      card.onclick = () => showProductModal(product);
+      container.appendChild(card);
     });
+  }
 
-    // Search
-    document.getElementById('searchInput').addEventListener('keyup', function(e) {
-        if (e.key === 'Enter' && this.value.trim()) {
-            alert(`Searching for "${this.value}"... (Demo)`);
-        }
-    });
+  renderProducts('featuredProducts', products);
+  renderProducts('bestSellers', products);
+
+  // ----- CAROUSEL (5 slides) -----
+  let currentSlide = 1;
+  const totalSlides = 5;
+
+  function showSlide(slideIndex) {
+    for (let i = 1; i <= totalSlides; i++) {
+      const slide = document.getElementById(`slide${i}`);
+      const dot = document.getElementById(`dot${i}`);
+      if (slide) slide.classList.add('hidden');
+      if (dot) {
+        dot.classList.remove('bg-white', 'border-2', 'border-white');
+        dot.classList.add('bg-white/50');
+      }
+    }
+    const activeSlide = document.getElementById(`slide${slideIndex}`);
+    const activeDot = document.getElementById(`dot${slideIndex}`);
+    if (activeSlide) activeSlide.classList.remove('hidden');
+    if (activeDot) {
+      activeDot.classList.add('bg-white', 'border-2', 'border-white');
+      activeDot.classList.remove('bg-white/50');
+    }
+    currentSlide = slideIndex;
+  }
+
+  function nextSlide() { let next = currentSlide + 1; if (next > totalSlides) next = 1; showSlide(next); }
+  function prevSlide() { let prev = currentSlide - 1; if (prev < 1) prev = totalSlides; showSlide(prev); }
+  function goToSlide(n) { showSlide(n); }
+
+  setInterval(() => { nextSlide(); }, 5000);
+  showSlide(1);
+
+  // ----- MODAL -----
+  function showProductModal(product) {
+    document.getElementById('modalTitle').textContent = product.name;
+    document.getElementById('modalPrice').textContent = product.price;
+    document.getElementById('modalDesc').textContent = `Beautiful ${product.category} silk saree with intricate handwoven patterns. Perfect for any special occasion.`;
+    document.getElementById('modalImage').innerHTML = `<img src="${product.image}" class="w-full h-full object-cover rounded-xl sm:rounded-2xl" alt="${product.name}" />`;
+    const modal = document.getElementById('productModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('productModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+
+  function addToCart() {
+    alert('Added to cart! 🎉');
+    closeModal();
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === "Escape") closeModal();
+  });
+
+  // Search
+  document.getElementById('searchInput')?.addEventListener('keyup', function(e) {
+    if (e.key === 'Enter' && this.value.trim()) {
+      alert(`Searching for "${this.value}"... (Demo)`);
+    }
+  });
 </script>
 </body>
 </html>
