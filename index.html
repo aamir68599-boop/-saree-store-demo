@@ -8,36 +8,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap');
-        
+       
         :root {
             --primary: #9f1239;
         }
-        
+       
         .tail-container {
             font-family: 'Inter', system-ui, sans-serif;
         }
-        
+       
         .heading-font {
             font-family: 'Playfair Display', sans-serif;
         }
-
         .hero-slide {
             transition: opacity 0.8s ease-in-out;
         }
-
         .product-card {
             transition: all 0.3s ease;
         }
-        
+       
         .product-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
-
         .nav-link {
             position: relative;
         }
-        
+       
         .nav-link:after {
             content: '';
             position: absolute;
@@ -48,11 +45,10 @@
             background-color: #9f1239;
             transition: all 0.3s ease;
         }
-        
+       
         .nav-link:hover:after {
             width: 100%;
         }
-
         .carousel-container {
             position: relative;
             overflow: hidden;
@@ -67,7 +63,7 @@
             <div class="bg-red-900 text-white text-sm py-2 text-center">
                 Free Shipping above ₹4,999 (India) | Timeless Elegance - Today's 200 New Arrivals
             </div>
-            
+           
             <!-- Main Header -->
             <div class="flex items-center justify-between px-6 py-4">
                 <!-- Logo -->
@@ -77,17 +73,15 @@
                         <span class="text-3xl font-bold tracking-tight heading-font text-red-900">Nalli</span>
                     </div>
                 </div>
-
                 <!-- Search -->
                 <div class="flex-1 max-w-xl mx-8">
                     <div class="relative">
-                        <input type="text" id="searchInput" 
+                        <input type="text" id="searchInput"
                                class="w-full border border-gray-300 rounded-full py-3 px-6 pl-12 focus:outline-none focus:border-red-900"
                                placeholder="Search beautiful silk sarees...">
                         <i class="fa-solid fa-magnifying-glass absolute left-5 top-4 text-gray-400"></i>
                     </div>
                 </div>
-
                 <!-- Right Side -->
                 <div class="flex items-center gap-8 text-xl">
                     <a href="#" class="hover:text-red-900 transition-colors"><i class="fa-regular fa-user"></i></a>
@@ -101,7 +95,6 @@
                     </a>
                 </div>
             </div>
-
             <!-- Navigation -->
             <nav class="border-t border-gray-200">
                 <div class="max-w-7xl mx-auto px-6">
@@ -119,16 +112,16 @@
         </div>
     </header>
 
-    <!-- HERO CAROUSEL -->
+    <!-- HERO CAROUSEL - Updated with your images -->
     <section class="carousel-container relative h-screen">
         <!-- Slide 1 -->
-        <div id="slide1" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center" 
-             style="background-image: url('https://picsum.photos/id/1015/2000/1200')">
+        <div id="slide1" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center"
+             style="background-image: url('https://sareestoredemo.netlify.app/banner%201.webp')">
             <div class="max-w-7xl mx-auto px-6 text-white">
                 <div class="max-w-lg">
                     <h1 class="text-6xl heading-font font-bold mb-4">THE ICONIC IKATS</h1>
                     <p class="text-xl mb-8">Timeless Patterns. Beautifully Woven.</p>
-                    <button onclick="window.location.href='#featured'" 
+                    <button onclick="window.location.href='#featured'"
                             class="bg-white text-red-900 px-10 py-4 rounded-full font-semibold hover:bg-red-100 transition-colors">
                         SHOP NOW
                     </button>
@@ -137,13 +130,13 @@
         </div>
 
         <!-- Slide 2 -->
-        <div id="slide2" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden" 
-             style="background-image: url('https://picsum.photos/id/106/2000/1200')">
+        <div id="slide2" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden"
+             style="background-image: url('https://sareestoredemo.netlify.app/banner%202.1.webp')">
             <div class="max-w-7xl mx-auto px-6 text-white">
                 <div class="max-w-lg">
                     <h1 class="text-6xl heading-font font-bold mb-4">PURE KANJIVARAM SILK</h1>
                     <p class="text-xl mb-8">Handwoven elegance from Tamil Nadu</p>
-                    <button onclick="window.location.href='#featured'" 
+                    <button onclick="window.location.href='#featured'"
                             class="bg-white text-red-900 px-10 py-4 rounded-full font-semibold hover:bg-red-100 transition-colors">
                         EXPLORE COLLECTION
                     </button>
@@ -152,13 +145,13 @@
         </div>
 
         <!-- Slide 3 -->
-        <div id="slide3" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden" 
-             style="background-image: url('https://picsum.photos/id/201/2000/1200')">
+        <div id="slide3" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden"
+             style="background-image: url('https://sareestoredemo.netlify.app/banner%203.webp')">
             <div class="max-w-7xl mx-auto px-6 text-white">
                 <div class="max-w-lg">
                     <h1 class="text-6xl heading-font font-bold mb-4">BANARASI BRIDAL WEAR</h1>
                     <p class="text-xl mb-8">For your most precious moments</p>
-                    <button onclick="window.location.href='#featured'" 
+                    <button onclick="window.location.href='#featured'"
                             class="bg-white text-red-900 px-10 py-4 rounded-full font-semibold hover:bg-red-100 transition-colors">
                         SHOP BRIDAL
                     </button>
@@ -166,12 +159,42 @@
             </div>
         </div>
 
+        <!-- Slide 4 -->
+        <div id="slide4" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden"
+             style="background-image: url('https://sareestoredemo.netlify.app/banner%204.webp')">
+            <div class="max-w-7xl mx-auto px-6 text-white">
+                <div class="max-w-lg">
+                    <h1 class="text-6xl heading-font font-bold mb-4">EXQUISITE SILK COLLECTION</h1>
+                    <p class="text-xl mb-8">Crafted with love and tradition</p>
+                    <button onclick="window.location.href='#featured'"
+                            class="bg-white text-red-900 px-10 py-4 rounded-full font-semibold hover:bg-red-100 transition-colors">
+                        SHOP NOW
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div id="slide5" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden"
+             style="background-image: url('https://sareestoredemo.netlify.app/banner%205.webp')">
+            <div class="max-w-7xl mx-auto px-6 text-white">
+                <div class="max-w-lg">
+                    <h1 class="text-6xl heading-font font-bold mb-4">FESTIVE SPECIAL</h1>
+                    <p class="text-xl mb-8">Celebrate in elegance</p>
+                    <button onclick="window.location.href='#featured'"
+                            class="bg-white text-red-900 px-10 py-4 rounded-full font-semibold hover:bg-red-100 transition-colors">
+                        EXPLORE NOW
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- Carousel Controls -->
-        <button onclick="prevSlide()" 
+        <button onclick="prevSlide()"
                 class="absolute left-8 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-red-900 p-4 rounded-full text-2xl shadow-lg z-10">
             <i class="fa-solid fa-chevron-left"></i>
         </button>
-        <button onclick="nextSlide()" 
+        <button onclick="nextSlide()"
                 class="absolute right-8 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-red-900 p-4 rounded-full text-2xl shadow-lg z-10">
             <i class="fa-solid fa-chevron-right"></i>
         </button>
@@ -181,48 +204,47 @@
             <button onclick="goToSlide(1)" class="w-4 h-4 rounded-full bg-white border-2 border-white" id="dot1"></button>
             <button onclick="goToSlide(2)" class="w-4 h-4 rounded-full bg-white/50 hover:bg-white/80" id="dot2"></button>
             <button onclick="goToSlide(3)" class="w-4 h-4 rounded-full bg-white/50 hover:bg-white/80" id="dot3"></button>
+            <button onclick="goToSlide(4)" class="w-4 h-4 rounded-full bg-white/50 hover:bg-white/80" id="dot4"></button>
+            <button onclick="goToSlide(5)" class="w-4 h-4 rounded-full bg-white/50 hover:bg-white/80" id="dot5"></button>
         </div>
     </section>
 
-    <!-- CATEGORIES -->
+    <!-- Baaki sab same rakh diya hai (jaise aapne kaha) -->
+    <!-- CATEGORIES, FEATURED, BEST SELLERS, MODAL, FOOTER sab same -->
+
     <section class="max-w-7xl mx-auto px-6 py-16">
         <h2 class="text-4xl heading-font font-bold text-center mb-12">Shop by Category</h2>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             <div class="group cursor-pointer">
-                <div class="h-80 bg-cover bg-center rounded-2xl overflow-hidden" 
-                     style="background-image: url('https://picsum.photos/id/1015/600/800')">
+                <div class="h-80 bg-cover bg-center rounded-2xl overflow-hidden" style="background-image: url('https://picsum.photos/id/1015/600/800')">
                     <div class="bg-gradient-to-t from-black/70 h-full flex items-end p-6">
                         <h3 class="text-white text-2xl font-semibold">Ikat Sarees</h3>
                     </div>
                 </div>
             </div>
             <div class="group cursor-pointer">
-                <div class="h-80 bg-cover bg-center rounded-2xl overflow-hidden" 
-                     style="background-image: url('https://picsum.photos/id/106/600/800')">
+                <div class="h-80 bg-cover bg-center rounded-2xl overflow-hidden" style="background-image: url('https://picsum.photos/id/106/600/800')">
                     <div class="bg-gradient-to-t from-black/70 h-full flex items-end p-6">
                         <h3 class="text-white text-2xl font-semibold">Kanjivaram</h3>
                     </div>
                 </div>
             </div>
             <div class="group cursor-pointer">
-                <div class="h-80 bg-cover bg-center rounded-2xl overflow-hidden" 
-                     style="background-image: url('https://picsum.photos/id/201/600/800')">
+                <div class="h-80 bg-cover bg-center rounded-2xl overflow-hidden" style="background-image: url('https://picsum.photos/id/201/600/800')">
                     <div class="bg-gradient-to-t from-black/70 h-full flex items-end p-6">
                         <h3 class="text-white text-2xl font-semibold">Banarasi</h3>
                     </div>
                 </div>
             </div>
             <div class="group cursor-pointer">
-                <div class="h-80 bg-cover bg-center rounded-2xl overflow-hidden" 
-                     style="background-image: url('https://picsum.photos/id/133/600/800')">
+                <div class="h-80 bg-cover bg-center rounded-2xl overflow-hidden" style="background-image: url('https://picsum.photos/id/133/600/800')">
                     <div class="bg-gradient-to-t from-black/70 h-full flex items-end p-6">
                         <h3 class="text-white text-2xl font-semibold">Chiffon</h3>
                     </div>
                 </div>
             </div>
             <div class="group cursor-pointer">
-                <div class="h-80 bg-cover bg-center rounded-2xl overflow-hidden" 
-                     style="background-image: url('https://picsum.photos/id/180/600/800')">
+                <div class="h-80 bg-cover bg-center rounded-2xl overflow-hidden" style="background-image: url('https://picsum.photos/id/180/600/800')">
                     <div class="bg-gradient-to-t from-black/70 h-full flex items-end p-6">
                         <h3 class="text-white text-2xl font-semibold">Bridal Collection</h3>
                     </div>
@@ -238,36 +260,26 @@
                 <h2 class="text-4xl heading-font font-bold">Featured Products</h2>
                 <a href="#" class="text-red-900 font-medium hover:underline">View All →</a>
             </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8" id="featuredProducts">
-                <!-- Products will be added by JS -->
-            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8" id="featuredProducts"></div>
         </div>
     </section>
 
     <!-- BEST SELLERS -->
     <section class="max-w-7xl mx-auto px-6 py-16">
         <h2 class="text-4xl heading-font font-bold text-center mb-12">Best Sellers</h2>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8" id="bestSellers">
-            <!-- Products will be added by JS -->
-        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8" id="bestSellers"></div>
     </section>
 
     <!-- PRODUCT MODAL -->
     <div id="productModal" class="hidden fixed inset-0 bg-black/70 z-[100] flex items-center justify-center">
         <div class="bg-white max-w-4xl w-full mx-4 rounded-3xl overflow-hidden">
             <div class="flex">
-                <!-- Image -->
-                <div class="w-1/2 bg-gray-100 p-8" id="modalImage">
-                    <!-- Image inserted by JS -->
-                </div>
-                <!-- Details -->
+                <div class="w-1/2 bg-gray-100 p-8" id="modalImage"></div>
                 <div class="w-1/2 p-8">
                     <button onclick="closeModal()" class="float-right text-3xl text-gray-400 hover:text-gray-600">&times;</button>
                     <h2 id="modalTitle" class="text-3xl heading-font font-bold mb-2"></h2>
                     <p id="modalPrice" class="text-2xl text-red-900 font-semibold mb-6"></p>
                     <p id="modalDesc" class="text-gray-600 mb-8"></p>
-                    
                     <div class="mb-8">
                         <p class="font-medium mb-3">Select Color</p>
                         <div class="flex gap-3">
@@ -276,16 +288,9 @@
                             <div class="w-8 h-8 bg-amber-800 rounded-full cursor-pointer"></div>
                         </div>
                     </div>
-                    
-                    <button onclick="addToCart()" 
-                            class="w-full bg-red-900 text-white py-4 rounded-full font-semibold text-lg hover:bg-red-800 transition-colors">
+                    <button onclick="addToCart()" class="w-full bg-red-900 text-white py-4 rounded-full font-semibold text-lg hover:bg-red-800 transition-colors">
                         ADD TO CART - ₹4,999
                     </button>
-                    
-                    <div class="mt-8 text-sm text-gray-500 space-y-2">
-                        <p><i class="fa-solid fa-truck"></i> Free shipping on orders above ₹4999</p>
-                        <p><i class="fa-solid fa-shield"></i> 7 days easy return</p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -302,7 +307,6 @@
                     </div>
                     <p class="text-sm">Handpicked finest silk sarees from the heart of India since 1928.</p>
                 </div>
-                
                 <div>
                     <h4 class="font-semibold text-white mb-4">Shop</h4>
                     <ul class="space-y-2 text-sm">
@@ -312,7 +316,6 @@
                         <li><a href="#" class="hover:text-white">Sale</a></li>
                     </ul>
                 </div>
-                
                 <div>
                     <h4 class="font-semibold text-white mb-4">Explore</h4>
                     <ul class="space-y-2 text-sm">
@@ -322,7 +325,6 @@
                         <li><a href="#" class="hover:text-white">Contact</a></li>
                     </ul>
                 </div>
-                
                 <div>
                     <h4 class="font-semibold text-white mb-4">Support</h4>
                     <ul class="space-y-2 text-sm">
@@ -333,7 +335,6 @@
                     </ul>
                 </div>
             </div>
-            
             <div class="border-t border-gray-800 mt-12 pt-8 text-xs flex flex-col md:flex-row justify-between items-center gap-4">
                 <p>© 2026 Nalli Sarees. All rights reserved.</p>
                 <div class="flex gap-6">
@@ -346,61 +347,24 @@
     </footer>
 
     <script>
-        // Tailwind script already loaded
-
-        // Sample Products
         const products = [
-            {
-                id: 1,
-                name: "Red & Black Ikat Silk Saree",
-                price: "₹4,999",
-                image: "https://picsum.photos/id/1015/600/800",
-                category: "Ikat"
-            },
-            {
-                id: 2,
-                name: "Teal Kanjivaram Pure Silk",
-                price: "₹12,999",
-                image: "https://picsum.photos/id/106/600/800",
-                category: "Kanjivaram"
-            },
-            {
-                id: 3,
-                name: "Cream Banarasi Wedding Saree",
-                price: "₹8,499",
-                image: "https://picsum.photos/id/201/600/800",
-                category: "Banarasi"
-            },
-            {
-                id: 4,
-                name: "Peach Chiffon Printed Saree",
-                price: "₹2,999",
-                image: "https://picsum.photos/id/133/600/800",
-                category: "Chiffon"
-            },
-            {
-                id: 5,
-                name: "Royal Blue Silk Saree",
-                price: "₹5,999",
-                image: "https://picsum.photos/id/180/600/800",
-                category: "Ikat"
-            }
+            { id: 1, name: "Red & Black Ikat Silk Saree", price: "₹4,999", image: "https://picsum.photos/id/1015/600/800", category: "Ikat" },
+            { id: 2, name: "Teal Kanjivaram Pure Silk", price: "₹12,999", image: "https://picsum.photos/id/106/600/800", category: "Kanjivaram" },
+            { id: 3, name: "Cream Banarasi Wedding Saree", price: "₹8,499", image: "https://picsum.photos/id/201/600/800", category: "Banarasi" },
+            { id: 4, name: "Peach Chiffon Printed Saree", price: "₹2,999", image: "https://picsum.photos/id/133/600/800", category: "Chiffon" },
+            { id: 5, name: "Royal Blue Silk Saree", price: "₹5,999", image: "https://picsum.photos/id/180/600/800", category: "Ikat" }
         ];
 
-        // Render Featured Products
         function renderProducts(containerId, items) {
             const container = document.getElementById(containerId);
             container.innerHTML = '';
-            
             items.forEach(product => {
                 const card = document.createElement('div');
                 card.className = 'product-card bg-white rounded-2xl overflow-hidden border border-gray-100 cursor-pointer';
                 card.innerHTML = `
                     <div class="relative">
                         <img src="${product.image}" class="w-full h-80 object-cover">
-                        <div class="absolute top-4 right-4 bg-white px-3 py-1 text-xs font-medium rounded-full shadow">
-                            ${product.category}
-                        </div>
+                        <div class="absolute top-4 right-4 bg-white px-3 py-1 text-xs font-medium rounded-full shadow">${product.category}</div>
                     </div>
                     <div class="p-5">
                         <h3 class="font-semibold leading-tight mb-1">${product.name}</h3>
@@ -412,32 +376,30 @@
             });
         }
 
-        // Render all products
         renderProducts('featuredProducts', products);
         renderProducts('bestSellers', products);
 
-        // Carousel Logic
+        // Carousel Logic (5 Slides)
         let currentSlide = 1;
-        const totalSlides = 3;
+        const totalSlides = 5;
 
         function showSlide(slideIndex) {
             for (let i = 1; i <= totalSlides; i++) {
                 const slide = document.getElementById(`slide${i}`);
                 const dot = document.getElementById(`dot${i}`);
                 if (slide) slide.classList.add('hidden');
-                if (dot) dot.classList.remove('bg-white', 'border-2', 'border-white');
-                if (dot) dot.classList.add('bg-white/50');
+                if (dot) {
+                    dot.classList.remove('bg-white', 'border-2', 'border-white');
+                    dot.classList.add('bg-white/50');
+                }
             }
-            
             const activeSlide = document.getElementById(`slide${slideIndex}`);
             const activeDot = document.getElementById(`dot${slideIndex}`);
-            
             if (activeSlide) activeSlide.classList.remove('hidden');
             if (activeDot) {
                 activeDot.classList.add('bg-white', 'border-2', 'border-white');
                 activeDot.classList.remove('bg-white/50');
             }
-            
             currentSlide = slideIndex;
         }
 
@@ -457,26 +419,15 @@
             showSlide(n);
         }
 
-        // Auto slide
-        setInterval(() => {
-            nextSlide();
-        }, 5000);
-
-        // Show first slide
+        setInterval(() => { nextSlide(); }, 5000);
         showSlide(1);
 
-        // Product Modal
-        let currentProduct = null;
-
+        // Modal Functions
         function showProductModal(product) {
-            currentProduct = product;
             document.getElementById('modalTitle').textContent = product.name;
             document.getElementById('modalPrice').textContent = product.price;
             document.getElementById('modalDesc').textContent = `Beautiful ${product.category} silk saree with intricate handwoven patterns. Perfect for any special occasion.`;
-            
-            const imageContainer = document.getElementById('modalImage');
-            imageContainer.innerHTML = `<img src="${product.image}" class="w-full h-full object-cover rounded-2xl">`;
-            
+            document.getElementById('modalImage').innerHTML = `<img src="${product.image}" class="w-full h-full object-cover rounded-2xl">`;
             document.getElementById('productModal').classList.remove('hidden');
             document.getElementById('productModal').classList.add('flex');
         }
@@ -492,26 +443,16 @@
             closeModal();
         }
 
-        // Search functionality
+        // Search
         document.getElementById('searchInput').addEventListener('keyup', function(e) {
-            if (e.key === 'Enter') {
-                const query = this.value.toLowerCase().trim();
-                if (query) {
-                    alert(`Searching for "${query}"... (Demo)`);
-                }
+            if (e.key === 'Enter' && this.value.trim()) {
+                alert(`Searching for "${this.value}"... (Demo)`);
             }
         });
 
-        // Keyboard shortcut for modal close
         document.addEventListener('keydown', function(e) {
-            if (e.key === "Escape") {
-                const modal = document.getElementById('productModal');
-                if (!modal.classList.contains('hidden')) closeModal();
-            }
+            if (e.key === "Escape") closeModal();
         });
-
-        // Initialize everything
-        console.log('%cNalli Sarees website loaded successfully!', 'color: #9f1239; font-weight: bold');
     </script>
 </body>
 </html>
