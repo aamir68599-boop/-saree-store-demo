@@ -21,15 +21,59 @@
     /* dropdown */
     .dropdown-group:hover .dropdown-menu { display: block; }
     .dropdown-menu { display: none; min-width: 160px; }
-    /* mobile responsive tweaks */
+    /* mobile responsive tweaks – only category grid now shows 5 items in a row on mobile */
     @media (max-width: 640px) {
       .hero-slide { background-position: center center !important; }
       .product-card img { height: 200px !important; }
-      .category-grid .h-80 { height: 180px !important; }
+      /* category grid: 5 items in a single row on mobile, each item becomes small */
+      .category-grid-mobile {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0.5rem;
+      }
+      .category-grid-mobile .cat-item {
+        min-width: 0;
+      }
+      .category-grid-mobile .cat-item .cat-bg {
+        height: 100px !important;
+        border-radius: 0.75rem;
+      }
+      .category-grid-mobile .cat-item h3 {
+        font-size: 0.6rem !important;
+        padding: 0.25rem 0.2rem !important;
+        white-space: normal;
+        word-break: break-word;
+        text-align: center;
+        line-height: 1.2;
+      }
+      .category-grid-mobile .cat-item .cat-overlay {
+        padding: 0.25rem !important;
+      }
+    }
+    @media (min-width: 641px) and (max-width: 768px) {
+      .category-grid-mobile {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0.75rem;
+      }
+      .category-grid-mobile .cat-item .cat-bg {
+        height: 140px !important;
+      }
     }
     @media (max-width: 768px) {
       .nav-menu { gap: 0.75rem !important; flex-wrap: wrap; justify-content: center; }
       .dropdown-menu { left: 0; right: auto; min-width: 140px; }
+    }
+    /* for larger screens keep the original grid */
+    @media (min-width: 769px) {
+      .category-grid-mobile {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1.25rem;
+      }
+      .category-grid-mobile .cat-item .cat-bg {
+        height: 300px !important;
+      }
     }
   </style>
 </head>
@@ -135,38 +179,48 @@
   </div>
 </section>
 
-<!-- CATEGORIES - responsive grid with updated images -->
+<!-- CATEGORIES - responsive grid with 5 items in a row on all screens -->
 <section class="max-w-7xl mx-auto px-4 py-10 sm:py-16">
   <h2 class="text-2xl sm:text-4xl heading-font font-bold text-center mb-8 sm:mb-12">Shop by Category</h2>
-  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-5 category-grid">
+  <div class="category-grid-mobile">
     <!-- Ikat Sarees -->
-    <div class="group cursor-pointer">
-      <div class="h-40 sm:h-60 lg:h-80 bg-cover bg-center rounded-xl sm:rounded-2xl overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Ikat%20Sarees.jpg')">
-        <div class="bg-gradient-to-t from-black/70 h-full flex items-end p-3 sm:p-5"><h3 class="text-white text-base sm:text-2xl font-semibold">Ikat Sarees</h3></div>
+    <div class="group cursor-pointer cat-item">
+      <div class="cat-bg bg-cover bg-center rounded-xl sm:rounded-2xl overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Ikat%20Sarees.jpg')">
+        <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end p-3 sm:p-5">
+          <h3 class="text-white text-base sm:text-2xl font-semibold">Ikat Sarees</h3>
+        </div>
       </div>
     </div>
     <!-- Kanjivaram -->
-    <div class="group cursor-pointer">
-      <div class="h-40 sm:h-60 lg:h-80 bg-cover bg-center rounded-xl sm:rounded-2xl overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Kanjivaram.jpg')">
-        <div class="bg-gradient-to-t from-black/70 h-full flex items-end p-3 sm:p-5"><h3 class="text-white text-base sm:text-2xl font-semibold">Kanjivaram</h3></div>
+    <div class="group cursor-pointer cat-item">
+      <div class="cat-bg bg-cover bg-center rounded-xl sm:rounded-2xl overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Kanjivaram.jpg')">
+        <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end p-3 sm:p-5">
+          <h3 class="text-white text-base sm:text-2xl font-semibold">Kanjivaram</h3>
+        </div>
       </div>
     </div>
     <!-- Banarasi -->
-    <div class="group cursor-pointer">
-      <div class="h-40 sm:h-60 lg:h-80 bg-cover bg-center rounded-xl sm:rounded-2xl overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Banarasi.jpg')">
-        <div class="bg-gradient-to-t from-black/70 h-full flex items-end p-3 sm:p-5"><h3 class="text-white text-base sm:text-2xl font-semibold">Banarasi</h3></div>
+    <div class="group cursor-pointer cat-item">
+      <div class="cat-bg bg-cover bg-center rounded-xl sm:rounded-2xl overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Banarasi.jpg')">
+        <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end p-3 sm:p-5">
+          <h3 class="text-white text-base sm:text-2xl font-semibold">Banarasi</h3>
+        </div>
       </div>
     </div>
     <!-- Chiffon -->
-    <div class="group cursor-pointer">
-      <div class="h-40 sm:h-60 lg:h-80 bg-cover bg-center rounded-xl sm:rounded-2xl overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Chiffon.jpg')">
-        <div class="bg-gradient-to-t from-black/70 h-full flex items-end p-3 sm:p-5"><h3 class="text-white text-base sm:text-2xl font-semibold">Chiffon</h3></div>
+    <div class="group cursor-pointer cat-item">
+      <div class="cat-bg bg-cover bg-center rounded-xl sm:rounded-2xl overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Chiffon.jpg')">
+        <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end p-3 sm:p-5">
+          <h3 class="text-white text-base sm:text-2xl font-semibold">Chiffon</h3>
+        </div>
       </div>
     </div>
     <!-- Bridal Collection -->
-    <div class="group cursor-pointer">
-      <div class="h-40 sm:h-60 lg:h-80 bg-cover bg-center rounded-xl sm:rounded-2xl overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Bridal%20Collection.jpg')">
-        <div class="bg-gradient-to-t from-black/70 h-full flex items-end p-3 sm:p-5"><h3 class="text-white text-base sm:text-2xl font-semibold">Bridal Collection</h3></div>
+    <div class="group cursor-pointer cat-item">
+      <div class="cat-bg bg-cover bg-center rounded-xl sm:rounded-2xl overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Bridal%20Collection.jpg')">
+        <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end p-3 sm:p-5">
+          <h3 class="text-white text-base sm:text-2xl font-semibold">Bridal Collection</h3>
+        </div>
       </div>
     </div>
   </div>
