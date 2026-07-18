@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <title>saree store demo · Fine Silk Sarees</title>
+  <title>Ikat Sarees · saree store demo</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
   <style>
@@ -75,11 +75,60 @@
     .thumb-img { transition: all 0.2s; cursor: pointer; }
     .thumb-img:hover { opacity: 0.7; }
     .thumb-img.active { border: 2px solid #9f1239; }
+
+    /* category page product grid */
+    .category-product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    @media (max-width: 1024px) {
+      .category-product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (max-width: 768px) {
+      .category-product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .category-product-grid {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+
+    /* filter sidebar */
+    .filter-sidebar {
+      background: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .filter-sidebar h3 {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #1e293b;
+    }
+    .filter-sidebar .filter-group {
+      margin-bottom: 1.25rem;
+    }
+    .filter-sidebar .filter-group label {
+      display: block;
+      font-size: 0.875rem;
+      color: #475569;
+      margin-bottom: 0.25rem;
+      cursor: pointer;
+    }
+    .filter-sidebar .filter-group label input {
+      margin-right: 0.5rem;
+    }
   </style>
 </head>
 <body class="tail-container bg-gray-50 text-gray-800">
 
-<!-- HEADER (shared) -->
+<!-- HEADER -->
 <header class="bg-white shadow-sm sticky top-0 z-50">
   <div class="max-w-7xl mx-auto">
     <div class="bg-red-900 text-white text-xs sm:text-sm py-2 px-2 text-center tracking-wide">
@@ -122,12 +171,12 @@
               SHOP <i class="fa-solid fa-chevron-down text-[8px] sm:text-[10px] ml-0.5"></i>
             </a>
             <div class="dropdown-menu absolute left-0 top-full mt-1 bg-white shadow-lg rounded-xl border border-gray-100 py-1.5 z-40 w-40 sm:w-44">
-              <a href="#" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Ikat</a>
-              <a href="#" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Kanjivaram</a>
-              <a href="#" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Banarasi</a>
-              <a href="#" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Chiffon</a>
-              <a href="#" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Bridal Collection</a>
-              <a href="#" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Best Sellers</a>
+              <a href="#" onclick="showCategoryPage(event, 'Ikat')" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Ikat</a>
+              <a href="#" onclick="showCategoryPage(event, 'Kanjivaram')" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Kanjivaram</a>
+              <a href="#" onclick="showCategoryPage(event, 'Banarasi')" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Banarasi</a>
+              <a href="#" onclick="showCategoryPage(event, 'Chiffon')" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Chiffon</a>
+              <a href="#" onclick="showCategoryPage(event, 'Bridal')" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Bridal Collection</a>
+              <a href="#" onclick="showCategoryPage(event, 'Best Sellers')" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Best Sellers</a>
             </div>
           </li>
           <li><a href="#" class="nav-link hover:text-red-900 transition-colors">ABOUT US</a></li>
@@ -163,39 +212,39 @@
     </div>
   </section>
 
-  <!-- CATEGORIES - 3 items per row -->
+  <!-- CATEGORIES - 3 items per row (clickable) -->
   <section class="max-w-7xl mx-auto px-4 py-10 sm:py-16">
     <h2 class="text-2xl sm:text-4xl heading-font font-bold text-center mb-8 sm:mb-12">Shop by Category</h2>
     <div class="category-grid-3">
-      <div class="group cursor-pointer cat-item">
+      <div class="group cursor-pointer cat-item" onclick="showCategoryPage(event, 'Ikat')">
         <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Ikat%20Sarees.jpg')">
           <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end">
             <h3 class="text-white font-semibold">Ikat Sarees</h3>
           </div>
         </div>
       </div>
-      <div class="group cursor-pointer cat-item">
+      <div class="group cursor-pointer cat-item" onclick="showCategoryPage(event, 'Kanjivaram')">
         <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Kanjivaram.jpg')">
           <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end">
             <h3 class="text-white font-semibold">Kanjivaram</h3>
           </div>
         </div>
       </div>
-      <div class="group cursor-pointer cat-item">
+      <div class="group cursor-pointer cat-item" onclick="showCategoryPage(event, 'Banarasi')">
         <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Banarasi.jpg')">
           <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end">
             <h3 class="text-white font-semibold">Banarasi</h3>
           </div>
         </div>
       </div>
-      <div class="group cursor-pointer cat-item">
+      <div class="group cursor-pointer cat-item" onclick="showCategoryPage(event, 'Chiffon')">
         <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Chiffon.jpg')">
           <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end">
             <h3 class="text-white font-semibold">Chiffon</h3>
           </div>
         </div>
       </div>
-      <div class="group cursor-pointer cat-item">
+      <div class="group cursor-pointer cat-item" onclick="showCategoryPage(event, 'Bridal')">
         <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Bridal%20Collection.jpg')">
           <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end">
             <h3 class="text-white font-semibold">Bridal Collection</h3>
@@ -223,9 +272,89 @@
   </section>
 </div>
 
+<!-- ============ CATEGORY PAGE (Ikat) ============ -->
+<div id="categoryPage" class="hidden">
+  <section class="max-w-7xl mx-auto px-4 py-8">
+    <!-- Breadcrumb -->
+    <div class="text-sm text-gray-500 mb-6">
+      <a href="#" onclick="showHomePage(event)" class="hover:text-red-900">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-700 font-medium" id="categoryBreadcrumb">Ikat Sarees</span>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Sidebar Filters -->
+      <div class="lg:w-1/4">
+        <div class="filter-sidebar">
+          <h3 class="text-xl heading-font font-bold">Kanchipuram Saree</h3>
+          <p class="text-sm text-gray-500 mb-4">No filter applied</p>
+          
+          <div class="filter-group">
+            <h4 class="font-semibold text-gray-700 mb-2">Sort By: Trending</h4>
+          </div>
+
+          <div class="filter-group">
+            <h4>Price</h4>
+            <label><input type="checkbox" /> Under ₹1,000</label>
+            <label><input type="checkbox" /> ₹1,000 - ₹5,000</label>
+            <label><input type="checkbox" /> ₹5,000 - ₹10,000</label>
+            <label><input type="checkbox" /> Above ₹10,000</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Categories</h4>
+            <label><input type="checkbox" checked /> Ikat</label>
+            <label><input type="checkbox" /> Kanjivaram</label>
+            <label><input type="checkbox" /> Banarasi</label>
+            <label><input type="checkbox" /> Chiffon</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Color</h4>
+            <label><input type="checkbox" /> White</label>
+            <label><input type="checkbox" /> Blue</label>
+            <label><input type="checkbox" /> Red</label>
+            <label><input type="checkbox" /> Green</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Embarrassment</h4>
+            <label><input type="checkbox" /> Cotton</label>
+            <label><input type="checkbox" /> Silk</label>
+            <label><input type="checkbox" /> Chiffon</label>
+          </div>
+
+          <div class="mt-4 p-3 bg-gray-100 rounded-lg text-xs text-gray-600">
+            <i class="fa-solid fa-cookie-bite mr-1"></i> We use cookies to give you the best shopping experience. <a href="#" class="text-red-900 hover:underline">See details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="lg:w-3/4">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl heading-font font-bold" id="categoryTitle">Ikat Sarees</h2>
+          <span class="text-sm text-gray-500" id="productCount">1 product</span>
+        </div>
+        <div class="category-product-grid" id="categoryProducts">
+          <!-- Products will be rendered here -->
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
 <!-- ============ SEPARATE PRODUCT PAGE ============ -->
 <div id="productPage" class="hidden">
   <section class="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+    <div class="text-sm text-gray-500 mb-4">
+      <a href="#" onclick="showHomePage(event)" class="hover:text-red-900">Home</a>
+      <span class="mx-2">/</span>
+      <a href="#" onclick="showCategoryPage(event, 'Ikat')" class="hover:text-red-900">Ikat Sarees</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-700" id="productNameBreadcrumb">Off White Linen Ikkat Printed Saree</span>
+    </div>
+
     <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
       <!-- Left: Images -->
       <div class="lg:w-1/2">
@@ -241,10 +370,10 @@
 
       <!-- Right: Details -->
       <div class="lg:w-1/2">
-        <h1 class="text-2xl sm:text-3xl lg:text-4xl heading-font font-bold text-gray-800">Off White Linen Ikkat Printed Saree</h1>
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl heading-font font-bold text-gray-800" id="productDetailName">Off White Linen Ikkat Printed Saree</h1>
         
         <div class="flex items-center gap-4 mt-3">
-          <span class="text-3xl sm:text-4xl font-bold text-red-900">₹899</span>
+          <span class="text-3xl sm:text-4xl font-bold text-red-900" id="productDetailPrice">₹899</span>
           <span class="text-xl sm:text-2xl text-gray-400 line-through">₹1,644</span>
           <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">45% OFF</span>
         </div>
@@ -299,10 +428,10 @@
           <span class="text-gray-700">Ikkat Printed Saree</span>
         </div>
 
-        <!-- Back to home link -->
+        <!-- Back to category link -->
         <div class="mt-6 text-center">
-          <button onclick="showHomePage()" class="text-red-900 font-medium hover:underline text-sm">
-            <i class="fa-solid fa-arrow-left mr-1"></i> Back to Home
+          <button onclick="showCategoryPage(event, 'Ikat')" class="text-red-900 font-medium hover:underline text-sm">
+            <i class="fa-solid fa-arrow-left mr-1"></i> Back to Ikat Sarees
           </button>
         </div>
       </div>
@@ -370,6 +499,12 @@
     { id: 5, name: "Royal Blue Silk Saree", price: "₹5,999", image: "https://picsum.photos/id/180/600/800", category: "Ikat" }
   ];
 
+  // Category-specific products (only Ikat for now)
+  function getCategoryProducts(category) {
+    return products.filter(p => p.category === category);
+  }
+
+  // ----- RENDER FUNCTIONS -----
   function renderProducts(containerId, items) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -387,28 +522,88 @@
           <p class="text-red-900 font-bold text-base sm:text-lg">${product.price}</p>
         </div>
       `;
-      // Clicking a product shows the separate product page
       card.onclick = () => {
-        showProductPage();
+        showProductPage(product);
       };
       container.appendChild(card);
     });
   }
 
-  renderProducts('featuredProducts', products);
-  renderProducts('bestSellers', products);
-
-  // ----- SHOW/HIDE PRODUCT PAGE -----
-  function showProductPage() {
-    document.getElementById('homePageContent').classList.add('hidden');
-    document.getElementById('productPage').classList.remove('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  function renderCategoryProducts(category) {
+    const container = document.getElementById('categoryProducts');
+    if (!container) return;
+    const items = getCategoryProducts(category);
+    container.innerHTML = '';
+    if (items.length === 0) {
+      container.innerHTML = '<p class="text-gray-500 col-span-full text-center py-10">No products found in this category.</p>';
+      return;
+    }
+    items.forEach(product => {
+      const card = document.createElement('div');
+      card.className = 'product-card bg-white rounded-xl overflow-hidden border border-gray-100 cursor-pointer';
+      card.innerHTML = `
+        <div class="relative">
+          <img src="${product.image}" class="w-full h-64 object-cover" alt="${product.name}" loading="lazy" />
+          <div class="absolute top-2 right-2 bg-white px-2 py-0.5 text-[10px] font-medium rounded-full shadow">${product.category}</div>
+        </div>
+        <div class="p-3">
+          <h3 class="font-semibold text-sm mb-0.5 line-clamp-2">${product.name}</h3>
+          <p class="text-red-900 font-bold text-base">${product.price}</p>
+        </div>
+      `;
+      card.onclick = () => {
+        showProductPage(product);
+      };
+      container.appendChild(card);
+    });
+    document.getElementById('productCount').textContent = `${items.length} product${items.length > 1 ? 's' : ''}`;
   }
 
+  // ----- PAGE NAVIGATION -----
   function showHomePage(e) {
     if (e) e.preventDefault();
     document.getElementById('homePageContent').classList.remove('hidden');
+    document.getElementById('categoryPage').classList.add('hidden');
     document.getElementById('productPage').classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showCategoryPage(e, category) {
+    if (e) e.preventDefault();
+    document.getElementById('homePageContent').classList.add('hidden');
+    document.getElementById('categoryPage').classList.remove('hidden');
+    document.getElementById('productPage').classList.add('hidden');
+    
+    // Update category page content
+    document.getElementById('categoryBreadcrumb').textContent = category + ' Sarees';
+    document.getElementById('categoryTitle').textContent = category + ' Sarees';
+    renderCategoryProducts(category);
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showProductPage(product) {
+    document.getElementById('homePageContent').classList.add('hidden');
+    document.getElementById('categoryPage').classList.add('hidden');
+    document.getElementById('productPage').classList.remove('hidden');
+    
+    // Update product details
+    document.getElementById('productNameBreadcrumb').textContent = product.name;
+    document.getElementById('productDetailName').textContent = product.name;
+    document.getElementById('productDetailPrice').textContent = product.price;
+    document.getElementById('mainProductImage').src = product.image;
+    
+    // Update thumbnails
+    const thumbs = document.querySelectorAll('.thumb-img');
+    if (thumbs.length > 0) {
+      thumbs[0].src = product.image;
+      thumbs.forEach(img => {
+        img.classList.remove('active', 'border-red-900');
+        img.classList.add('border-transparent');
+      });
+      thumbs[0].classList.add('active', 'border-red-900');
+    }
+    
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -456,6 +651,10 @@
 
   setInterval(() => { nextSlide(); }, 5000);
   showSlide(1);
+
+  // ----- INITIAL RENDER -----
+  renderProducts('featuredProducts', products);
+  renderProducts('bestSellers', products);
 
   // Search
   document.getElementById('searchInput')?.addEventListener('keyup', function(e) {
