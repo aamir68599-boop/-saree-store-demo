@@ -116,7 +116,7 @@
     <nav class="border-t border-gray-200">
       <div class="max-w-7xl mx-auto px-3">
         <ul class="flex flex-wrap items-center justify-center gap-2 sm:gap-8 md:gap-12 text-xs sm:text-sm font-medium py-3 nav-menu">
-          <li><a href="#" class="nav-link text-red-900 font-semibold">HOME</a></li>
+          <li><a href="#" class="nav-link text-red-900 font-semibold" onclick="showHomePage(event)">HOME</a></li>
           <li class="relative dropdown-group">
             <a href="#" class="nav-link hover:text-red-900 transition-colors flex items-center gap-0.5">
               SHOP <i class="fa-solid fa-chevron-down text-[8px] sm:text-[10px] ml-0.5"></i>
@@ -138,90 +138,92 @@
   </div>
 </header>
 
-<!-- ============ MAIN HOME PAGE CONTENT (unchanged) ============ -->
-<!-- HERO CAROUSEL (5 slides) -->
-<section class="carousel-container relative h-[40vh] sm:h-[60vh] md:h-[80vh] lg:h-screen">
-  <div id="slide1" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center" style="background-image: url('https://sareestoredemo.netlify.app/banner%201.webp')"></div>
-  <div id="slide2" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%202.1.webp')"></div>
-  <div id="slide3" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%203.webp')"></div>
-  <div id="slide4" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%204.webp')"></div>
-  <div id="slide5" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%205.webp')"></div>
+<!-- ============ MAIN HOME PAGE CONTENT ============ -->
+<div id="homePageContent">
+  <!-- HERO CAROUSEL (5 slides) -->
+  <section class="carousel-container relative h-[40vh] sm:h-[60vh] md:h-[80vh] lg:h-screen">
+    <div id="slide1" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center" style="background-image: url('https://sareestoredemo.netlify.app/banner%201.webp')"></div>
+    <div id="slide2" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%202.1.webp')"></div>
+    <div id="slide3" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%203.webp')"></div>
+    <div id="slide4" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%204.webp')"></div>
+    <div id="slide5" class="hero-slide absolute inset-0 flex items-center bg-cover bg-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%205.webp')"></div>
 
-  <button onclick="prevSlide()" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-red-900 p-2 sm:p-3.5 rounded-full text-base sm:text-xl shadow-lg z-10">
-    <i class="fa-solid fa-chevron-left"></i>
-  </button>
-  <button onclick="nextSlide()" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-red-900 p-2 sm:p-3.5 rounded-full text-base sm:text-xl shadow-lg z-10">
-    <i class="fa-solid fa-chevron-right"></i>
-  </button>
-  <div class="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3 z-10">
-    <button onclick="goToSlide(1)" class="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-white border-2 border-white" id="dot1"></button>
-    <button onclick="goToSlide(2)" class="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-white/50 hover:bg-white/80" id="dot2"></button>
-    <button onclick="goToSlide(3)" class="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-white/50 hover:bg-white/80" id="dot3"></button>
-    <button onclick="goToSlide(4)" class="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-white/50 hover:bg-white/80" id="dot4"></button>
-    <button onclick="goToSlide(5)" class="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-white/50 hover:bg-white/80" id="dot5"></button>
-  </div>
-</section>
+    <button onclick="prevSlide()" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-red-900 p-2 sm:p-3.5 rounded-full text-base sm:text-xl shadow-lg z-10">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <button onclick="nextSlide()" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-red-900 p-2 sm:p-3.5 rounded-full text-base sm:text-xl shadow-lg z-10">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+    <div class="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3 z-10">
+      <button onclick="goToSlide(1)" class="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-white border-2 border-white" id="dot1"></button>
+      <button onclick="goToSlide(2)" class="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-white/50 hover:bg-white/80" id="dot2"></button>
+      <button onclick="goToSlide(3)" class="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-white/50 hover:bg-white/80" id="dot3"></button>
+      <button onclick="goToSlide(4)" class="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-white/50 hover:bg-white/80" id="dot4"></button>
+      <button onclick="goToSlide(5)" class="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-white/50 hover:bg-white/80" id="dot5"></button>
+    </div>
+  </section>
 
-<!-- CATEGORIES - 3 items per row -->
-<section class="max-w-7xl mx-auto px-4 py-10 sm:py-16">
-  <h2 class="text-2xl sm:text-4xl heading-font font-bold text-center mb-8 sm:mb-12">Shop by Category</h2>
-  <div class="category-grid-3">
-    <div class="group cursor-pointer cat-item">
-      <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Ikat%20Sarees.jpg')">
-        <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end">
-          <h3 class="text-white font-semibold">Ikat Sarees</h3>
+  <!-- CATEGORIES - 3 items per row -->
+  <section class="max-w-7xl mx-auto px-4 py-10 sm:py-16">
+    <h2 class="text-2xl sm:text-4xl heading-font font-bold text-center mb-8 sm:mb-12">Shop by Category</h2>
+    <div class="category-grid-3">
+      <div class="group cursor-pointer cat-item">
+        <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Ikat%20Sarees.jpg')">
+          <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end">
+            <h3 class="text-white font-semibold">Ikat Sarees</h3>
+          </div>
+        </div>
+      </div>
+      <div class="group cursor-pointer cat-item">
+        <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Kanjivaram.jpg')">
+          <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end">
+            <h3 class="text-white font-semibold">Kanjivaram</h3>
+          </div>
+        </div>
+      </div>
+      <div class="group cursor-pointer cat-item">
+        <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Banarasi.jpg')">
+          <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end">
+            <h3 class="text-white font-semibold">Banarasi</h3>
+          </div>
+        </div>
+      </div>
+      <div class="group cursor-pointer cat-item">
+        <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Chiffon.jpg')">
+          <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end">
+            <h3 class="text-white font-semibold">Chiffon</h3>
+          </div>
+        </div>
+      </div>
+      <div class="group cursor-pointer cat-item">
+        <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Bridal%20Collection.jpg')">
+          <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end">
+            <h3 class="text-white font-semibold">Bridal Collection</h3>
+          </div>
         </div>
       </div>
     </div>
-    <div class="group cursor-pointer cat-item">
-      <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Kanjivaram.jpg')">
-        <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end">
-          <h3 class="text-white font-semibold">Kanjivaram</h3>
-        </div>
-      </div>
-    </div>
-    <div class="group cursor-pointer cat-item">
-      <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Banarasi.jpg')">
-        <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end">
-          <h3 class="text-white font-semibold">Banarasi</h3>
-        </div>
-      </div>
-    </div>
-    <div class="group cursor-pointer cat-item">
-      <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Chiffon.jpg')">
-        <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end">
-          <h3 class="text-white font-semibold">Chiffon</h3>
-        </div>
-      </div>
-    </div>
-    <div class="group cursor-pointer cat-item">
-      <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Bridal%20Collection.jpg')">
-        <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end">
-          <h3 class="text-white font-semibold">Bridal Collection</h3>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- FEATURED PRODUCTS -->
-<section id="featured" class="bg-white py-10 sm:py-16">
-  <div class="max-w-7xl mx-auto px-4">
-    <div class="flex flex-wrap justify-between items-end mb-6 sm:mb-10">
-      <h2 class="text-2xl sm:text-4xl heading-font font-bold">Featured Products</h2>
-      <a href="#" class="text-red-900 font-medium hover:underline text-sm sm:text-base">View All →</a>
+  <!-- FEATURED PRODUCTS -->
+  <section id="featured" class="bg-white py-10 sm:py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-wrap justify-between items-end mb-6 sm:mb-10">
+        <h2 class="text-2xl sm:text-4xl heading-font font-bold">Featured Products</h2>
+        <a href="#" class="text-red-900 font-medium hover:underline text-sm sm:text-base">View All →</a>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6" id="featuredProducts"></div>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6" id="featuredProducts"></div>
-  </div>
-</section>
+  </section>
 
-<!-- BEST SELLERS -->
-<section class="max-w-7xl mx-auto px-4 py-10 sm:py-16">
-  <h2 class="text-2xl sm:text-4xl heading-font font-bold text-center mb-8 sm:mb-12">Best Sellers</h2>
-  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6" id="bestSellers"></div>
-</section>
+  <!-- BEST SELLERS -->
+  <section class="max-w-7xl mx-auto px-4 py-10 sm:py-16">
+    <h2 class="text-2xl sm:text-4xl heading-font font-bold text-center mb-8 sm:mb-12">Best Sellers</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6" id="bestSellers"></div>
+  </section>
+</div>
 
-<!-- ============ SEPARATE PRODUCT PAGE (hidden by default, shown via link) ============ -->
+<!-- ============ SEPARATE PRODUCT PAGE ============ -->
 <div id="productPage" class="hidden">
   <section class="max-w-7xl mx-auto px-4 py-8 sm:py-12">
     <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
@@ -398,20 +400,15 @@
 
   // ----- SHOW/HIDE PRODUCT PAGE -----
   function showProductPage() {
-    document.querySelector('.carousel-container')?.classList.add('hidden');
-    document.querySelector('.category-grid-3')?.closest('section')?.classList.add('hidden');
-    document.getElementById('featured')?.classList.add('hidden');
-    document.getElementById('bestSellers')?.parentElement?.classList.add('hidden');
-    document.getElementById('productPage')?.classList.remove('hidden');
+    document.getElementById('homePageContent').classList.add('hidden');
+    document.getElementById('productPage').classList.remove('hidden');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  function showHomePage() {
-    document.querySelector('.carousel-container')?.classList.remove('hidden');
-    document.querySelector('.category-grid-3')?.closest('section')?.classList.remove('hidden');
-    document.getElementById('featured')?.classList.remove('hidden');
-    document.getElementById('bestSellers')?.parentElement?.classList.remove('hidden');
-    document.getElementById('productPage')?.classList.add('hidden');
+  function showHomePage(e) {
+    if (e) e.preventDefault();
+    document.getElementById('homePageContent').classList.remove('hidden');
+    document.getElementById('productPage').classList.add('hidden');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
