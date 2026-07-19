@@ -490,14 +490,35 @@
 </footer>
 
 <script>
-  // ----- PRODUCT DATA (includes new Banarasi saree) -----
+  // ----- PRODUCT DATA (includes BOTH Kanjivaram and Banarasi) -----
   const products = [
     { id: 1, name: "Off White Linen Ikkat Saree", price: "₹899", image: "https://sareestoredemo.netlify.app/ikkat%20printed%20saree.webp", category: "Ikat" },
     { id: 2, name: "Teal Kanjivaram Pure Silk", price: "₹12,999", image: "https://picsum.photos/id/106/600/800", category: "Kanjivaram" },
     { id: 3, name: "Cream Banarasi Wedding Saree", price: "₹8,499", image: "https://picsum.photos/id/201/600/800", category: "Banarasi" },
     { id: 4, name: "Peach Chiffon Printed Saree", price: "₹2,999", image: "https://picsum.photos/id/133/600/800", category: "Chiffon" },
     { id: 5, name: "Royal Blue Silk Saree", price: "₹5,999", image: "https://picsum.photos/id/180/600/800", category: "Ikat" },
-    // NEW Banarasi Saree (exact details from provided data)
+    // KANJIVARAM Saree (C J Enterprise)
+    { 
+      id: 6, 
+      name: "C J Enterprise Women's Pure Kanjivaram Silk Saree (Pari122-51)", 
+      price: "₹497", 
+      image: "https://sareestoredemo.aamir68599.workers.dev/Kanjivaram%204.jpg", 
+      category: "Kanjivaram",
+      mrp: "₹999",
+      discount: "50%",
+      rating: "3.9",
+      reviews: "2641",
+      sold: "500+ bought in past month",
+      material: "Soft Lichi Silk",
+      weave: "Zari",
+      length: "6 yards",
+      occasion: "Wedding, Party",
+      pattern: "Embroidered",
+      includes: "With blouse piece",
+      origin: "India",
+      description: "Type: Kanjivaram Silk Saree · Color: Multi · Fabric: Art Silk · Dimension: Saree: 5.5 M, Blouse: 0.8 M · Perfect for Festive, Party, Occasional, Traditional, Wedding, Reception"
+    },
+    // BANARASI Saree (Mehrang)
     { 
       id: 7, 
       name: "Mehrang Women's Banarasi Silk Kanjivaram Saree (Pure Zari, Woven)", 
@@ -612,10 +633,27 @@
     document.getElementById('productDetailPrice').textContent = product.price;
     document.getElementById('mainProductImage').src = product.image;
     
-    // Update thumbnails: for Banarasi product, use 4 images
+    // Update thumbnails based on category
     const thumbs = document.querySelectorAll('.thumb-img');
     if (thumbs.length > 0) {
-      if (product.category === 'Banarasi' && product.id === 7) {
+      // Kanjivaram product (id:6) - use 4 Kanjivaram images
+      if (product.id === 6) {
+        const kanjivaramImages = [
+          "https://sareestoredemo.aamir68599.workers.dev/Kanjivaram%204.jpg",
+          "https://sareestoredemo.aamir68599.workers.dev/Kanjivaram%205.jpg",
+          "https://sareestoredemo.aamir68599.workers.dev/Kanjivaram%206.jpg",
+          "https://sareestoredemo.aamir68599.workers.dev/Kanjivaram%207.jpg"
+        ];
+        thumbs.forEach((img, idx) => {
+          if (idx < kanjivaramImages.length) {
+            img.src = kanjivaramImages[idx];
+          }
+          img.classList.remove('active', 'border-red-900');
+        });
+        thumbs[0].classList.add('active', 'border-red-900');
+      }
+      // Banarasi product (id:7) - use 4 Banarasi images
+      else if (product.id === 7) {
         const banarasiImages = [
           "https://sareestoredemo.aamir68599.workers.dev/Banarasi%20%201.jpg",
           "https://sareestoredemo.aamir68599.workers.dev/Banarasi%20%202.jpg",
