@@ -490,13 +490,34 @@
 </footer>
 
 <script>
-  // ----- PRODUCT DATA (includes the new Ikat saree) -----
+  // ----- PRODUCT DATA (includes the new Kanjivaram saree) -----
   const products = [
     { id: 1, name: "Off White Linen Ikkat Saree", price: "₹899", image: "https://sareestoredemo.netlify.app/ikkat%20printed%20saree.webp", category: "Ikat" },
     { id: 2, name: "Teal Kanjivaram Pure Silk", price: "₹12,999", image: "https://picsum.photos/id/106/600/800", category: "Kanjivaram" },
     { id: 3, name: "Cream Banarasi Wedding Saree", price: "₹8,499", image: "https://picsum.photos/id/201/600/800", category: "Banarasi" },
     { id: 4, name: "Peach Chiffon Printed Saree", price: "₹2,999", image: "https://picsum.photos/id/133/600/800", category: "Chiffon" },
-    { id: 5, name: "Royal Blue Silk Saree", price: "₹5,999", image: "https://picsum.photos/id/180/600/800", category: "Ikat" }
+    { id: 5, name: "Royal Blue Silk Saree", price: "₹5,999", image: "https://picsum.photos/id/180/600/800", category: "Ikat" },
+    // NEW Kanjivaram saree (exact details from provided data)
+    { 
+      id: 6, 
+      name: "C J Enterprise Women's Pure Kanjivaram Silk Saree (Pari122-51)", 
+      price: "₹497", 
+      image: "https://sareestoredemo.aamir68599.workers.dev/Kanjivaram%204.jpg", 
+      category: "Kanjivaram",
+      mrp: "₹999",
+      discount: "50%",
+      rating: "3.9",
+      reviews: "2641",
+      sold: "500+ bought in past month",
+      material: "Soft Lichi Silk",
+      weave: "Zari",
+      length: "6 yards",
+      occasion: "Wedding, Party",
+      pattern: "Embroidered",
+      includes: "With blouse piece",
+      origin: "India",
+      description: "Type: Kanjivaram Silk Saree · Color: Multi · Fabric: Art Silk · Dimension: Saree: 5.5 M, Blouse: 0.8 M · Perfect for Festive, Party, Occasional, Traditional, Wedding, Reception"
+    }
   ];
 
   // Category-specific products (only Ikat for now)
@@ -593,15 +614,26 @@
     document.getElementById('productDetailPrice').textContent = product.price;
     document.getElementById('mainProductImage').src = product.image;
     
-    // Update thumbnails
+    // Update thumbnails: for the new Kanjivaram product, use all 4 images if available
     const thumbs = document.querySelectorAll('.thumb-img');
     if (thumbs.length > 0) {
-      thumbs[0].src = product.image;
-      thumbs.forEach(img => {
-        img.classList.remove('active', 'border-red-900');
-        img.classList.add('border-transparent');
-      });
-      thumbs[0].classList.add('active', 'border-red-900');
+      // For Kanjivaram product, set thumbnails to the provided images
+      if (product.category === 'Kanjivaram' && product.id === 6) {
+        thumbs[0].src = "https://sareestoredemo.aamir68599.workers.dev/Kanjivaram%204.jpg";
+        thumbs[1].src = "https://sareestoredemo.aamir68599.workers.dev/Kanjivaram%205.jpg";
+        thumbs[2].src = "https://sareestoredemo.aamir68599.workers.dev/Kanjivaram%206.jpg";
+        // Add a fourth thumbnail if needed (use Kanjivaram 7)
+        if (thumbs.length > 3) {
+          thumbs[3].src = "https://sareestoredemo.aamir68599.workers.dev/Kanjivaram%207.jpg";
+        }
+        // set first as active
+        thumbs.forEach(img => img.classList.remove('active', 'border-red-900'));
+        thumbs[0].classList.add('active', 'border-red-900');
+      } else {
+        thumbs[0].src = product.image;
+        thumbs.forEach(img => img.classList.remove('active', 'border-red-900'));
+        thumbs[0].classList.add('active', 'border-red-900');
+      }
     }
     
     window.scrollTo({ top: 0, behavior: 'smooth' });
