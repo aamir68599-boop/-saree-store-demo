@@ -167,7 +167,7 @@
         <ul class="flex flex-wrap items-center justify-center gap-2 sm:gap-8 md:gap-12 text-xs sm:text-sm font-medium py-3 nav-menu">
           <li><a href="#" class="nav-link text-red-900 font-semibold" onclick="showHomePage(event)">HOME</a></li>
           <li class="relative dropdown-group">
-            <a href="#" class="nav-link hover:text-red-900 transition-colors flex items-center gap-0.5">
+            <a href="#" class="nav-link hover:text-red-900 transition-colors flex items-center gap-0.5" onclick="showShopPage(event)">
               SHOP <i class="fa-solid fa-chevron-down text-[8px] sm:text-[10px] ml-0.5"></i>
             </a>
             <div class="dropdown-menu absolute left-0 top-full mt-1 bg-white shadow-lg rounded-xl border border-gray-100 py-1.5 z-40 w-40 sm:w-44">
@@ -176,7 +176,6 @@
               <a href="#" onclick="showCategoryPage(event, 'Banarasi')" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Banarasi</a>
               <a href="#" onclick="showCategoryPage(event, 'Chiffon')" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Chiffon</a>
               <a href="#" onclick="showCategoryPage(event, 'Bridal')" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Bridal Collection</a>
-              <a href="#" onclick="showCategoryPage(event, 'Best Sellers')" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Best Sellers</a>
             </div>
           </li>
           <li><a href="#" class="nav-link hover:text-red-900 transition-colors">ABOUT US</a></li>
@@ -344,6 +343,79 @@
   </section>
 </div>
 
+<!-- ============ SHOP PAGE (All Products) ============ -->
+<div id="shopPage" class="hidden">
+  <section class="max-w-7xl mx-auto px-4 py-8">
+    <!-- Breadcrumb -->
+    <div class="text-sm text-gray-500 mb-6">
+      <a href="#" onclick="showHomePage(event)" class="hover:text-red-900">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-700 font-medium">All Sarees</span>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Sidebar Filters -->
+      <div class="lg:w-1/4">
+        <div class="filter-sidebar">
+          <h3 class="text-xl heading-font font-bold">Filter Products</h3>
+          <p class="text-sm text-gray-500 mb-4">Refine your search</p>
+          
+          <div class="filter-group">
+            <h4 class="font-semibold text-gray-700 mb-2">Sort By: Featured</h4>
+          </div>
+
+          <div class="filter-group">
+            <h4>Price</h4>
+            <label><input type="checkbox" /> Under ₹1,000</label>
+            <label><input type="checkbox" /> ₹1,000 - ₹5,000</label>
+            <label><input type="checkbox" /> ₹5,000 - ₹10,000</label>
+            <label><input type="checkbox" /> Above ₹10,000</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Categories</h4>
+            <label><input type="checkbox" checked /> Ikat</label>
+            <label><input type="checkbox" /> Kanjivaram</label>
+            <label><input type="checkbox" /> Banarasi</label>
+            <label><input type="checkbox" /> Chiffon</label>
+            <label><input type="checkbox" /> Bridal</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Color</h4>
+            <label><input type="checkbox" /> White</label>
+            <label><input type="checkbox" /> Blue</label>
+            <label><input type="checkbox" /> Red</label>
+            <label><input type="checkbox" /> Green</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Fabric</h4>
+            <label><input type="checkbox" /> Cotton</label>
+            <label><input type="checkbox" /> Silk</label>
+            <label><input type="checkbox" /> Chiffon</label>
+          </div>
+
+          <div class="mt-4 p-3 bg-gray-100 rounded-lg text-xs text-gray-600">
+            <i class="fa-solid fa-cookie-bite mr-1"></i> We use cookies to give you the best shopping experience. <a href="#" class="text-red-900 hover:underline">See details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="lg:w-3/4">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl heading-font font-bold">All Sarees</h2>
+          <span class="text-sm text-gray-500" id="shopProductCount">5 products</span>
+        </div>
+        <div class="category-product-grid" id="shopProducts">
+          <!-- All products will be rendered here -->
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
 <!-- ============ SEPARATE PRODUCT PAGE ============ -->
 <div id="productPage" class="hidden">
   <section class="max-w-7xl mx-auto px-4 py-8 sm:py-12">
@@ -490,7 +562,7 @@
 </footer>
 
 <script>
-  // ----- PRODUCT DATA (removed 4 placeholder products: Teal Kanjivaram, Cream Banarasi, Peach Chiffon, Royal Blue) -----
+  // ----- PRODUCT DATA -----
   const products = [
     { id: 1, name: "Off White Linen Ikkat Saree", price: "₹899", image: "https://sareestoredemo.netlify.app/ikkat%20printed%20saree.webp", category: "Ikat" },
     // KANJIVARAM Saree (C J Enterprise)
@@ -639,12 +711,48 @@
     document.getElementById('productCount').textContent = `${items.length} product${items.length > 1 ? 's' : ''}`;
   }
 
+  function renderShopProducts() {
+    const container = document.getElementById('shopProducts');
+    if (!container) return;
+    container.innerHTML = '';
+    products.forEach(product => {
+      const card = document.createElement('div');
+      card.className = 'product-card bg-white rounded-xl overflow-hidden border border-gray-100 cursor-pointer';
+      card.innerHTML = `
+        <div class="relative">
+          <img src="${product.image}" class="w-full h-64 object-cover" alt="${product.name}" loading="lazy" />
+          <div class="absolute top-2 right-2 bg-white px-2 py-0.5 text-[10px] font-medium rounded-full shadow">${product.category}</div>
+        </div>
+        <div class="p-3">
+          <h3 class="font-semibold text-sm mb-0.5 line-clamp-2">${product.name}</h3>
+          <p class="text-red-900 font-bold text-base">${product.price}</p>
+        </div>
+      `;
+      card.onclick = () => {
+        showProductPage(product);
+      };
+      container.appendChild(card);
+    });
+    document.getElementById('shopProductCount').textContent = `${products.length} products`;
+  }
+
   // ----- PAGE NAVIGATION -----
   function showHomePage(e) {
     if (e) e.preventDefault();
     document.getElementById('homePageContent').classList.remove('hidden');
     document.getElementById('categoryPage').classList.add('hidden');
+    document.getElementById('shopPage').classList.add('hidden');
     document.getElementById('productPage').classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showShopPage(e) {
+    if (e) e.preventDefault();
+    document.getElementById('homePageContent').classList.add('hidden');
+    document.getElementById('categoryPage').classList.add('hidden');
+    document.getElementById('shopPage').classList.remove('hidden');
+    document.getElementById('productPage').classList.add('hidden');
+    renderShopProducts();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -652,6 +760,7 @@
     if (e) e.preventDefault();
     document.getElementById('homePageContent').classList.add('hidden');
     document.getElementById('categoryPage').classList.remove('hidden');
+    document.getElementById('shopPage').classList.add('hidden');
     document.getElementById('productPage').classList.add('hidden');
     
     document.getElementById('categoryBreadcrumb').textContent = category + ' Sarees';
@@ -664,6 +773,7 @@
   function showProductPage(product) {
     document.getElementById('homePageContent').classList.add('hidden');
     document.getElementById('categoryPage').classList.add('hidden');
+    document.getElementById('shopPage').classList.add('hidden');
     document.getElementById('productPage').classList.remove('hidden');
     
     document.getElementById('productNameBreadcrumb').textContent = product.name;
@@ -674,7 +784,6 @@
     // Update thumbnails based on category
     const thumbs = document.querySelectorAll('.thumb-img');
     if (thumbs.length > 0) {
-      // Kanjivaram product (id:6) - use 4 Kanjivaram images
       if (product.id === 6) {
         const kanjivaramImages = [
           "https://sareestoredemo.aamir68599.workers.dev/Kanjivaram%204.jpg",
@@ -690,7 +799,6 @@
         });
         thumbs[0].classList.add('active', 'border-red-900');
       }
-      // Banarasi product (id:7) - use 4 Banarasi images
       else if (product.id === 7) {
         const banarasiImages = [
           "https://sareestoredemo.aamir68599.workers.dev/Banarasi%20%201.jpg",
@@ -706,7 +814,6 @@
         });
         thumbs[0].classList.add('active', 'border-red-900');
       }
-      // Chiffon product (id:8) - use 4 Chiffon images
       else if (product.id === 8) {
         const chiffonImages = [
           "https://sareestoredemo.aamir68599.workers.dev/Chiffon.jpg",
@@ -722,7 +829,6 @@
         });
         thumbs[0].classList.add('active', 'border-red-900');
       }
-      // Bridal product (id:9) - use 4 Bridal images
       else if (product.id === 9) {
         const bridalImages = [
           "https://sareestoredemo.aamir68599.workers.dev/Bridal%20Sarees.webp",
