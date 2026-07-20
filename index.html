@@ -490,7 +490,7 @@
 </footer>
 
 <script>
-  // ----- PRODUCT DATA (includes BOTH Kanjivaram and Banarasi) -----
+  // ----- PRODUCT DATA (includes ALL products: Ikat, Kanjivaram, Banarasi, Chiffon) -----
   const products = [
     { id: 1, name: "Off White Linen Ikkat Saree", price: "₹899", image: "https://sareestoredemo.netlify.app/ikkat%20printed%20saree.webp", category: "Ikat" },
     { id: 2, name: "Teal Kanjivaram Pure Silk", price: "₹12,999", image: "https://picsum.photos/id/106/600/800", category: "Kanjivaram" },
@@ -538,6 +538,27 @@
       includes: "Saree, Tassels",
       origin: "India",
       description: "FABRIC: Luxurious Banarasi silk saree featuring an elegant combination of purple and peach colours with intricate zari work throughout. DESIGN ELEMENTS: Beautiful woven zari border enhances the traditional appeal, complemented by decorative tassels for added grace. OCCASION WEAR: Perfect choice for weddings, festivals, and special ceremonies."
+    },
+    // CHIFFON Saree (Noel Dual Shade Butter Chiffon)
+    { 
+      id: 8, 
+      name: "Noel Dual Shade Butter Chiffon Saree with Self Blouse", 
+      price: "₹3,030", 
+      image: "https://sareestoredemo.aamir68599.workers.dev/Chiffon.jpg", 
+      category: "Chiffon",
+      mrp: "₹4,499",
+      discount: "33%",
+      rating: "4.5",
+      reviews: "17",
+      sold: "17 people viewing right now",
+      material: "Butter Chiffon Dual shade",
+      weave: "Chiffon",
+      length: "5.5 m",
+      occasion: "Wedding, Party, Festive",
+      pattern: "Dual Shade with Beaded Pendants",
+      includes: "With blouse piece",
+      origin: "India",
+      description: "Indulge in the timeless elegance of our Noel Dual Shade Butter Chiffon Saree, a graceful ensemble that exudes sophistication and charm. Once you Feel the Saree - you will fall in LOVE ! Fabric: Butter Chiffon Dual shade. Crafted from premium butter chiffon fabric in shades of maroon, green and Black, the Noel Dual Shade Butter Chiffon Saree exudes luxury and sophistication. The lightweight and airy texture of chiffon ensures effortless draping and comfortable wear, while the dual shade adds depth and dimension to the ensemble. The buttery softness of the chiffon fabric enhances the saree's fluid silhouette, creating a graceful and ethereal look that is sure to turn heads. Saree Design: 2 HANDMADE Long Beaded Pendants On Pallu End in Bronze Colour. The Noel Dual Shade Butter Chiffon Saree features two long beaded pendants on the pallu end, adding a hint of sparkle and elegance to the ensemble. These exquisite details showcase the meticulous craftsmanship and attention to detail that goes into creating each saree, ensuring a look that is both refined and sophisticated. The saree comes with a matching butter chiffon blouse fabric, creating a cohesive and harmonious look that celebrates traditional Indian craftsmanship. Recommended to Wear: Pair the Noel Dual Shade Butter Chiffon Saree with statement earrings - Red Gold Drop Earring and a sleek clutch- Radiant Hexagon Gold Clutch Bag for a glamorous look that exudes sophistication and charm. Opt for a soft, romantic hairstyle and dewy makeup to complement the feminine allure of the saree, allowing its beaded pendants and dual shade to shine through. Saree Length: 5.5 Mtr. Blouse Fabric Length: 0.8 Mtr. With Blouse: Yes. Blouse Fabric: Butter Chiffon Dual shade. Blouse Color: Maroon shades - same as saree. Wash Care: Dry Clean, Gentle Wash. To maintain the beauty and integrity of the saree, we recommend dry cleaning or gentle hand washing. This ensures that the fabric remains in pristine condition, allowing you to enjoy its elegance for years to come. ADDITIONAL Width- Our Sarees are 5.5 meters in length and 43-45\" in width generally. For very Tall Swtantra Ladies - we suggest adding a fall or piece of fabric on the top of saree until pleats to increase height. Description- Colours as shown in the picture may vary from the actual saree because of process of photography.It has tendency to reflect the different shades of colour due to lighting. GST - GST is additional tax which will be applied on the total price.The price mentioned in the bottom on the saree is inclusive of 5% GST."
     }
   ];
 
@@ -663,6 +684,22 @@
         thumbs.forEach((img, idx) => {
           if (idx < banarasiImages.length) {
             img.src = banarasiImages[idx];
+          }
+          img.classList.remove('active', 'border-red-900');
+        });
+        thumbs[0].classList.add('active', 'border-red-900');
+      }
+      // Chiffon product (id:8) - use 4 Chiffon images
+      else if (product.id === 8) {
+        const chiffonImages = [
+          "https://sareestoredemo.aamir68599.workers.dev/Chiffon.jpg",
+          "https://sareestoredemo.aamir68599.workers.dev/Chiffon%202.webp",
+          "https://sareestoredemo.aamir68599.workers.dev/Chiffon%203.webp",
+          "https://sareestoredemo.aamir68599.workers.dev/Chiffon%204.webp"
+        ];
+        thumbs.forEach((img, idx) => {
+          if (idx < chiffonImages.length) {
+            img.src = chiffonImages[idx];
           }
           img.classList.remove('active', 'border-red-900');
         });
