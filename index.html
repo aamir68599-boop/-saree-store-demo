@@ -142,21 +142,21 @@
     }
     @media (max-width: 640px) {
       .carousel-container {
-        height: 45vh !important;
-        min-height: 250px !important;
-        max-height: 55vh !important;
+        height: 40vh !important;
+        min-height: 220px !important;
+        max-height: 50vh !important;
       }
       .carousel-container .hero-slide {
         background-size: cover !important;
         background-position: center center !important;
       }
       .carousel-container button {
-        padding: 0.5rem !important;
-        font-size: 0.7rem !important;
+        padding: 0.4rem !important;
+        font-size: 0.65rem !important;
       }
       .carousel-container .fa-chevron-left,
       .carousel-container .fa-chevron-right {
-        font-size: 0.8rem !important;
+        font-size: 0.7rem !important;
       }
     }
     @media (min-width: 641px) and (max-width: 1024px) {
@@ -190,6 +190,16 @@
       .product-card .text-red-900 {
         font-size: 0.8rem !important;
       }
+      .heading-font.text-4xl {
+        font-size: 1.8rem !important;
+      }
+      .text-3xl {
+        font-size: 1.5rem !important;
+      }
+      .px-4 {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+      }
     }
   </style>
 </head>
@@ -201,48 +211,40 @@
     <div class="bg-red-900 text-white text-xs sm:text-sm py-2 px-2 text-center tracking-wide">
       Free Shipping above ₹4,999 (India) · Timeless Elegance · 200 New Arrivals Today
     </div>
-    <div class="flex flex-wrap items-center justify-between px-4 py-3 gap-3">
+    <div class="flex flex-wrap items-center justify-between px-3 sm:px-4 py-2 sm:py-3 gap-2">
       <div class="flex items-center gap-2">
-        <div class="w-9 h-9 sm:w-10 sm:h-10 bg-red-900 rounded-full flex items-center justify-center text-white font-bold text-xl sm:text-2xl shadow-md">N</div>
+        <div class="w-8 h-8 sm:w-10 sm:h-10 bg-red-900 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-2xl shadow-md">N</div>
         <div>
-          <span class="text-2xl sm:text-3xl font-bold tracking-tight heading-font text-red-900">saree store demo</span>
-          <span class="block text-[8px] sm:text-[10px] uppercase tracking-widest text-gray-500 -mt-1">since 1928</span>
+          <span class="text-lg sm:text-3xl font-bold tracking-tight heading-font text-red-900">saree store demo</span>
+          <span class="block text-[6px] sm:text-[10px] uppercase tracking-widest text-gray-500 -mt-0.5">since 1928</span>
         </div>
       </div>
-      <div class="hidden md:block flex-1 max-w-xl mx-4">
-        <div class="relative">
-          <input type="text" id="searchInput"
-                 class="w-full border border-gray-300 rounded-full py-2.5 px-5 pl-10 focus:outline-none focus:border-red-900 focus:ring-1 focus:ring-red-900/20 text-sm"
-                 placeholder="Search beautiful silk sarees..." />
-          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-gray-400 text-sm"></i>
-        </div>
-      </div>
-      <div class="flex items-center gap-5 sm:gap-6 text-lg sm:text-xl">
+      <div class="flex items-center gap-3 sm:gap-6 text-base sm:text-xl">
         <a href="#" class="hover:text-red-900 transition-colors"><i class="fa-regular fa-user"></i></a>
         <a href="#" class="relative hover:text-red-900 transition-colors">
           <i class="fa-regular fa-heart"></i>
-          <span class="absolute -top-1 -right-1.5 bg-red-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">3</span>
+          <span class="absolute -top-1 -right-1.5 bg-red-600 text-white text-[8px] sm:text-[10px] w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center">3</span>
         </a>
         <a href="#" class="relative hover:text-red-900 transition-colors">
           <i class="fa-solid fa-bag-shopping"></i>
-          <span class="absolute -top-1 -right-1.5 bg-red-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
+          <span class="absolute -top-1 -right-1.5 bg-red-600 text-white text-[8px] sm:text-[10px] w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center">2</span>
         </a>
       </div>
     </div>
     <nav class="border-t border-gray-200">
-      <div class="max-w-7xl mx-auto px-3">
-        <ul class="flex flex-wrap items-center justify-center gap-2 sm:gap-8 md:gap-12 text-xs sm:text-sm font-medium py-3 nav-menu">
+      <div class="max-w-7xl mx-auto px-2 sm:px-3">
+        <ul class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-8 md:gap-12 text-[10px] sm:text-sm font-medium py-2 sm:py-3 nav-menu">
           <li><a href="#" class="nav-link text-red-900 font-semibold" onclick="showHomePage(event)">HOME</a></li>
           <li class="relative dropdown-group">
             <a href="#" class="nav-link hover:text-red-900 transition-colors flex items-center gap-0.5" onclick="showShopPage(event)">
-              SHOP <i class="fa-solid fa-chevron-down text-[8px] sm:text-[10px] ml-0.5"></i>
+              SHOP <i class="fa-solid fa-chevron-down text-[6px] sm:text-[10px] ml-0.5"></i>
             </a>
-            <div class="dropdown-menu absolute left-0 top-full mt-1 bg-white shadow-lg rounded-xl border border-gray-100 py-1.5 z-40 w-40 sm:w-44">
-              <a href="#" onclick="showCategoryPage(event, 'Ikat')" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Ikat</a>
-              <a href="#" onclick="showCategoryPage(event, 'Kanjivaram')" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Kanjivaram</a>
-              <a href="#" onclick="showCategoryPage(event, 'Banarasi')" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Banarasi</a>
-              <a href="#" onclick="showCategoryPage(event, 'Chiffon')" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Chiffon</a>
-              <a href="#" onclick="showCategoryPage(event, 'Bridal')" class="block px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-xs sm:text-sm">Bridal Collection</a>
+            <div class="dropdown-menu absolute left-0 top-full mt-1 bg-white shadow-lg rounded-xl border border-gray-100 py-1.5 z-40 w-36 sm:w-44">
+              <a href="#" onclick="showCategoryPage(event, 'Ikat')" class="block px-3 sm:px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-[10px] sm:text-sm">Ikat</a>
+              <a href="#" onclick="showCategoryPage(event, 'Kanjivaram')" class="block px-3 sm:px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-[10px] sm:text-sm">Kanjivaram</a>
+              <a href="#" onclick="showCategoryPage(event, 'Banarasi')" class="block px-3 sm:px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-[10px] sm:text-sm">Banarasi</a>
+              <a href="#" onclick="showCategoryPage(event, 'Chiffon')" class="block px-3 sm:px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-[10px] sm:text-sm">Chiffon</a>
+              <a href="#" onclick="showCategoryPage(event, 'Bridal')" class="block px-3 sm:px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-[10px] sm:text-sm">Bridal Collection</a>
             </div>
           </li>
           <li><a href="#" class="nav-link hover:text-red-900 transition-colors">ABOUT US</a></li>
@@ -263,24 +265,24 @@
     <div id="slide4" class="hero-slide absolute inset-0 flex items-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%204.webp');"></div>
     <div id="slide5" class="hero-slide absolute inset-0 flex items-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%205.webp');"></div>
 
-    <button onclick="prevSlide()" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-red-900 p-2 sm:p-3 rounded-full text-sm sm:text-base shadow-lg z-10 transition-all">
+    <button onclick="prevSlide()" class="absolute left-1.5 sm:left-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-red-900 p-1.5 sm:p-3 rounded-full text-xs sm:text-base shadow-lg z-10 transition-all">
       <i class="fa-solid fa-chevron-left"></i>
     </button>
-    <button onclick="nextSlide()" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-red-900 p-2 sm:p-3 rounded-full text-sm sm:text-base shadow-lg z-10 transition-all">
+    <button onclick="nextSlide()" class="absolute right-1.5 sm:right-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-red-900 p-1.5 sm:p-3 rounded-full text-xs sm:text-base shadow-lg z-10 transition-all">
       <i class="fa-solid fa-chevron-right"></i>
     </button>
-    <div class="absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3 z-10">
-      <button onclick="goToSlide(1)" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-white border-2 border-white" id="dot1"></button>
-      <button onclick="goToSlide(2)" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot2"></button>
-      <button onclick="goToSlide(3)" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot3"></button>
-      <button onclick="goToSlide(4)" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot4"></button>
-      <button onclick="goToSlide(5)" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot5"></button>
+    <div class="absolute bottom-2 sm:bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5 sm:gap-3 z-10">
+      <button onclick="goToSlide(1)" class="w-2 h-2 sm:w-3.5 sm:h-3.5 rounded-full bg-white border border-white" id="dot1"></button>
+      <button onclick="goToSlide(2)" class="w-2 h-2 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot2"></button>
+      <button onclick="goToSlide(3)" class="w-2 h-2 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot3"></button>
+      <button onclick="goToSlide(4)" class="w-2 h-2 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot4"></button>
+      <button onclick="goToSlide(5)" class="w-2 h-2 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot5"></button>
     </div>
   </section>
 
   <!-- CATEGORIES - 3 items per row (clickable) -->
-  <section class="max-w-7xl mx-auto px-4 py-10 sm:py-16">
-    <h2 class="text-2xl sm:text-4xl heading-font font-bold text-center mb-8 sm:mb-12">Shop by Category</h2>
+  <section class="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-16">
+    <h2 class="text-xl sm:text-4xl heading-font font-bold text-center mb-4 sm:mb-12">Shop by Category</h2>
     <div class="category-grid-3">
       <div class="group cursor-pointer cat-item" onclick="showCategoryPage(event, 'Ikat')">
         <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Ikat%20Sarees.jpg')">
@@ -321,75 +323,69 @@
   </section>
 
   <!-- FEATURED PRODUCTS -->
-  <section id="featured" class="bg-white py-10 sm:py-16">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="flex flex-wrap justify-between items-end mb-6 sm:mb-10">
-        <h2 class="text-2xl sm:text-4xl heading-font font-bold">Featured Products</h2>
-        <a href="#" class="text-red-900 font-medium hover:underline text-sm sm:text-base">View All →</a>
+  <section id="featured" class="bg-white py-6 sm:py-16">
+    <div class="max-w-7xl mx-auto px-3 sm:px-4">
+      <div class="flex flex-wrap justify-between items-end mb-4 sm:mb-10">
+        <h2 class="text-xl sm:text-4xl heading-font font-bold">Featured Products</h2>
+        <a href="#" class="text-red-900 font-medium hover:underline text-xs sm:text-base">View All →</a>
       </div>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6" id="featuredProducts"></div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-6" id="featuredProducts"></div>
     </div>
   </section>
 
   <!-- BEST SELLERS -->
-  <section class="max-w-7xl mx-auto px-4 py-10 sm:py-16">
-    <h2 class="text-2xl sm:text-4xl heading-font font-bold text-center mb-8 sm:mb-12">Best Sellers</h2>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6" id="bestSellers"></div>
+  <section class="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-16">
+    <h2 class="text-xl sm:text-4xl heading-font font-bold text-center mb-4 sm:mb-12">Best Sellers</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-6" id="bestSellers"></div>
   </section>
 </div>
 
 <!-- ============ CATEGORY PAGE ============ -->
 <div id="categoryPage" class="hidden">
-  <section class="max-w-7xl mx-auto px-4 py-8">
-    <div class="text-sm text-gray-500 mb-6">
+  <section class="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
+    <div class="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6">
       <a href="#" onclick="showHomePage(event)" class="hover:text-red-900">Home</a>
       <span class="mx-2">/</span>
       <span class="text-gray-700 font-medium" id="categoryBreadcrumb">Ikat Sarees</span>
     </div>
-    <div class="flex flex-col lg:flex-row gap-8">
+    <div class="flex flex-col lg:flex-row gap-4 sm:gap-8">
       <div class="lg:w-1/4">
         <div class="filter-sidebar">
-          <h3 class="text-xl heading-font font-bold">Kanchipuram Saree</h3>
-          <p class="text-sm text-gray-500 mb-4">No filter applied</p>
+          <h3 class="text-lg sm:text-xl heading-font font-bold">Kanchipuram Saree</h3>
+          <p class="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">No filter applied</p>
           <div class="filter-group">
-            <h4 class="font-semibold text-gray-700 mb-2">Sort By: Trending</h4>
+            <h4 class="font-semibold text-gray-700 mb-1 sm:mb-2 text-sm">Sort By: Trending</h4>
           </div>
           <div class="filter-group">
-            <h4>Price</h4>
-            <label><input type="checkbox" /> Under ₹1,000</label>
-            <label><input type="checkbox" /> ₹1,000 - ₹5,000</label>
-            <label><input type="checkbox" /> ₹5,000 - ₹10,000</label>
-            <label><input type="checkbox" /> Above ₹10,000</label>
+            <h4 class="text-sm font-medium mb-1">Price</h4>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> Under ₹1,000</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> ₹1,000 - ₹5,000</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> ₹5,000 - ₹10,000</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> Above ₹10,000</label>
           </div>
           <div class="filter-group">
-            <h4>Categories</h4>
-            <label><input type="checkbox" checked /> Ikat</label>
-            <label><input type="checkbox" /> Kanjivaram</label>
-            <label><input type="checkbox" /> Banarasi</label>
-            <label><input type="checkbox" /> Chiffon</label>
+            <h4 class="text-sm font-medium mb-1">Categories</h4>
+            <label class="text-xs sm:text-sm"><input type="checkbox" checked /> Ikat</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> Kanjivaram</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> Banarasi</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> Chiffon</label>
           </div>
           <div class="filter-group">
-            <h4>Color</h4>
-            <label><input type="checkbox" /> White</label>
-            <label><input type="checkbox" /> Blue</label>
-            <label><input type="checkbox" /> Red</label>
-            <label><input type="checkbox" /> Green</label>
+            <h4 class="text-sm font-medium mb-1">Color</h4>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> White</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> Blue</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> Red</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> Green</label>
           </div>
-          <div class="filter-group">
-            <h4>Embarrassment</h4>
-            <label><input type="checkbox" /> Cotton</label>
-            <label><input type="checkbox" /> Silk</label>
-            <label><input type="checkbox" /> Chiffon</label>
-          </div>
-          <div class="mt-4 p-3 bg-gray-100 rounded-lg text-xs text-gray-600">
-            <i class="fa-solid fa-cookie-bite mr-1"></i> We use cookies to give you the best shopping experience. <a href="#" class="text-red-900 hover:underline">See details</a>
+          <div class="mt-3 p-2 sm:p-3 bg-gray-100 rounded-lg text-[10px] sm:text-xs text-gray-600">
+            <i class="fa-solid fa-cookie-bite mr-1"></i> We use cookies to give you the best shopping experience.
           </div>
         </div>
       </div>
       <div class="lg:w-3/4">
-        <div class="flex justify-between items-center mb-6">
-          <h2 class="text-2xl heading-font font-bold" id="categoryTitle">Ikat Sarees</h2>
-          <span class="text-sm text-gray-500" id="productCount">1 product</span>
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-lg sm:text-2xl heading-font font-bold" id="categoryTitle">Ikat Sarees</h2>
+          <span class="text-xs sm:text-sm text-gray-500" id="productCount">1 product</span>
         </div>
         <div class="category-product-grid" id="categoryProducts"></div>
       </div>
@@ -399,57 +395,57 @@
 
 <!-- ============ SHOP PAGE ============ -->
 <div id="shopPage" class="hidden">
-  <section class="max-w-7xl mx-auto px-4 py-8">
-    <div class="text-sm text-gray-500 mb-6">
+  <section class="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
+    <div class="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6">
       <a href="#" onclick="showHomePage(event)" class="hover:text-red-900">Home</a>
       <span class="mx-2">/</span>
       <span class="text-gray-700 font-medium">All Sarees</span>
     </div>
-    <div class="flex flex-col lg:flex-row gap-8">
+    <div class="flex flex-col lg:flex-row gap-4 sm:gap-8">
       <div class="lg:w-1/4">
         <div class="filter-sidebar">
-          <h3 class="text-xl heading-font font-bold">Filter Products</h3>
-          <p class="text-sm text-gray-500 mb-4">Refine your search</p>
+          <h3 class="text-lg sm:text-xl heading-font font-bold">Filter Products</h3>
+          <p class="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">Refine your search</p>
           <div class="filter-group">
-            <h4 class="font-semibold text-gray-700 mb-2">Sort By: Featured</h4>
+            <h4 class="font-semibold text-gray-700 mb-1 sm:mb-2 text-sm">Sort By: Featured</h4>
           </div>
           <div class="filter-group">
-            <h4>Price</h4>
-            <label><input type="checkbox" /> Under ₹1,000</label>
-            <label><input type="checkbox" /> ₹1,000 - ₹5,000</label>
-            <label><input type="checkbox" /> ₹5,000 - ₹10,000</label>
-            <label><input type="checkbox" /> Above ₹10,000</label>
+            <h4 class="text-sm font-medium mb-1">Price</h4>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> Under ₹1,000</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> ₹1,000 - ₹5,000</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> ₹5,000 - ₹10,000</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> Above ₹10,000</label>
           </div>
           <div class="filter-group">
-            <h4>Categories</h4>
-            <label><input type="checkbox" checked /> Ikat</label>
-            <label><input type="checkbox" /> Kanjivaram</label>
-            <label><input type="checkbox" /> Banarasi</label>
-            <label><input type="checkbox" /> Chiffon</label>
-            <label><input type="checkbox" /> Bridal</label>
+            <h4 class="text-sm font-medium mb-1">Categories</h4>
+            <label class="text-xs sm:text-sm"><input type="checkbox" checked /> Ikat</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> Kanjivaram</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> Banarasi</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> Chiffon</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> Bridal</label>
           </div>
           <div class="filter-group">
-            <h4>Color</h4>
-            <label><input type="checkbox" /> White</label>
-            <label><input type="checkbox" /> Blue</label>
-            <label><input type="checkbox" /> Red</label>
-            <label><input type="checkbox" /> Green</label>
+            <h4 class="text-sm font-medium mb-1">Color</h4>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> White</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> Blue</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> Red</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> Green</label>
           </div>
           <div class="filter-group">
-            <h4>Fabric</h4>
-            <label><input type="checkbox" /> Cotton</label>
-            <label><input type="checkbox" /> Silk</label>
-            <label><input type="checkbox" /> Chiffon</label>
+            <h4 class="text-sm font-medium mb-1">Fabric</h4>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> Cotton</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> Silk</label>
+            <label class="text-xs sm:text-sm"><input type="checkbox" /> Chiffon</label>
           </div>
-          <div class="mt-4 p-3 bg-gray-100 rounded-lg text-xs text-gray-600">
-            <i class="fa-solid fa-cookie-bite mr-1"></i> We use cookies to give you the best shopping experience. <a href="#" class="text-red-900 hover:underline">See details</a>
+          <div class="mt-3 p-2 sm:p-3 bg-gray-100 rounded-lg text-[10px] sm:text-xs text-gray-600">
+            <i class="fa-solid fa-cookie-bite mr-1"></i> We use cookies to give you the best shopping experience.
           </div>
         </div>
       </div>
       <div class="lg:w-3/4">
-        <div class="flex justify-between items-center mb-6">
-          <h2 class="text-2xl heading-font font-bold">All Sarees</h2>
-          <span class="text-sm text-gray-500" id="shopProductCount">5 products</span>
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-lg sm:text-2xl heading-font font-bold">All Sarees</h2>
+          <span class="text-xs sm:text-sm text-gray-500" id="shopProductCount">5 products</span>
         </div>
         <div class="category-product-grid" id="shopProducts"></div>
       </div>
@@ -459,72 +455,71 @@
 
 <!-- ============ PRODUCT PAGE ============ -->
 <div id="productPage" class="hidden">
-  <section class="max-w-7xl mx-auto px-4 py-8 sm:py-12">
-    <div class="text-sm text-gray-500 mb-4">
+  <section class="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-12">
+    <div class="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">
       <a href="#" onclick="showHomePage(event)" class="hover:text-red-900">Home</a>
       <span class="mx-2">/</span>
       <a href="#" onclick="showCategoryPage(event, 'Ikat')" class="hover:text-red-900">Ikat Sarees</a>
       <span class="mx-2">/</span>
       <span class="text-gray-700" id="productNameBreadcrumb">Off White Linen Ikkat Printed Saree</span>
     </div>
-    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+    <div class="flex flex-col lg:flex-row gap-6 lg:gap-12">
       <div class="lg:w-1/2">
         <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
           <img id="mainProductImage" src="https://sareestoredemo.netlify.app/ikkat%20printed%20saree.webp" alt="Off White Linen Ikkat Printed Saree" class="w-full h-auto object-cover" />
         </div>
-        <div class="flex gap-3 mt-4">
-          <img src="https://sareestoredemo.netlify.app/ikkat%20printed%20saree.webp" onclick="changeImage(this)" class="thumb-img w-20 h-20 sm:w-24 sm:h-24 rounded-lg border-2 border-red-900 object-cover active" />
-          <img src="https://sareestoredemo.netlify.app/ikkat%20printed%20saree%202.webp" onclick="changeImage(this)" class="thumb-img w-20 h-20 sm:w-24 sm:h-24 rounded-lg border-2 border-transparent object-cover" />
-          <img src="https://sareestoredemo.netlify.app/ikkat%20printed%20saree%203.webp" onclick="changeImage(this)" class="thumb-img w-20 h-20 sm:w-24 sm:h-24 rounded-lg border-2 border-transparent object-cover" />
+        <div class="flex gap-2 sm:gap-3 mt-3 sm:mt-4">
+          <img src="https://sareestoredemo.netlify.app/ikkat%20printed%20saree.webp" onclick="changeImage(this)" class="thumb-img w-16 h-16 sm:w-24 sm:h-24 rounded-lg border-2 border-red-900 object-cover active" />
+          <img src="https://sareestoredemo.netlify.app/ikkat%20printed%20saree%202.webp" onclick="changeImage(this)" class="thumb-img w-16 h-16 sm:w-24 sm:h-24 rounded-lg border-2 border-transparent object-cover" />
+          <img src="https://sareestoredemo.netlify.app/ikkat%20printed%20saree%203.webp" onclick="changeImage(this)" class="thumb-img w-16 h-16 sm:w-24 sm:h-24 rounded-lg border-2 border-transparent object-cover" />
         </div>
       </div>
       <div class="lg:w-1/2">
-        <h1 class="text-2xl sm:text-3xl lg:text-4xl heading-font font-bold text-gray-800" id="productDetailName">Off White Linen Ikkat Printed Saree</h1>
-        <div class="flex items-center gap-4 mt-3">
-          <span class="text-3xl sm:text-4xl font-bold text-red-900" id="productDetailPrice">₹899</span>
-          <span class="text-xl sm:text-2xl text-gray-400 line-through">₹1,644</span>
-          <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">45% OFF</span>
+        <h1 class="text-xl sm:text-4xl heading-font font-bold text-gray-800" id="productDetailName">Off White Linen Ikkat Printed Saree</h1>
+        <div class="flex items-center gap-2 sm:gap-4 mt-2 sm:mt-3">
+          <span class="text-2xl sm:text-4xl font-bold text-red-900" id="productDetailPrice">₹899</span>
+          <span class="text-lg sm:text-2xl text-gray-400 line-through">₹1,644</span>
+          <span class="bg-green-100 text-green-700 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-sm font-semibold">45% OFF</span>
         </div>
-        <p class="text-sm text-gray-500 mt-1">Inclusive of all taxes.</p>
-        <div class="flex items-center gap-4 mt-3 text-sm">
+        <p class="text-xs sm:text-sm text-gray-500 mt-1">Inclusive of all taxes.</p>
+        <div class="flex items-center gap-2 sm:gap-4 mt-2 sm:mt-3 text-xs sm:text-sm">
           <span class="text-yellow-500">★★★★☆</span>
           <span class="text-gray-600">(6)</span>
-          <span class="text-red-600 font-medium"><i class="fa-regular fa-eye mr-1"></i>367 People viewing this right now</span>
+          <span class="text-red-600 font-medium"><i class="fa-regular fa-eye mr-1"></i>367 People viewing</span>
         </div>
-        <div class="bg-red-50 border border-red-200 rounded-xl p-4 mt-4">
-          <p class="font-semibold text-red-900">Exclusive Discounts + Gifts</p>
-          <p class="text-sm text-gray-700">Only on App: <a href="#" class="text-red-900 font-bold">DOWNLOAD NOW</a></p>
-          <div class="flex items-center gap-4 mt-2">
-            <span class="bg-green-600 text-white text-sm px-3 py-1 rounded-full font-semibold">Get For ₹809</span>
-            <span class="text-sm text-gray-700">Extra 10% OFF</span>
-            <span class="text-sm text-green-600 font-medium">Upto 10% Off on Prepaid Orders</span>
+        <div class="bg-red-50 border border-red-200 rounded-xl p-3 sm:p-4 mt-3 sm:mt-4">
+          <p class="font-semibold text-red-900 text-sm sm:text-base">Exclusive Discounts + Gifts</p>
+          <p class="text-xs sm:text-sm text-gray-700">Only on App: <a href="#" class="text-red-900 font-bold">DOWNLOAD NOW</a></p>
+          <div class="flex flex-wrap items-center gap-2 sm:gap-4 mt-1 sm:mt-2">
+            <span class="bg-green-600 text-white text-[10px] sm:text-sm px-2 sm:px-3 py-0.5 sm:py-1 rounded-full font-semibold">Get For ₹809</span>
+            <span class="text-xs sm:text-sm text-gray-700">Extra 10% OFF</span>
           </div>
         </div>
-        <div class="mt-4 p-4 border border-gray-200 rounded-xl bg-white">
-          <p class="font-medium text-gray-700">Check Delivery Details</p>
+        <div class="mt-3 sm:mt-4 p-3 sm:p-4 border border-gray-200 rounded-xl bg-white">
+          <p class="font-medium text-gray-700 text-sm sm:text-base">Check Delivery Details</p>
           <div class="flex items-center gap-2 mt-2">
-            <input type="text" value="233226" class="border border-gray-300 rounded-lg px-3 py-2 w-32 text-sm" />
-            <button class="bg-red-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-800">Check</button>
+            <input type="text" value="233226" class="border border-gray-300 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 w-24 sm:w-32 text-xs sm:text-sm" />
+            <button class="bg-red-900 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium hover:bg-red-800">Check</button>
           </div>
-          <div class="mt-2 text-sm text-gray-600">
+          <div class="mt-2 text-xs sm:text-sm text-gray-600">
             <p><i class="fa-regular fa-calendar mr-2"></i>Delivery between 27th and 28th Jul</p>
             <p class="text-green-600 font-medium"><i class="fa-regular fa-circle-check mr-1"></i>Cash On Delivery available</p>
           </div>
         </div>
-        <div class="flex flex-col sm:flex-row gap-3 mt-6">
-          <button class="flex-1 bg-red-900 text-white py-3 rounded-full font-semibold text-base hover:bg-red-800 transition-colors">ADD TO CART</button>
-          <button class="flex-1 bg-black text-white py-3 rounded-full font-semibold text-base hover:bg-gray-800 transition-colors">BUY IT NOW</button>
+        <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-4 sm:mt-6">
+          <button class="flex-1 bg-red-900 text-white py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:bg-red-800 transition-colors">ADD TO CART</button>
+          <button class="flex-1 bg-black text-white py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:bg-gray-800 transition-colors">BUY IT NOW</button>
         </div>
-        <div class="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-3">
-          <span class="font-bold text-red-900">SALE ENDS IN</span>
-          <span class="bg-red-900 text-white px-3 py-1 rounded-lg font-mono text-lg">11</span>
+        <div class="mt-3 sm:mt-4 p-2 sm:p-3 bg-red-50 border border-red-200 rounded-lg flex flex-wrap items-center gap-2 sm:gap-3">
+          <span class="font-bold text-red-900 text-sm sm:text-base">SALE ENDS IN</span>
+          <span class="bg-red-900 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg font-mono text-base sm:text-lg">11</span>
           <span class="text-red-900 font-bold">:</span>
-          <span class="bg-red-900 text-white px-3 py-1 rounded-lg font-mono text-lg">50</span>
+          <span class="bg-red-900 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg font-mono text-base sm:text-lg">50</span>
           <span class="text-red-900 font-bold">:</span>
-          <span class="bg-red-900 text-white px-3 py-1 rounded-lg font-mono text-lg">45</span>
+          <span class="bg-red-900 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg font-mono text-base sm:text-lg">45</span>
         </div>
-        <div class="mt-6 text-center">
-          <button onclick="showCategoryPage(event, 'Ikat')" class="text-red-900 font-medium hover:underline text-sm">
+        <div class="mt-4 sm:mt-6 text-center">
+          <button onclick="showCategoryPage(event, 'Ikat')" class="text-red-900 font-medium hover:underline text-xs sm:text-sm">
             <i class="fa-solid fa-arrow-left mr-1"></i> Back to Ikat Sarees
           </button>
         </div>
@@ -535,18 +530,18 @@
 
 <!-- FOOTER -->
 <footer class="bg-gray-900 text-gray-300">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-6 sm:pb-8">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-10">
+  <div class="max-w-7xl mx-auto px-3 sm:px-6 pt-8 sm:pt-16 pb-4 sm:pb-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-10">
       <div class="col-span-2 sm:col-span-1">
-        <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-          <div class="w-7 h-7 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center text-red-900 font-bold text-base sm:text-lg">N</div>
-          <span class="text-xl sm:text-2xl font-bold text-white heading-font">Nalli</span>
+        <div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-6">
+          <div class="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center text-red-900 font-bold text-sm sm:text-lg">N</div>
+          <span class="text-lg sm:text-2xl font-bold text-white heading-font">Nalli</span>
         </div>
-        <p class="text-xs sm:text-sm">Handpicked finest silk sarees from the heart of India since 1928.</p>
+        <p class="text-[10px] sm:text-sm">Handpicked finest silk sarees from the heart of India since 1928.</p>
       </div>
       <div>
-        <h4 class="font-semibold text-white mb-3 sm:mb-4 text-sm sm:text-base">Shop</h4>
-        <ul class="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
+        <h4 class="font-semibold text-white mb-2 sm:mb-4 text-sm sm:text-base">Shop</h4>
+        <ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-sm">
           <li><a href="#" class="hover:text-white">All Sarees</a></li>
           <li><a href="#" class="hover:text-white">New Arrivals</a></li>
           <li><a href="#" class="hover:text-white">Best Sellers</a></li>
@@ -554,8 +549,8 @@
         </ul>
       </div>
       <div>
-        <h4 class="font-semibold text-white mb-3 sm:mb-4 text-sm sm:text-base">Explore</h4>
-        <ul class="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
+        <h4 class="font-semibold text-white mb-2 sm:mb-4 text-sm sm:text-base">Explore</h4>
+        <ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-sm">
           <li><a href="#" class="hover:text-white">About Us</a></li>
           <li><a href="#" class="hover:text-white">Our Heritage</a></li>
           <li><a href="#" class="hover:text-white">Blog</a></li>
@@ -563,8 +558,8 @@
         </ul>
       </div>
       <div>
-        <h4 class="font-semibold text-white mb-3 sm:mb-4 text-sm sm:text-base">Support</h4>
-        <ul class="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
+        <h4 class="font-semibold text-white mb-2 sm:mb-4 text-sm sm:text-base">Support</h4>
+        <ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-sm">
           <li><a href="#" class="hover:text-white">Shipping Policy</a></li>
           <li><a href="#" class="hover:text-white">Returns</a></li>
           <li><a href="#" class="hover:text-white">Track Order</a></li>
@@ -572,9 +567,9 @@
         </ul>
       </div>
     </div>
-    <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-[10px] sm:text-xs flex flex-col sm:flex-row justify-between items-center gap-3">
+    <div class="border-t border-gray-800 mt-6 sm:mt-12 pt-4 sm:pt-8 text-[8px] sm:text-xs flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3">
       <p>© 2026 saree store demo. All rights reserved.</p>
-      <div class="flex gap-4 sm:gap-6">
+      <div class="flex gap-3 sm:gap-6 text-sm sm:text-base">
         <i class="fa-brands fa-instagram cursor-pointer hover:text-white"></i>
         <i class="fa-brands fa-facebook cursor-pointer hover:text-white"></i>
         <i class="fa-brands fa-whatsapp cursor-pointer hover:text-white"></i>
@@ -682,12 +677,12 @@
       card.className = 'product-card bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-gray-100 cursor-pointer';
       card.innerHTML = `
         <div class="relative">
-          <img src="${product.image}" class="w-full h-48 sm:h-64 lg:h-80 object-cover" alt="${product.name}" loading="lazy" />
-          <div class="absolute top-2 sm:top-4 right-2 sm:right-4 bg-white px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium rounded-full shadow">${product.category}</div>
+          <img src="${product.image}" class="w-full h-40 sm:h-64 lg:h-80 object-cover" alt="${product.name}" loading="lazy" />
+          <div class="absolute top-1 sm:top-4 right-1 sm:right-4 bg-white px-1.5 sm:px-3 py-0.5 text-[8px] sm:text-xs font-medium rounded-full shadow">${product.category}</div>
         </div>
-        <div class="p-3 sm:p-5">
-          <h3 class="font-semibold leading-tight text-sm sm:text-base mb-0.5">${product.name}</h3>
-          <p class="text-red-900 font-bold text-base sm:text-lg">${product.price}</p>
+        <div class="p-2 sm:p-5">
+          <h3 class="font-semibold leading-tight text-[10px] sm:text-base mb-0.5 line-clamp-2">${product.name}</h3>
+          <p class="text-red-900 font-bold text-sm sm:text-lg">${product.price}</p>
         </div>
       `;
       card.onclick = () => { showProductPage(product); };
@@ -701,7 +696,7 @@
     const items = getCategoryProducts(category);
     container.innerHTML = '';
     if (items.length === 0) {
-      container.innerHTML = '<p class="text-gray-500 col-span-full text-center py-10">No products found in this category.</p>';
+      container.innerHTML = '<p class="text-gray-500 col-span-full text-center py-10 text-sm">No products found in this category.</p>';
       return;
     }
     items.forEach(product => {
@@ -709,12 +704,12 @@
       card.className = 'product-card bg-white rounded-xl overflow-hidden border border-gray-100 cursor-pointer';
       card.innerHTML = `
         <div class="relative">
-          <img src="${product.image}" class="w-full h-64 object-cover" alt="${product.name}" loading="lazy" />
-          <div class="absolute top-2 right-2 bg-white px-2 py-0.5 text-[10px] font-medium rounded-full shadow">${product.category}</div>
+          <img src="${product.image}" class="w-full h-48 sm:h-64 object-cover" alt="${product.name}" loading="lazy" />
+          <div class="absolute top-2 right-2 bg-white px-2 py-0.5 text-[8px] sm:text-[10px] font-medium rounded-full shadow">${product.category}</div>
         </div>
-        <div class="p-3">
-          <h3 class="font-semibold text-sm mb-0.5 line-clamp-2">${product.name}</h3>
-          <p class="text-red-900 font-bold text-base">${product.price}</p>
+        <div class="p-2 sm:p-3">
+          <h3 class="font-semibold text-[10px] sm:text-sm mb-0.5 line-clamp-2">${product.name}</h3>
+          <p class="text-red-900 font-bold text-sm sm:text-base">${product.price}</p>
         </div>
       `;
       card.onclick = () => { showProductPage(product); };
@@ -732,12 +727,12 @@
       card.className = 'product-card bg-white rounded-xl overflow-hidden border border-gray-100 cursor-pointer';
       card.innerHTML = `
         <div class="relative">
-          <img src="${product.image}" class="w-full h-64 object-cover" alt="${product.name}" loading="lazy" />
-          <div class="absolute top-2 right-2 bg-white px-2 py-0.5 text-[10px] font-medium rounded-full shadow">${product.category}</div>
+          <img src="${product.image}" class="w-full h-48 sm:h-64 object-cover" alt="${product.name}" loading="lazy" />
+          <div class="absolute top-2 right-2 bg-white px-2 py-0.5 text-[8px] sm:text-[10px] font-medium rounded-full shadow">${product.category}</div>
         </div>
-        <div class="p-3">
-          <h3 class="font-semibold text-sm mb-0.5 line-clamp-2">${product.name}</h3>
-          <p class="text-red-900 font-bold text-base">${product.price}</p>
+        <div class="p-2 sm:p-3">
+          <h3 class="font-semibold text-[10px] sm:text-sm mb-0.5 line-clamp-2">${product.name}</h3>
+          <p class="text-red-900 font-bold text-sm sm:text-base">${product.price}</p>
         </div>
       `;
       card.onclick = () => { showProductPage(product); };
@@ -810,7 +805,7 @@
       const dot = document.getElementById(`dot${i}`);
       if (slide) slide.classList.add('hidden');
       if (dot) {
-        dot.classList.remove('bg-white', 'border-2', 'border-white');
+        dot.classList.remove('bg-white', 'border', 'border-white');
         dot.classList.add('bg-white/50');
       }
     }
@@ -818,7 +813,7 @@
     const activeDot = document.getElementById(`dot${slideIndex}`);
     if (activeSlide) activeSlide.classList.remove('hidden');
     if (activeDot) {
-      activeDot.classList.add('bg-white', 'border-2', 'border-white');
+      activeDot.classList.add('bg-white', 'border', 'border-white');
       activeDot.classList.remove('bg-white/50');
     }
     currentSlide = slideIndex;
