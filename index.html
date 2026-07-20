@@ -125,49 +125,70 @@
       margin-right: 0.5rem;
     }
 
-    /* Carousel - Full responsive with proper image display */
+    /* Carousel - Perfect fit for mobile */
     .carousel-container {
       width: 100%;
-      height: 40vh;
-      min-height: 280px;
-      max-height: 100vh;
-      aspect-ratio: 16/9;
+      height: 50vh;
+      min-height: 300px;
+      max-height: 70vh;
       background: #f3f4f6;
     }
     .carousel-container .hero-slide {
-      background-size: contain !important;
+      background-size: cover !important;
       background-position: center center !important;
       background-repeat: no-repeat !important;
       width: 100%;
       height: 100%;
-      background-color: #f3f4f6;
     }
     @media (max-width: 640px) {
       .carousel-container {
-        height: auto !important;
-        aspect-ratio: 16/9 !important;
-        min-height: 200px !important;
+        height: 45vh !important;
+        min-height: 250px !important;
         max-height: 55vh !important;
       }
       .carousel-container .hero-slide {
-        background-size: contain !important;
+        background-size: cover !important;
         background-position: center center !important;
-        background-repeat: no-repeat !important;
       }
       .carousel-container button {
-        padding: 0.3rem !important;
-        font-size: 0.6rem !important;
+        padding: 0.5rem !important;
+        font-size: 0.7rem !important;
       }
       .carousel-container .fa-chevron-left,
       .carousel-container .fa-chevron-right {
-        font-size: 0.7rem !important;
+        font-size: 0.8rem !important;
       }
     }
     @media (min-width: 641px) and (max-width: 1024px) {
       .carousel-container {
-        height: 50vh !important;
-        min-height: 300px !important;
-        aspect-ratio: auto !important;
+        height: 55vh !important;
+        min-height: 350px !important;
+      }
+    }
+
+    /* Mobile responsive fixes */
+    @media (max-width: 640px) {
+      .filter-sidebar {
+        padding: 1rem !important;
+      }
+      .filter-sidebar h3 {
+        font-size: 1.1rem !important;
+      }
+      .filter-sidebar .filter-group label {
+        font-size: 0.8rem !important;
+      }
+      #featured .grid,
+      #bestSellers ~ .grid {
+        gap: 0.5rem !important;
+      }
+      .product-card .p-3 {
+        padding: 0.5rem !important;
+      }
+      .product-card h3 {
+        font-size: 0.7rem !important;
+      }
+      .product-card .text-red-900 {
+        font-size: 0.8rem !important;
       }
     }
   </style>
@@ -234,7 +255,7 @@
 
 <!-- ============ MAIN HOME PAGE CONTENT ============ -->
 <div id="homePageContent">
-  <!-- HERO CAROUSEL (5 slides) - full banner mobile responsive -->
+  <!-- HERO CAROUSEL (5 slides) - Perfect fit for mobile -->
   <section class="carousel-container relative w-full">
     <div id="slide1" class="hero-slide absolute inset-0 flex items-center" style="background-image: url('https://sareestoredemo.netlify.app/banner%201.webp');"></div>
     <div id="slide2" class="hero-slide absolute inset-0 flex items-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%202.1.webp');"></div>
@@ -242,18 +263,18 @@
     <div id="slide4" class="hero-slide absolute inset-0 flex items-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%204.webp');"></div>
     <div id="slide5" class="hero-slide absolute inset-0 flex items-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%205.webp');"></div>
 
-    <button onclick="prevSlide()" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-red-900 p-1.5 sm:p-3 rounded-full text-xs sm:text-base shadow-lg z-10 transition-all">
+    <button onclick="prevSlide()" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-red-900 p-2 sm:p-3 rounded-full text-sm sm:text-base shadow-lg z-10 transition-all">
       <i class="fa-solid fa-chevron-left"></i>
     </button>
-    <button onclick="nextSlide()" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-red-900 p-1.5 sm:p-3 rounded-full text-xs sm:text-base shadow-lg z-10 transition-all">
+    <button onclick="nextSlide()" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-red-900 p-2 sm:p-3 rounded-full text-sm sm:text-base shadow-lg z-10 transition-all">
       <i class="fa-solid fa-chevron-right"></i>
     </button>
-    <div class="absolute bottom-2 sm:bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5 sm:gap-3 z-10">
-      <button onclick="goToSlide(1)" class="w-2 h-2 sm:w-3.5 sm:h-3.5 rounded-full bg-white border-2 border-white" id="dot1"></button>
-      <button onclick="goToSlide(2)" class="w-2 h-2 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot2"></button>
-      <button onclick="goToSlide(3)" class="w-2 h-2 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot3"></button>
-      <button onclick="goToSlide(4)" class="w-2 h-2 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot4"></button>
-      <button onclick="goToSlide(5)" class="w-2 h-2 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot5"></button>
+    <div class="absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3 z-10">
+      <button onclick="goToSlide(1)" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-white border-2 border-white" id="dot1"></button>
+      <button onclick="goToSlide(2)" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot2"></button>
+      <button onclick="goToSlide(3)" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot3"></button>
+      <button onclick="goToSlide(4)" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot4"></button>
+      <button onclick="goToSlide(5)" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot5"></button>
     </div>
   </section>
 
