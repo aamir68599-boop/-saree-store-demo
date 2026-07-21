@@ -11,234 +11,83 @@
     :root { --primary: #9f1239; }
     .tail-container { font-family: 'Inter', system-ui, sans-serif; }
     .heading-font { font-family: 'Playfair Display', sans-serif; }
-    .hero-slide { transition: opacity 0.8s ease-in-out; }
+    .hero-slide { transition: opacity 0.8s ease-in-out; background-size: cover !important; background-position: center center !important; background-repeat: no-repeat !important; width: 100%; height: 100%; }
     .product-card { transition: all 0.3s ease; }
     .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
     .nav-link { position: relative; }
     .nav-link:after { content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 0; background-color: #9f1239; transition: all 0.3s ease; }
     .nav-link:hover:after { width: 100%; }
-    .carousel-container { position: relative; overflow: hidden; }
+    .carousel-container { position: relative; overflow: hidden; width: 100%; height: 50vh; min-height: 300px; max-height: 70vh; background: #f3f4f6; }
     .dropdown-group:hover .dropdown-menu { display: block; }
     .dropdown-menu { display: none; min-width: 160px; }
-    /* category grid – 3 columns on all screens */
-    .category-grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-    }
-    .category-grid-3 .cat-item .cat-bg {
-      height: 200px;
-      border-radius: 1rem;
-      background-size: cover;
-      background-position: center;
-    }
-    .category-grid-3 .cat-item .cat-overlay {
-      padding: 1rem;
-    }
-    .category-grid-3 .cat-item h3 {
-      font-size: 1.25rem;
-      line-height: 1.4;
-    }
+    .category-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .category-grid-3 .cat-item .cat-bg { height: 200px; border-radius: 1rem; background-size: cover; background-position: center; }
+    .category-grid-3 .cat-item .cat-overlay { padding: 1rem; }
+    .category-grid-3 .cat-item h3 { font-size: 1.25rem; line-height: 1.4; }
+    .category-product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .filter-sidebar { background: white; border-radius: 1rem; padding: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .thumb-img { transition: all 0.2s; cursor: pointer; }
+    .thumb-img:hover { opacity: 0.7; }
+    .thumb-img.active { border: 2px solid #9f1239; }
+    /* -------- mobile + desktop hero perfect fit -------- */
     @media (max-width: 640px) {
-      .hero-slide { background-position: center center !important; }
+      .carousel-container { height: 40vh !important; min-height: 220px !important; max-height: 50vh !important; }
+      .hero-slide { background-size: cover !important; background-position: center center !important; }
+      .carousel-container button { padding: 0.4rem !important; font-size: 0.65rem !important; }
+      .carousel-container .fa-chevron-left, .carousel-container .fa-chevron-right { font-size: 0.7rem !important; }
+      .category-grid-3 { gap: 0.5rem; }
+      .category-grid-3 .cat-item .cat-bg { height: 120px !important; border-radius: 0.75rem; }
+      .category-grid-3 .cat-item h3 { font-size: 0.75rem !important; padding: 0.25rem 0.2rem !important; text-align: center; word-break: break-word; }
+      .category-grid-3 .cat-item .cat-overlay { padding: 0.25rem !important; }
+      .category-product-grid { grid-template-columns: repeat(1, 1fr); gap: 1rem; }
       .product-card img { height: 200px !important; }
-      .category-grid-3 {
-        gap: 0.5rem;
-      }
-      .category-grid-3 .cat-item .cat-bg {
-        height: 120px !important;
-        border-radius: 0.75rem;
-      }
-      .category-grid-3 .cat-item h3 {
-        font-size: 0.75rem !important;
-        padding: 0.25rem 0.2rem !important;
-        text-align: center;
-        word-break: break-word;
-      }
-      .category-grid-3 .cat-item .cat-overlay {
-        padding: 0.25rem !important;
-      }
+      .product-card .p-3 { padding: 0.5rem !important; }
+      .product-card h3 { font-size: 0.7rem !important; }
+      .product-card .text-red-900 { font-size: 0.8rem !important; }
+      .heading-font.text-4xl { font-size: 1.8rem !important; }
+      .text-3xl { font-size: 1.5rem !important; }
+      .px-4 { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
+      .filter-sidebar { padding: 1rem !important; }
+      .filter-sidebar h3 { font-size: 1.1rem !important; }
+      .filter-sidebar .filter-group label { font-size: 0.8rem !important; }
     }
-    @media (min-width: 641px) and (max-width: 768px) {
-      .category-grid-3 .cat-item .cat-bg {
-        height: 160px !important;
-      }
-      .category-grid-3 .cat-item h3 {
-        font-size: 1rem !important;
-      }
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .carousel-container { height: 55vh !important; min-height: 350px !important; }
+      .category-grid-3 .cat-item .cat-bg { height: 160px !important; }
+      .category-grid-3 .cat-item h3 { font-size: 1rem !important; }
+      .category-product-grid { grid-template-columns: repeat(3, 1fr); }
     }
     @media (max-width: 768px) {
       .nav-menu { gap: 0.75rem !important; flex-wrap: wrap; justify-content: center; }
       .dropdown-menu { left: 0; right: auto; min-width: 140px; }
+      .category-product-grid { grid-template-columns: repeat(2, 1fr); }
     }
-    /* product page image thumbnails */
-    .thumb-img { transition: all 0.2s; cursor: pointer; }
-    .thumb-img:hover { opacity: 0.7; }
-    .thumb-img.active { border: 2px solid #9f1239; }
-
-    /* category page product grid */
-    .category-product-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-    }
-    @media (max-width: 1024px) {
-      .category-product-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    @media (max-width: 768px) {
-      .category-product-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-      }
-    }
-    @media (max-width: 480px) {
-      .category-product-grid {
-        grid-template-columns: repeat(1, 1fr);
-      }
-    }
-
-    /* filter sidebar */
-    .filter-sidebar {
-      background: white;
-      border-radius: 1rem;
-      padding: 1.5rem;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    .filter-sidebar h3 {
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-      color: #1e293b;
-    }
-    .filter-sidebar .filter-group {
-      margin-bottom: 1.25rem;
-    }
-    .filter-sidebar .filter-group label {
-      display: block;
-      font-size: 0.875rem;
-      color: #475569;
-      margin-bottom: 0.25rem;
-      cursor: pointer;
-    }
-    .filter-sidebar .filter-group label input {
-      margin-right: 0.5rem;
-    }
-
-    /* Carousel - Perfect fit for mobile */
-    .carousel-container {
-      width: 100%;
-      height: 50vh;
-      min-height: 300px;
-      max-height: 70vh;
-      background: #f3f4f6;
-    }
-    .carousel-container .hero-slide {
-      background-size: cover !important;
-      background-position: center center !important;
-      background-repeat: no-repeat !important;
-      width: 100%;
-      height: 100%;
-    }
-    @media (max-width: 640px) {
-      .carousel-container {
-        height: 40vh !important;
-        min-height: 220px !important;
-        max-height: 50vh !important;
-      }
-      .carousel-container .hero-slide {
-        background-size: cover !important;
-        background-position: center center !important;
-      }
-      .carousel-container button {
-        padding: 0.4rem !important;
-        font-size: 0.65rem !important;
-      }
-      .carousel-container .fa-chevron-left,
-      .carousel-container .fa-chevron-right {
-        font-size: 0.7rem !important;
-      }
-    }
-    @media (min-width: 641px) and (max-width: 1024px) {
-      .carousel-container {
-        height: 55vh !important;
-        min-height: 350px !important;
-      }
-    }
-
-    /* Mobile responsive fixes */
-    @media (max-width: 640px) {
-      .filter-sidebar {
-        padding: 1rem !important;
-      }
-      .filter-sidebar h3 {
-        font-size: 1.1rem !important;
-      }
-      .filter-sidebar .filter-group label {
-        font-size: 0.8rem !important;
-      }
-      #featured .grid,
-      #bestSellers ~ .grid {
-        gap: 0.5rem !important;
-      }
-      .product-card .p-3 {
-        padding: 0.5rem !important;
-      }
-      .product-card h3 {
-        font-size: 0.7rem !important;
-      }
-      .product-card .text-red-900 {
-        font-size: 0.8rem !important;
-      }
-      .heading-font.text-4xl {
-        font-size: 1.8rem !important;
-      }
-      .text-3xl {
-        font-size: 1.5rem !important;
-      }
-      .px-4 {
-        padding-left: 0.75rem !important;
-        padding-right: 0.75rem !important;
-      }
+    @media (min-width: 1024px) {
+      .category-product-grid { grid-template-columns: repeat(4, 1fr); }
     }
   </style>
 </head>
 <body class="tail-container bg-gray-50 text-gray-800">
-
 <!-- HEADER -->
 <header class="bg-white shadow-sm sticky top-0 z-50">
   <div class="max-w-7xl mx-auto">
-    <div class="bg-red-900 text-white text-xs sm:text-sm py-2 px-2 text-center tracking-wide">
-      Free Shipping above ₹4,999 (India) · Timeless Elegance · 200 New Arrivals Today
-    </div>
+    <div class="bg-red-900 text-white text-xs sm:text-sm py-2 px-2 text-center tracking-wide">Free Shipping above ₹4,999 (India) · Timeless Elegance · 200 New Arrivals Today</div>
     <div class="flex flex-wrap items-center justify-between px-3 sm:px-4 py-2 sm:py-3 gap-2">
       <div class="flex items-center gap-2">
         <div class="w-8 h-8 sm:w-10 sm:h-10 bg-red-900 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-2xl shadow-md">N</div>
-        <div>
-          <span class="text-lg sm:text-3xl font-bold tracking-tight heading-font text-red-900">saree store demo</span>
-          <span class="block text-[6px] sm:text-[10px] uppercase tracking-widest text-gray-500 -mt-0.5">since 1928</span>
-        </div>
+        <div><span class="text-lg sm:text-3xl font-bold tracking-tight heading-font text-red-900">saree store demo</span><span class="block text-[6px] sm:text-[10px] uppercase tracking-widest text-gray-500 -mt-0.5">since 1928</span></div>
       </div>
       <div class="flex items-center gap-3 sm:gap-6 text-base sm:text-xl">
         <a href="#" class="hover:text-red-900 transition-colors"><i class="fa-regular fa-user"></i></a>
-        <a href="#" class="relative hover:text-red-900 transition-colors">
-          <i class="fa-regular fa-heart"></i>
-          <span class="absolute -top-1 -right-1.5 bg-red-600 text-white text-[8px] sm:text-[10px] w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center">3</span>
-        </a>
-        <a href="#" class="relative hover:text-red-900 transition-colors">
-          <i class="fa-solid fa-bag-shopping"></i>
-          <span class="absolute -top-1 -right-1.5 bg-red-600 text-white text-[8px] sm:text-[10px] w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center">2</span>
-        </a>
+        <a href="#" class="relative hover:text-red-900 transition-colors"><i class="fa-regular fa-heart"></i><span class="absolute -top-1 -right-1.5 bg-red-600 text-white text-[8px] sm:text-[10px] w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center">3</span></a>
+        <a href="#" class="relative hover:text-red-900 transition-colors"><i class="fa-solid fa-bag-shopping"></i><span class="absolute -top-1 -right-1.5 bg-red-600 text-white text-[8px] sm:text-[10px] w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center">2</span></a>
       </div>
     </div>
     <nav class="border-t border-gray-200">
       <div class="max-w-7xl mx-auto px-2 sm:px-3">
         <ul class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-8 md:gap-12 text-[10px] sm:text-sm font-medium py-2 sm:py-3 nav-menu">
           <li><a href="#" class="nav-link text-red-900 font-semibold" onclick="showHomePage(event)">HOME</a></li>
-          <li class="relative dropdown-group">
-            <a href="#" class="nav-link hover:text-red-900 transition-colors flex items-center gap-0.5" onclick="showShopPage(event)">
-              SHOP <i class="fa-solid fa-chevron-down text-[6px] sm:text-[10px] ml-0.5"></i>
-            </a>
+          <li class="relative dropdown-group"><a href="#" class="nav-link hover:text-red-900 transition-colors flex items-center gap-0.5" onclick="showShopPage(event)">SHOP <i class="fa-solid fa-chevron-down text-[6px] sm:text-[10px] ml-0.5"></i></a>
             <div class="dropdown-menu absolute left-0 top-full mt-1 bg-white shadow-lg rounded-xl border border-gray-100 py-1.5 z-40 w-36 sm:w-44">
               <a href="#" onclick="showCategoryPage(event, 'Ikat')" class="block px-3 sm:px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-[10px] sm:text-sm">Ikat</a>
               <a href="#" onclick="showCategoryPage(event, 'Kanjivaram')" class="block px-3 sm:px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-[10px] sm:text-sm">Kanjivaram</a>
@@ -254,23 +103,17 @@
     </nav>
   </div>
 </header>
-
-<!-- ============ MAIN HOME PAGE CONTENT ============ -->
+<!-- ========= HOME ========= -->
 <div id="homePageContent">
-  <!-- HERO CAROUSEL (5 slides) - Perfect fit for mobile -->
+  <!-- HERO CAROUSEL - full image on mobile & desktop -->
   <section class="carousel-container relative w-full">
     <div id="slide1" class="hero-slide absolute inset-0 flex items-center" style="background-image: url('https://sareestoredemo.netlify.app/banner%201.webp');"></div>
     <div id="slide2" class="hero-slide absolute inset-0 flex items-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%202.1.webp');"></div>
     <div id="slide3" class="hero-slide absolute inset-0 flex items-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%203.webp');"></div>
     <div id="slide4" class="hero-slide absolute inset-0 flex items-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%204.webp');"></div>
     <div id="slide5" class="hero-slide absolute inset-0 flex items-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%205.webp');"></div>
-
-    <button onclick="prevSlide()" class="absolute left-1.5 sm:left-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-red-900 p-1.5 sm:p-3 rounded-full text-xs sm:text-base shadow-lg z-10 transition-all">
-      <i class="fa-solid fa-chevron-left"></i>
-    </button>
-    <button onclick="nextSlide()" class="absolute right-1.5 sm:right-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-red-900 p-1.5 sm:p-3 rounded-full text-xs sm:text-base shadow-lg z-10 transition-all">
-      <i class="fa-solid fa-chevron-right"></i>
-    </button>
+    <button onclick="prevSlide()" class="absolute left-1.5 sm:left-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-red-900 p-1.5 sm:p-3 rounded-full text-xs sm:text-base shadow-lg z-10 transition-all"><i class="fa-solid fa-chevron-left"></i></button>
+    <button onclick="nextSlide()" class="absolute right-1.5 sm:right-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-red-900 p-1.5 sm:p-3 rounded-full text-xs sm:text-base shadow-lg z-10 transition-all"><i class="fa-solid fa-chevron-right"></i></button>
     <div class="absolute bottom-2 sm:bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5 sm:gap-3 z-10">
       <button onclick="goToSlide(1)" class="w-2 h-2 sm:w-3.5 sm:h-3.5 rounded-full bg-white border border-white" id="dot1"></button>
       <button onclick="goToSlide(2)" class="w-2 h-2 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot2"></button>
@@ -279,561 +122,133 @@
       <button onclick="goToSlide(5)" class="w-2 h-2 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot5"></button>
     </div>
   </section>
-
-  <!-- CATEGORIES - 3 items per row (clickable) -->
+  <!-- CATEGORIES -->
   <section class="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-16">
     <h2 class="text-xl sm:text-4xl heading-font font-bold text-center mb-4 sm:mb-12">Shop by Category</h2>
     <div class="category-grid-3">
-      <div class="group cursor-pointer cat-item" onclick="showCategoryPage(event, 'Ikat')">
-        <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Ikat%20Sarees.jpg')">
-          <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end">
-            <h3 class="text-white font-semibold">Ikat Sarees</h3>
-          </div>
-        </div>
-      </div>
-      <div class="group cursor-pointer cat-item" onclick="showCategoryPage(event, 'Kanjivaram')">
-        <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Kanjivaram.jpg')">
-          <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end">
-            <h3 class="text-white font-semibold">Kanjivaram</h3>
-          </div>
-        </div>
-      </div>
-      <div class="group cursor-pointer cat-item" onclick="showCategoryPage(event, 'Banarasi')">
-        <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Banarasi.jpg')">
-          <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end">
-            <h3 class="text-white font-semibold">Banarasi</h3>
-          </div>
-        </div>
-      </div>
-      <div class="group cursor-pointer cat-item" onclick="showCategoryPage(event, 'Chiffon')">
-        <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Chiffon.jpg')">
-          <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end">
-            <h3 class="text-white font-semibold">Chiffon</h3>
-          </div>
-        </div>
-      </div>
-      <div class="group cursor-pointer cat-item" onclick="showCategoryPage(event, 'Bridal')">
-        <div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Bridal%20Collection.jpg')">
-          <div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end">
-            <h3 class="text-white font-semibold">Bridal Collection</h3>
-          </div>
-        </div>
-      </div>
+      <div class="group cursor-pointer cat-item" onclick="showCategoryPage(event, 'Ikat')"><div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Ikat%20Sarees.jpg')"><div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end"><h3 class="text-white font-semibold">Ikat Sarees</h3></div></div></div>
+      <div class="group cursor-pointer cat-item" onclick="showCategoryPage(event, 'Kanjivaram')"><div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Kanjivaram.jpg')"><div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end"><h3 class="text-white font-semibold">Kanjivaram</h3></div></div></div>
+      <div class="group cursor-pointer cat-item" onclick="showCategoryPage(event, 'Banarasi')"><div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Banarasi.jpg')"><div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end"><h3 class="text-white font-semibold">Banarasi</h3></div></div></div>
+      <div class="group cursor-pointer cat-item" onclick="showCategoryPage(event, 'Chiffon')"><div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Chiffon.jpg')"><div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end"><h3 class="text-white font-semibold">Chiffon</h3></div></div></div>
+      <div class="group cursor-pointer cat-item" onclick="showCategoryPage(event, 'Bridal')"><div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Bridal%20Collection.jpg')"><div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end"><h3 class="text-white font-semibold">Bridal Collection</h3></div></div></div>
     </div>
   </section>
-
-  <!-- FEATURED PRODUCTS -->
+  <!-- FEATURED -->
   <section id="featured" class="bg-white py-6 sm:py-16">
     <div class="max-w-7xl mx-auto px-3 sm:px-4">
-      <div class="flex flex-wrap justify-between items-end mb-4 sm:mb-10">
-        <h2 class="text-xl sm:text-4xl heading-font font-bold">Featured Products</h2>
-        <a href="#" class="text-red-900 font-medium hover:underline text-xs sm:text-base">View All →</a>
-      </div>
+      <div class="flex flex-wrap justify-between items-end mb-4 sm:mb-10"><h2 class="text-xl sm:text-4xl heading-font font-bold">Featured Products</h2><a href="#" class="text-red-900 font-medium hover:underline text-xs sm:text-base">View All →</a></div>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-6" id="featuredProducts"></div>
     </div>
   </section>
-
   <!-- BEST SELLERS -->
   <section class="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-16">
     <h2 class="text-xl sm:text-4xl heading-font font-bold text-center mb-4 sm:mb-12">Best Sellers</h2>
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-6" id="bestSellers"></div>
   </section>
 </div>
-
-<!-- ============ CATEGORY PAGE ============ -->
+<!-- ========= CATEGORY PAGE ========= -->
 <div id="categoryPage" class="hidden">
   <section class="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
-    <div class="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6">
-      <a href="#" onclick="showHomePage(event)" class="hover:text-red-900">Home</a>
-      <span class="mx-2">/</span>
-      <span class="text-gray-700 font-medium" id="categoryBreadcrumb">Ikat Sarees</span>
-    </div>
+    <div class="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6"><a href="#" onclick="showHomePage(event)" class="hover:text-red-900">Home</a><span class="mx-2">/</span><span class="text-gray-700 font-medium" id="categoryBreadcrumb">Ikat Sarees</span></div>
     <div class="flex flex-col lg:flex-row gap-4 sm:gap-8">
-      <div class="lg:w-1/4">
-        <div class="filter-sidebar">
-          <h3 class="text-lg sm:text-xl heading-font font-bold">Kanchipuram Saree</h3>
-          <p class="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">No filter applied</p>
-          <div class="filter-group">
-            <h4 class="font-semibold text-gray-700 mb-1 sm:mb-2 text-sm">Sort By: Trending</h4>
-          </div>
-          <div class="filter-group">
-            <h4 class="text-sm font-medium mb-1">Price</h4>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> Under ₹1,000</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> ₹1,000 - ₹5,000</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> ₹5,000 - ₹10,000</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> Above ₹10,000</label>
-          </div>
-          <div class="filter-group">
-            <h4 class="text-sm font-medium mb-1">Categories</h4>
-            <label class="text-xs sm:text-sm"><input type="checkbox" checked /> Ikat</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> Kanjivaram</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> Banarasi</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> Chiffon</label>
-          </div>
-          <div class="filter-group">
-            <h4 class="text-sm font-medium mb-1">Color</h4>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> White</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> Blue</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> Red</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> Green</label>
-          </div>
-          <div class="mt-3 p-2 sm:p-3 bg-gray-100 rounded-lg text-[10px] sm:text-xs text-gray-600">
-            <i class="fa-solid fa-cookie-bite mr-1"></i> We use cookies to give you the best shopping experience.
-          </div>
-        </div>
-      </div>
-      <div class="lg:w-3/4">
-        <div class="flex justify-between items-center mb-4">
-          <h2 class="text-lg sm:text-2xl heading-font font-bold" id="categoryTitle">Ikat Sarees</h2>
-          <span class="text-xs sm:text-sm text-gray-500" id="productCount">1 product</span>
-        </div>
-        <div class="category-product-grid" id="categoryProducts"></div>
-      </div>
+      <div class="lg:w-1/4"><div class="filter-sidebar"><h3 class="text-lg sm:text-xl heading-font font-bold">Kanchipuram Saree</h3><p class="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">No filter applied</p><div class="filter-group"><h4 class="font-semibold text-gray-700 mb-1 sm:mb-2 text-sm">Sort By: Trending</h4></div><div class="filter-group"><h4 class="text-sm font-medium mb-1">Price</h4><label class="text-xs sm:text-sm"><input type="checkbox" /> Under ₹1,000</label><label class="text-xs sm:text-sm"><input type="checkbox" /> ₹1,000 - ₹5,000</label><label class="text-xs sm:text-sm"><input type="checkbox" /> ₹5,000 - ₹10,000</label><label class="text-xs sm:text-sm"><input type="checkbox" /> Above ₹10,000</label></div><div class="filter-group"><h4 class="text-sm font-medium mb-1">Categories</h4><label class="text-xs sm:text-sm"><input type="checkbox" checked /> Ikat</label><label class="text-xs sm:text-sm"><input type="checkbox" /> Kanjivaram</label><label class="text-xs sm:text-sm"><input type="checkbox" /> Banarasi</label><label class="text-xs sm:text-sm"><input type="checkbox" /> Chiffon</label></div><div class="filter-group"><h4 class="text-sm font-medium mb-1">Color</h4><label class="text-xs sm:text-sm"><input type="checkbox" /> White</label><label class="text-xs sm:text-sm"><input type="checkbox" /> Blue</label><label class="text-xs sm:text-sm"><input type="checkbox" /> Red</label><label class="text-xs sm:text-sm"><input type="checkbox" /> Green</label></div><div class="mt-3 p-2 sm:p-3 bg-gray-100 rounded-lg text-[10px] sm:text-xs text-gray-600"><i class="fa-solid fa-cookie-bite mr-1"></i> We use cookies to give you the best shopping experience.</div></div></div>
+      <div class="lg:w-3/4"><div class="flex justify-between items-center mb-4"><h2 class="text-lg sm:text-2xl heading-font font-bold" id="categoryTitle">Ikat Sarees</h2><span class="text-xs sm:text-sm text-gray-500" id="productCount">1 product</span></div><div class="category-product-grid" id="categoryProducts"></div></div>
     </div>
   </section>
 </div>
-
-<!-- ============ SHOP PAGE ============ -->
+<!-- ========= SHOP PAGE ========= -->
 <div id="shopPage" class="hidden">
   <section class="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
-    <div class="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6">
-      <a href="#" onclick="showHomePage(event)" class="hover:text-red-900">Home</a>
-      <span class="mx-2">/</span>
-      <span class="text-gray-700 font-medium">All Sarees</span>
-    </div>
+    <div class="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6"><a href="#" onclick="showHomePage(event)" class="hover:text-red-900">Home</a><span class="mx-2">/</span><span class="text-gray-700 font-medium">All Sarees</span></div>
     <div class="flex flex-col lg:flex-row gap-4 sm:gap-8">
-      <div class="lg:w-1/4">
-        <div class="filter-sidebar">
-          <h3 class="text-lg sm:text-xl heading-font font-bold">Filter Products</h3>
-          <p class="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">Refine your search</p>
-          <div class="filter-group">
-            <h4 class="font-semibold text-gray-700 mb-1 sm:mb-2 text-sm">Sort By: Featured</h4>
-          </div>
-          <div class="filter-group">
-            <h4 class="text-sm font-medium mb-1">Price</h4>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> Under ₹1,000</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> ₹1,000 - ₹5,000</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> ₹5,000 - ₹10,000</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> Above ₹10,000</label>
-          </div>
-          <div class="filter-group">
-            <h4 class="text-sm font-medium mb-1">Categories</h4>
-            <label class="text-xs sm:text-sm"><input type="checkbox" checked /> Ikat</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> Kanjivaram</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> Banarasi</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> Chiffon</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> Bridal</label>
-          </div>
-          <div class="filter-group">
-            <h4 class="text-sm font-medium mb-1">Color</h4>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> White</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> Blue</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> Red</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> Green</label>
-          </div>
-          <div class="filter-group">
-            <h4 class="text-sm font-medium mb-1">Fabric</h4>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> Cotton</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> Silk</label>
-            <label class="text-xs sm:text-sm"><input type="checkbox" /> Chiffon</label>
-          </div>
-          <div class="mt-3 p-2 sm:p-3 bg-gray-100 rounded-lg text-[10px] sm:text-xs text-gray-600">
-            <i class="fa-solid fa-cookie-bite mr-1"></i> We use cookies to give you the best shopping experience.
-          </div>
-        </div>
-      </div>
-      <div class="lg:w-3/4">
-        <div class="flex justify-between items-center mb-4">
-          <h2 class="text-lg sm:text-2xl heading-font font-bold">All Sarees</h2>
-          <span class="text-xs sm:text-sm text-gray-500" id="shopProductCount">5 products</span>
-        </div>
-        <div class="category-product-grid" id="shopProducts"></div>
-      </div>
+      <div class="lg:w-1/4"><div class="filter-sidebar"><h3 class="text-lg sm:text-xl heading-font font-bold">Filter Products</h3><p class="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">Refine your search</p><div class="filter-group"><h4 class="font-semibold text-gray-700 mb-1 sm:mb-2 text-sm">Sort By: Featured</h4></div><div class="filter-group"><h4 class="text-sm font-medium mb-1">Price</h4><label class="text-xs sm:text-sm"><input type="checkbox" /> Under ₹1,000</label><label class="text-xs sm:text-sm"><input type="checkbox" /> ₹1,000 - ₹5,000</label><label class="text-xs sm:text-sm"><input type="checkbox" /> ₹5,000 - ₹10,000</label><label class="text-xs sm:text-sm"><input type="checkbox" /> Above ₹10,000</label></div><div class="filter-group"><h4 class="text-sm font-medium mb-1">Categories</h4><label class="text-xs sm:text-sm"><input type="checkbox" checked /> Ikat</label><label class="text-xs sm:text-sm"><input type="checkbox" /> Kanjivaram</label><label class="text-xs sm:text-sm"><input type="checkbox" /> Banarasi</label><label class="text-xs sm:text-sm"><input type="checkbox" /> Chiffon</label><label class="text-xs sm:text-sm"><input type="checkbox" /> Bridal</label></div><div class="filter-group"><h4 class="text-sm font-medium mb-1">Color</h4><label class="text-xs sm:text-sm"><input type="checkbox" /> White</label><label class="text-xs sm:text-sm"><input type="checkbox" /> Blue</label><label class="text-xs sm:text-sm"><input type="checkbox" /> Red</label><label class="text-xs sm:text-sm"><input type="checkbox" /> Green</label></div><div class="filter-group"><h4 class="text-sm font-medium mb-1">Fabric</h4><label class="text-xs sm:text-sm"><input type="checkbox" /> Cotton</label><label class="text-xs sm:text-sm"><input type="checkbox" /> Silk</label><label class="text-xs sm:text-sm"><input type="checkbox" /> Chiffon</label></div><div class="mt-3 p-2 sm:p-3 bg-gray-100 rounded-lg text-[10px] sm:text-xs text-gray-600"><i class="fa-solid fa-cookie-bite mr-1"></i> We use cookies to give you the best shopping experience.</div></div></div>
+      <div class="lg:w-3/4"><div class="flex justify-between items-center mb-4"><h2 class="text-lg sm:text-2xl heading-font font-bold">All Sarees</h2><span class="text-xs sm:text-sm text-gray-500" id="shopProductCount">5 products</span></div><div class="category-product-grid" id="shopProducts"></div></div>
     </div>
   </section>
 </div>
-
-<!-- ============ PRODUCT PAGE ============ -->
+<!-- ========= PRODUCT PAGE ========= -->
 <div id="productPage" class="hidden">
   <section class="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-12">
-    <div class="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">
-      <a href="#" onclick="showHomePage(event)" class="hover:text-red-900">Home</a>
-      <span class="mx-2">/</span>
-      <a href="#" onclick="showCategoryPage(event, 'Ikat')" class="hover:text-red-900">Ikat Sarees</a>
-      <span class="mx-2">/</span>
-      <span class="text-gray-700" id="productNameBreadcrumb">Off White Linen Ikkat Printed Saree</span>
-    </div>
+    <div class="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4"><a href="#" onclick="showHomePage(event)" class="hover:text-red-900">Home</a><span class="mx-2">/</span><a href="#" onclick="showCategoryPage(event, 'Ikat')" class="hover:text-red-900">Ikat Sarees</a><span class="mx-2">/</span><span class="text-gray-700" id="productNameBreadcrumb">Off White Linen Ikkat Printed Saree</span></div>
     <div class="flex flex-col lg:flex-row gap-6 lg:gap-12">
-      <div class="lg:w-1/2">
-        <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
-          <img id="mainProductImage" src="https://sareestoredemo.netlify.app/ikkat%20printed%20saree.webp" alt="Off White Linen Ikkat Printed Saree" class="w-full h-auto object-cover" />
-        </div>
-        <div class="flex gap-2 sm:gap-3 mt-3 sm:mt-4">
-          <img src="https://sareestoredemo.netlify.app/ikkat%20printed%20saree.webp" onclick="changeImage(this)" class="thumb-img w-16 h-16 sm:w-24 sm:h-24 rounded-lg border-2 border-red-900 object-cover active" />
-          <img src="https://sareestoredemo.netlify.app/ikkat%20printed%20saree%202.webp" onclick="changeImage(this)" class="thumb-img w-16 h-16 sm:w-24 sm:h-24 rounded-lg border-2 border-transparent object-cover" />
-          <img src="https://sareestoredemo.netlify.app/ikkat%20printed%20saree%203.webp" onclick="changeImage(this)" class="thumb-img w-16 h-16 sm:w-24 sm:h-24 rounded-lg border-2 border-transparent object-cover" />
-        </div>
-      </div>
-      <div class="lg:w-1/2">
-        <h1 class="text-xl sm:text-4xl heading-font font-bold text-gray-800" id="productDetailName">Off White Linen Ikkat Printed Saree</h1>
-        <div class="flex items-center gap-2 sm:gap-4 mt-2 sm:mt-3">
-          <span class="text-2xl sm:text-4xl font-bold text-red-900" id="productDetailPrice">₹899</span>
-          <span class="text-lg sm:text-2xl text-gray-400 line-through">₹1,644</span>
-          <span class="bg-green-100 text-green-700 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-sm font-semibold">45% OFF</span>
-        </div>
-        <p class="text-xs sm:text-sm text-gray-500 mt-1">Inclusive of all taxes.</p>
-        <div class="flex items-center gap-2 sm:gap-4 mt-2 sm:mt-3 text-xs sm:text-sm">
-          <span class="text-yellow-500">★★★★☆</span>
-          <span class="text-gray-600">(6)</span>
-          <span class="text-red-600 font-medium"><i class="fa-regular fa-eye mr-1"></i>367 People viewing</span>
-        </div>
-        <div class="bg-red-50 border border-red-200 rounded-xl p-3 sm:p-4 mt-3 sm:mt-4">
-          <p class="font-semibold text-red-900 text-sm sm:text-base">Exclusive Discounts + Gifts</p>
-          <p class="text-xs sm:text-sm text-gray-700">Only on App: <a href="#" class="text-red-900 font-bold">DOWNLOAD NOW</a></p>
-          <div class="flex flex-wrap items-center gap-2 sm:gap-4 mt-1 sm:mt-2">
-            <span class="bg-green-600 text-white text-[10px] sm:text-sm px-2 sm:px-3 py-0.5 sm:py-1 rounded-full font-semibold">Get For ₹809</span>
-            <span class="text-xs sm:text-sm text-gray-700">Extra 10% OFF</span>
-          </div>
-        </div>
-        <div class="mt-3 sm:mt-4 p-3 sm:p-4 border border-gray-200 rounded-xl bg-white">
-          <p class="font-medium text-gray-700 text-sm sm:text-base">Check Delivery Details</p>
-          <div class="flex items-center gap-2 mt-2">
-            <input type="text" value="233226" class="border border-gray-300 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 w-24 sm:w-32 text-xs sm:text-sm" />
-            <button class="bg-red-900 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium hover:bg-red-800">Check</button>
-          </div>
-          <div class="mt-2 text-xs sm:text-sm text-gray-600">
-            <p><i class="fa-regular fa-calendar mr-2"></i>Delivery between 27th and 28th Jul</p>
-            <p class="text-green-600 font-medium"><i class="fa-regular fa-circle-check mr-1"></i>Cash On Delivery available</p>
-          </div>
-        </div>
-        <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-4 sm:mt-6">
-          <button class="flex-1 bg-red-900 text-white py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:bg-red-800 transition-colors">ADD TO CART</button>
-          <button class="flex-1 bg-black text-white py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:bg-gray-800 transition-colors">BUY IT NOW</button>
-        </div>
-        <div class="mt-3 sm:mt-4 p-2 sm:p-3 bg-red-50 border border-red-200 rounded-lg flex flex-wrap items-center gap-2 sm:gap-3">
-          <span class="font-bold text-red-900 text-sm sm:text-base">SALE ENDS IN</span>
-          <span class="bg-red-900 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg font-mono text-base sm:text-lg">11</span>
-          <span class="text-red-900 font-bold">:</span>
-          <span class="bg-red-900 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg font-mono text-base sm:text-lg">50</span>
-          <span class="text-red-900 font-bold">:</span>
-          <span class="bg-red-900 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg font-mono text-base sm:text-lg">45</span>
-        </div>
-        <div class="mt-4 sm:mt-6 text-center">
-          <button onclick="showCategoryPage(event, 'Ikat')" class="text-red-900 font-medium hover:underline text-xs sm:text-sm">
-            <i class="fa-solid fa-arrow-left mr-1"></i> Back to Ikat Sarees
-          </button>
-        </div>
-      </div>
+      <div class="lg:w-1/2"><div class="bg-white rounded-2xl overflow-hidden shadow-sm"><img id="mainProductImage" src="https://sareestoredemo.netlify.app/ikkat%20printed%20saree.webp" alt="Off White Linen Ikkat Printed Saree" class="w-full h-auto object-cover" /></div><div class="flex gap-2 sm:gap-3 mt-3 sm:mt-4"><img src="https://sareestoredemo.netlify.app/ikkat%20printed%20saree.webp" onclick="changeImage(this)" class="thumb-img w-16 h-16 sm:w-24 sm:h-24 rounded-lg border-2 border-red-900 object-cover active" /><img src="https://sareestoredemo.netlify.app/ikkat%20printed%20saree%202.webp" onclick="changeImage(this)" class="thumb-img w-16 h-16 sm:w-24 sm:h-24 rounded-lg border-2 border-transparent object-cover" /><img src="https://sareestoredemo.netlify.app/ikkat%20printed%20saree%203.webp" onclick="changeImage(this)" class="thumb-img w-16 h-16 sm:w-24 sm:h-24 rounded-lg border-2 border-transparent object-cover" /></div></div>
+      <div class="lg:w-1/2"><h1 class="text-xl sm:text-4xl heading-font font-bold text-gray-800" id="productDetailName">Off White Linen Ikkat Printed Saree</h1><div class="flex items-center gap-2 sm:gap-4 mt-2 sm:mt-3"><span class="text-2xl sm:text-4xl font-bold text-red-900" id="productDetailPrice">₹899</span><span class="text-lg sm:text-2xl text-gray-400 line-through">₹1,644</span><span class="bg-green-100 text-green-700 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-sm font-semibold">45% OFF</span></div><p class="text-xs sm:text-sm text-gray-500 mt-1">Inclusive of all taxes.</p><div class="flex items-center gap-2 sm:gap-4 mt-2 sm:mt-3 text-xs sm:text-sm"><span class="text-yellow-500">★★★★☆</span><span class="text-gray-600">(6)</span><span class="text-red-600 font-medium"><i class="fa-regular fa-eye mr-1"></i>367 People viewing</span></div><div class="bg-red-50 border border-red-200 rounded-xl p-3 sm:p-4 mt-3 sm:mt-4"><p class="font-semibold text-red-900 text-sm sm:text-base">Exclusive Discounts + Gifts</p><p class="text-xs sm:text-sm text-gray-700">Only on App: <a href="#" class="text-red-900 font-bold">DOWNLOAD NOW</a></p><div class="flex flex-wrap items-center gap-2 sm:gap-4 mt-1 sm:mt-2"><span class="bg-green-600 text-white text-[10px] sm:text-sm px-2 sm:px-3 py-0.5 sm:py-1 rounded-full font-semibold">Get For ₹809</span><span class="text-xs sm:text-sm text-gray-700">Extra 10% OFF</span></div></div><div class="mt-3 sm:mt-4 p-3 sm:p-4 border border-gray-200 rounded-xl bg-white"><p class="font-medium text-gray-700 text-sm sm:text-base">Check Delivery Details</p><div class="flex items-center gap-2 mt-2"><input type="text" value="233226" class="border border-gray-300 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 w-24 sm:w-32 text-xs sm:text-sm" /><button class="bg-red-900 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium hover:bg-red-800">Check</button></div><div class="mt-2 text-xs sm:text-sm text-gray-600"><p><i class="fa-regular fa-calendar mr-2"></i>Delivery between 27th and 28th Jul</p><p class="text-green-600 font-medium"><i class="fa-regular fa-circle-check mr-1"></i>Cash On Delivery available</p></div></div><div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-4 sm:mt-6"><button class="flex-1 bg-red-900 text-white py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:bg-red-800 transition-colors">ADD TO CART</button><button class="flex-1 bg-black text-white py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:bg-gray-800 transition-colors">BUY IT NOW</button></div><div class="mt-3 sm:mt-4 p-2 sm:p-3 bg-red-50 border border-red-200 rounded-lg flex flex-wrap items-center gap-2 sm:gap-3"><span class="font-bold text-red-900 text-sm sm:text-base">SALE ENDS IN</span><span class="bg-red-900 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg font-mono text-base sm:text-lg">11</span><span class="text-red-900 font-bold">:</span><span class="bg-red-900 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg font-mono text-base sm:text-lg">50</span><span class="text-red-900 font-bold">:</span><span class="bg-red-900 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg font-mono text-base sm:text-lg">45</span></div><div class="mt-4 sm:mt-6 text-center"><button onclick="showCategoryPage(event, 'Ikat')" class="text-red-900 font-medium hover:underline text-xs sm:text-sm"><i class="fa-solid fa-arrow-left mr-1"></i> Back to Ikat Sarees</button></div></div>
     </div>
   </section>
 </div>
-
 <!-- FOOTER -->
 <footer class="bg-gray-900 text-gray-300">
   <div class="max-w-7xl mx-auto px-3 sm:px-6 pt-8 sm:pt-16 pb-4 sm:pb-8">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-10">
-      <div class="col-span-2 sm:col-span-1">
-        <div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-6">
-          <div class="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center text-red-900 font-bold text-sm sm:text-lg">N</div>
-          <span class="text-lg sm:text-2xl font-bold text-white heading-font">Nalli</span>
-        </div>
-        <p class="text-[10px] sm:text-sm">Handpicked finest silk sarees from the heart of India since 1928.</p>
-      </div>
-      <div>
-        <h4 class="font-semibold text-white mb-2 sm:mb-4 text-sm sm:text-base">Shop</h4>
-        <ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-sm">
-          <li><a href="#" class="hover:text-white">All Sarees</a></li>
-          <li><a href="#" class="hover:text-white">New Arrivals</a></li>
-          <li><a href="#" class="hover:text-white">Best Sellers</a></li>
-          <li><a href="#" class="hover:text-white">Sale</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold text-white mb-2 sm:mb-4 text-sm sm:text-base">Explore</h4>
-        <ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-sm">
-          <li><a href="#" class="hover:text-white">About Us</a></li>
-          <li><a href="#" class="hover:text-white">Our Heritage</a></li>
-          <li><a href="#" class="hover:text-white">Blog</a></li>
-          <li><a href="#" class="hover:text-white">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold text-white mb-2 sm:mb-4 text-sm sm:text-base">Support</h4>
-        <ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-sm">
-          <li><a href="#" class="hover:text-white">Shipping Policy</a></li>
-          <li><a href="#" class="hover:text-white">Returns</a></li>
-          <li><a href="#" class="hover:text-white">Track Order</a></li>
-          <li><a href="#" class="hover:text-white">FAQs</a></li>
-        </ul>
-      </div>
+      <div class="col-span-2 sm:col-span-1"><div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-6"><div class="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center text-red-900 font-bold text-sm sm:text-lg">N</div><span class="text-lg sm:text-2xl font-bold text-white heading-font">Nalli</span></div><p class="text-[10px] sm:text-sm">Handpicked finest silk sarees from the heart of India since 1928.</p></div>
+      <div><h4 class="font-semibold text-white mb-2 sm:mb-4 text-sm sm:text-base">Shop</h4><ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-sm"><li><a href="#" class="hover:text-white">All Sarees</a></li><li><a href="#" class="hover:text-white">New Arrivals</a></li><li><a href="#" class="hover:text-white">Best Sellers</a></li><li><a href="#" class="hover:text-white">Sale</a></li></ul></div>
+      <div><h4 class="font-semibold text-white mb-2 sm:mb-4 text-sm sm:text-base">Explore</h4><ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-sm"><li><a href="#" class="hover:text-white">About Us</a></li><li><a href="#" class="hover:text-white">Our Heritage</a></li><li><a href="#" class="hover:text-white">Blog</a></li><li><a href="#" class="hover:text-white">Contact</a></li></ul></div>
+      <div><h4 class="font-semibold text-white mb-2 sm:mb-4 text-sm sm:text-base">Support</h4><ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-sm"><li><a href="#" class="hover:text-white">Shipping Policy</a></li><li><a href="#" class="hover:text-white">Returns</a></li><li><a href="#" class="hover:text-white">Track Order</a></li><li><a href="#" class="hover:text-white">FAQs</a></li></ul></div>
     </div>
-    <div class="border-t border-gray-800 mt-6 sm:mt-12 pt-4 sm:pt-8 text-[8px] sm:text-xs flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3">
-      <p>© 2026 saree store demo. All rights reserved.</p>
-      <div class="flex gap-3 sm:gap-6 text-sm sm:text-base">
-        <i class="fa-brands fa-instagram cursor-pointer hover:text-white"></i>
-        <i class="fa-brands fa-facebook cursor-pointer hover:text-white"></i>
-        <i class="fa-brands fa-whatsapp cursor-pointer hover:text-white"></i>
-      </div>
-    </div>
+    <div class="border-t border-gray-800 mt-6 sm:mt-12 pt-4 sm:pt-8 text-[8px] sm:text-xs flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3"><p>© 2026 saree store demo. All rights reserved.</p><div class="flex gap-3 sm:gap-6 text-sm sm:text-base"><i class="fa-brands fa-instagram cursor-pointer hover:text-white"></i><i class="fa-brands fa-facebook cursor-pointer hover:text-white"></i><i class="fa-brands fa-whatsapp cursor-pointer hover:text-white"></i></div></div>
   </div>
 </footer>
-
 <script>
-  // ----- PRODUCT DATA -----
   const products = [
     { id: 1, name: "Off White Linen Ikkat Saree", price: "₹899", image: "https://sareestoredemo.netlify.app/ikkat%20printed%20saree.webp", category: "Ikat" },
-    { 
-      id: 6, 
-      name: "C J Enterprise Women's Pure Kanjivaram Silk Saree (Pari122-51)", 
-      price: "₹497", 
-      image: "https://sareestoredemo.aamir68599.workers.dev/Kanjivaram%204.jpg", 
-      category: "Kanjivaram",
-      mrp: "₹999",
-      discount: "50%",
-      rating: "3.9",
-      reviews: "2641",
-      sold: "500+ bought in past month",
-      material: "Soft Lichi Silk",
-      weave: "Zari",
-      length: "6 yards",
-      occasion: "Wedding, Party",
-      pattern: "Embroidered",
-      includes: "With blouse piece",
-      origin: "India",
-      description: "Type: Kanjivaram Silk Saree · Color: Multi · Fabric: Art Silk · Dimension: Saree: 5.5 M, Blouse: 0.8 M · Perfect for Festive, Party, Occasional, Traditional, Wedding, Reception"
-    },
-    { 
-      id: 7, 
-      name: "Mehrang Women's Banarasi Silk Kanjivaram Saree (Pure Zari, Woven)", 
-      price: "₹999", 
-      image: "https://sareestoredemo.aamir68599.workers.dev/Banarasi%20%201.jpg", 
-      category: "Banarasi",
-      mrp: "₹3,999",
-      discount: "75%",
-      rating: "4.1",
-      reviews: "86",
-      sold: "Limited time deal",
-      material: "Banarasi silk",
-      weave: "Jacquard",
-      length: "5.5 m",
-      occasion: "Festival, Wedding",
-      pattern: "Peacock motifs & geometric",
-      includes: "Saree, Tassels",
-      origin: "India",
-      description: "FABRIC: Luxurious Banarasi silk saree featuring an elegant combination of purple and peach colours with intricate zari work throughout. DESIGN ELEMENTS: Beautiful woven zari border enhances the traditional appeal, complemented by decorative tassels for added grace. OCCASION WEAR: Perfect choice for weddings, festivals, and special ceremonies."
-    },
-    { 
-      id: 8, 
-      name: "Noel Dual Shade Butter Chiffon Saree with Self Blouse", 
-      price: "₹3,030", 
-      image: "https://sareestoredemo.aamir68599.workers.dev/Chiffon.jpg", 
-      category: "Chiffon",
-      mrp: "₹4,499",
-      discount: "33%",
-      rating: "4.5",
-      reviews: "17",
-      sold: "17 people viewing right now",
-      material: "Butter Chiffon Dual shade",
-      weave: "Chiffon",
-      length: "5.5 m",
-      occasion: "Wedding, Party, Festive",
-      pattern: "Dual Shade with Beaded Pendants",
-      includes: "With blouse piece",
-      origin: "India",
-      description: "Indulge in the timeless elegance of our Noel Dual Shade Butter Chiffon Saree..."
-    },
-    { 
-      id: 9, 
-      name: "Kanchivaram Bridal Saree (Heavy Gold Zari Woven)", 
-      price: "₹1,599", 
-      image: "https://sareestoredemo.aamir68599.workers.dev/Bridal%20Sarees.webp", 
-      category: "Bridal",
-      mrp: "₹3,199",
-      discount: "50%",
-      rating: "4.8",
-      reviews: "18",
-      sold: "190 People Are Watching Right Now",
-      material: "Silk",
-      weave: "Heavy Gold Zari",
-      length: "5.50 m",
-      occasion: "Bridal, Wedding",
-      pattern: "Figurative Border with Rich Traditional Pallu",
-      includes: "With unstitched blouse piece",
-      origin: "India",
-      description: "Kanchivaram Bridal Sarees. Saree Fabric: Silk..."
-    }
+    { id: 6, name: "C J Enterprise Women's Pure Kanjivaram Silk Saree (Pari122-51)", price: "₹497", image: "https://sareestoredemo.aamir68599.workers.dev/Kanjivaram%204.jpg", category: "Kanjivaram" },
+    { id: 7, name: "Mehrang Women's Banarasi Silk Kanjivaram Saree (Pure Zari, Woven)", price: "₹999", image: "https://sareestoredemo.aamir68599.workers.dev/Banarasi%20%201.jpg", category: "Banarasi" },
+    { id: 8, name: "Noel Dual Shade Butter Chiffon Saree with Self Blouse", price: "₹3,030", image: "https://sareestoredemo.aamir68599.workers.dev/Chiffon.jpg", category: "Chiffon" },
+    { id: 9, name: "Kanchivaram Bridal Saree (Heavy Gold Zari Woven)", price: "₹1,599", image: "https://sareestoredemo.aamir68599.workers.dev/Bridal%20Sarees.webp", category: "Bridal" }
   ];
-
-  function getCategoryProducts(category) {
-    return products.filter(p => p.category === category);
-  }
-
+  function getCategoryProducts(category) { return products.filter(p => p.category === category); }
   function renderProducts(containerId, items) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
+    const container = document.getElementById(containerId); if (!container) return;
     container.innerHTML = '';
     items.forEach(product => {
       const card = document.createElement('div');
       card.className = 'product-card bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-gray-100 cursor-pointer';
-      card.innerHTML = `
-        <div class="relative">
-          <img src="${product.image}" class="w-full h-40 sm:h-64 lg:h-80 object-cover" alt="${product.name}" loading="lazy" />
-          <div class="absolute top-1 sm:top-4 right-1 sm:right-4 bg-white px-1.5 sm:px-3 py-0.5 text-[8px] sm:text-xs font-medium rounded-full shadow">${product.category}</div>
-        </div>
-        <div class="p-2 sm:p-5">
-          <h3 class="font-semibold leading-tight text-[10px] sm:text-base mb-0.5 line-clamp-2">${product.name}</h3>
-          <p class="text-red-900 font-bold text-sm sm:text-lg">${product.price}</p>
-        </div>
-      `;
+      card.innerHTML = `<div class="relative"><img src="${product.image}" class="w-full h-40 sm:h-64 lg:h-80 object-cover" alt="${product.name}" loading="lazy" /><div class="absolute top-1 sm:top-4 right-1 sm:right-4 bg-white px-1.5 sm:px-3 py-0.5 text-[8px] sm:text-xs font-medium rounded-full shadow">${product.category}</div></div><div class="p-2 sm:p-5"><h3 class="font-semibold leading-tight text-[10px] sm:text-base mb-0.5 line-clamp-2">${product.name}</h3><p class="text-red-900 font-bold text-sm sm:text-lg">${product.price}</p></div>`;
       card.onclick = () => { showProductPage(product); };
       container.appendChild(card);
     });
   }
-
   function renderCategoryProducts(category) {
-    const container = document.getElementById('categoryProducts');
-    if (!container) return;
+    const container = document.getElementById('categoryProducts'); if (!container) return;
     const items = getCategoryProducts(category);
     container.innerHTML = '';
-    if (items.length === 0) {
-      container.innerHTML = '<p class="text-gray-500 col-span-full text-center py-10 text-sm">No products found in this category.</p>';
-      return;
-    }
+    if (items.length === 0) { container.innerHTML = '<p class="text-gray-500 col-span-full text-center py-10 text-sm">No products found in this category.</p>'; return; }
     items.forEach(product => {
       const card = document.createElement('div');
       card.className = 'product-card bg-white rounded-xl overflow-hidden border border-gray-100 cursor-pointer';
-      card.innerHTML = `
-        <div class="relative">
-          <img src="${product.image}" class="w-full h-48 sm:h-64 object-cover" alt="${product.name}" loading="lazy" />
-          <div class="absolute top-2 right-2 bg-white px-2 py-0.5 text-[8px] sm:text-[10px] font-medium rounded-full shadow">${product.category}</div>
-        </div>
-        <div class="p-2 sm:p-3">
-          <h3 class="font-semibold text-[10px] sm:text-sm mb-0.5 line-clamp-2">${product.name}</h3>
-          <p class="text-red-900 font-bold text-sm sm:text-base">${product.price}</p>
-        </div>
-      `;
+      card.innerHTML = `<div class="relative"><img src="${product.image}" class="w-full h-48 sm:h-64 object-cover" alt="${product.name}" loading="lazy" /><div class="absolute top-2 right-2 bg-white px-2 py-0.5 text-[8px] sm:text-[10px] font-medium rounded-full shadow">${product.category}</div></div><div class="p-2 sm:p-3"><h3 class="font-semibold text-[10px] sm:text-sm mb-0.5 line-clamp-2">${product.name}</h3><p class="text-red-900 font-bold text-sm sm:text-base">${product.price}</p></div>`;
       card.onclick = () => { showProductPage(product); };
       container.appendChild(card);
     });
     document.getElementById('productCount').textContent = `${items.length} product${items.length > 1 ? 's' : ''}`;
   }
-
   function renderShopProducts() {
-    const container = document.getElementById('shopProducts');
-    if (!container) return;
+    const container = document.getElementById('shopProducts'); if (!container) return;
     container.innerHTML = '';
     products.forEach(product => {
       const card = document.createElement('div');
       card.className = 'product-card bg-white rounded-xl overflow-hidden border border-gray-100 cursor-pointer';
-      card.innerHTML = `
-        <div class="relative">
-          <img src="${product.image}" class="w-full h-48 sm:h-64 object-cover" alt="${product.name}" loading="lazy" />
-          <div class="absolute top-2 right-2 bg-white px-2 py-0.5 text-[8px] sm:text-[10px] font-medium rounded-full shadow">${product.category}</div>
-        </div>
-        <div class="p-2 sm:p-3">
-          <h3 class="font-semibold text-[10px] sm:text-sm mb-0.5 line-clamp-2">${product.name}</h3>
-          <p class="text-red-900 font-bold text-sm sm:text-base">${product.price}</p>
-        </div>
-      `;
+      card.innerHTML = `<div class="relative"><img src="${product.image}" class="w-full h-48 sm:h-64 object-cover" alt="${product.name}" loading="lazy" /><div class="absolute top-2 right-2 bg-white px-2 py-0.5 text-[8px] sm:text-[10px] font-medium rounded-full shadow">${product.category}</div></div><div class="p-2 sm:p-3"><h3 class="font-semibold text-[10px] sm:text-sm mb-0.5 line-clamp-2">${product.name}</h3><p class="text-red-900 font-bold text-sm sm:text-base">${product.price}</p></div>`;
       card.onclick = () => { showProductPage(product); };
       container.appendChild(card);
     });
     document.getElementById('shopProductCount').textContent = `${products.length} products`;
   }
-
-  function showHomePage(e) {
-    if (e) e.preventDefault();
-    document.getElementById('homePageContent').classList.remove('hidden');
-    document.getElementById('categoryPage').classList.add('hidden');
-    document.getElementById('shopPage').classList.add('hidden');
-    document.getElementById('productPage').classList.add('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function showShopPage(e) {
-    if (e) e.preventDefault();
-    document.getElementById('homePageContent').classList.add('hidden');
-    document.getElementById('categoryPage').classList.add('hidden');
-    document.getElementById('shopPage').classList.remove('hidden');
-    document.getElementById('productPage').classList.add('hidden');
-    renderShopProducts();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function showCategoryPage(e, category) {
-    if (e) e.preventDefault();
-    document.getElementById('homePageContent').classList.add('hidden');
-    document.getElementById('categoryPage').classList.remove('hidden');
-    document.getElementById('shopPage').classList.add('hidden');
-    document.getElementById('productPage').classList.add('hidden');
-    document.getElementById('categoryBreadcrumb').textContent = category + ' Sarees';
-    document.getElementById('categoryTitle').textContent = category + ' Sarees';
-    renderCategoryProducts(category);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function showProductPage(product) {
-    document.getElementById('homePageContent').classList.add('hidden');
-    document.getElementById('categoryPage').classList.add('hidden');
-    document.getElementById('shopPage').classList.add('hidden');
-    document.getElementById('productPage').classList.remove('hidden');
-    document.getElementById('productNameBreadcrumb').textContent = product.name;
-    document.getElementById('productDetailName').textContent = product.name;
-    document.getElementById('productDetailPrice').textContent = product.price;
-    document.getElementById('mainProductImage').src = product.image;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function changeImage(el) {
-    document.getElementById('mainProductImage').src = el.src;
-    document.querySelectorAll('.thumb-img').forEach(img => {
-      img.classList.remove('active', 'border-red-900');
-      img.classList.add('border-transparent');
-    });
-    el.classList.add('active');
-    el.classList.remove('border-transparent');
-    el.classList.add('border-red-900');
-  }
-
+  function showHomePage(e) { if (e) e.preventDefault(); document.getElementById('homePageContent').classList.remove('hidden'); document.getElementById('categoryPage').classList.add('hidden'); document.getElementById('shopPage').classList.add('hidden'); document.getElementById('productPage').classList.add('hidden'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function showShopPage(e) { if (e) e.preventDefault(); document.getElementById('homePageContent').classList.add('hidden'); document.getElementById('categoryPage').classList.add('hidden'); document.getElementById('shopPage').classList.remove('hidden'); document.getElementById('productPage').classList.add('hidden'); renderShopProducts(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function showCategoryPage(e, category) { if (e) e.preventDefault(); document.getElementById('homePageContent').classList.add('hidden'); document.getElementById('categoryPage').classList.remove('hidden'); document.getElementById('shopPage').classList.add('hidden'); document.getElementById('productPage').classList.add('hidden'); document.getElementById('categoryBreadcrumb').textContent = category + ' Sarees'; document.getElementById('categoryTitle').textContent = category + ' Sarees'; renderCategoryProducts(category); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function showProductPage(product) { document.getElementById('homePageContent').classList.add('hidden'); document.getElementById('categoryPage').classList.add('hidden'); document.getElementById('shopPage').classList.add('hidden'); document.getElementById('productPage').classList.remove('hidden'); document.getElementById('productNameBreadcrumb').textContent = product.name; document.getElementById('productDetailName').textContent = product.name; document.getElementById('productDetailPrice').textContent = product.price; document.getElementById('mainProductImage').src = product.image; window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function changeImage(el) { document.getElementById('mainProductImage').src = el.src; document.querySelectorAll('.thumb-img').forEach(img => { img.classList.remove('active', 'border-red-900'); img.classList.add('border-transparent'); }); el.classList.add('active'); el.classList.remove('border-transparent'); el.classList.add('border-red-900'); }
   // Carousel
-  let currentSlide = 1;
-  const totalSlides = 5;
-
-  function showSlide(slideIndex) {
-    for (let i = 1; i <= totalSlides; i++) {
-      const slide = document.getElementById(`slide${i}`);
-      const dot = document.getElementById(`dot${i}`);
-      if (slide) slide.classList.add('hidden');
-      if (dot) {
-        dot.classList.remove('bg-white', 'border', 'border-white');
-        dot.classList.add('bg-white/50');
-      }
-    }
-    const activeSlide = document.getElementById(`slide${slideIndex}`);
-    const activeDot = document.getElementById(`dot${slideIndex}`);
-    if (activeSlide) activeSlide.classList.remove('hidden');
-    if (activeDot) {
-      activeDot.classList.add('bg-white', 'border', 'border-white');
-      activeDot.classList.remove('bg-white/50');
-    }
-    currentSlide = slideIndex;
-  }
-
+  let currentSlide = 1; const totalSlides = 5;
+  function showSlide(slideIndex) { for (let i = 1; i <= totalSlides; i++) { const slide = document.getElementById(`slide${i}`); const dot = document.getElementById(`dot${i}`); if (slide) slide.classList.add('hidden'); if (dot) { dot.classList.remove('bg-white', 'border', 'border-white'); dot.classList.add('bg-white/50'); } } const activeSlide = document.getElementById(`slide${slideIndex}`); const activeDot = document.getElementById(`dot${slideIndex}`); if (activeSlide) activeSlide.classList.remove('hidden'); if (activeDot) { activeDot.classList.add('bg-white', 'border', 'border-white'); activeDot.classList.remove('bg-white/50'); } currentSlide = slideIndex; }
   function nextSlide() { let next = currentSlide + 1; if (next > totalSlides) next = 1; showSlide(next); }
   function prevSlide() { let prev = currentSlide - 1; if (prev < 1) prev = totalSlides; showSlide(prev); }
   function goToSlide(n) { showSlide(n); }
-
   setInterval(() => { nextSlide(); }, 5000);
   showSlide(1);
-
   renderProducts('featuredProducts', products);
   renderProducts('bestSellers', products);
-
-  document.getElementById('searchInput')?.addEventListener('keyup', function(e) {
-    if (e.key === 'Enter' && this.value.trim()) {
-      alert(`Searching for "${this.value}"... (Demo)`);
-    }
-  });
 </script>
 </body>
 </html>
