@@ -8,20 +8,130 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap');
-    :root { --primary: #9f1239; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     .tail-container { font-family: 'Inter', system-ui, sans-serif; }
     .heading-font { font-family: 'Playfair Display', sans-serif; }
-    .hero-slide { transition: opacity 0.8s ease-in-out; background-size: cover !important; background-position: center center !important; background-repeat: no-repeat !important; width: 100%; height: 100%; }
-    .product-card { transition: all 0.3s ease; }
+    
+    /* -------- CAROUSEL - PERFECT FOR MOBILE -------- */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: #1a1a1a;
+    }
+    
+    .carousel-track {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+    
+    .carousel-slide {
+      flex: 0 0 100%;
+      aspect-ratio: 16 / 9;
+      /* Mobile pe 16:9, desktop pe adjust */;
+    }
+    
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    
+    /* -------- MOBILE HEIGHT ADJUST -------- */
+    @media (max-width: 640px) {
+      .carousel-slide {
+        aspect-ratio: 4 / 3;
+        /* Mobile pe thoda tall taaki image crop na ho */;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .carousel-slide {
+        aspect-ratio: 21 / 9;
+        /* Desktop pe wide banner */;
+      }
+    }
+    
+    /* -------- BUTTONS & DOTS -------- */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.85);
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #9f1239;
+      transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    
+    .carousel-btn:hover {
+      background: white;
+      transform: translateY(-50%) scale(1.05);
+    }
+    
+    .carousel-btn.prev { left: 8px; }
+    .carousel-btn.next { right: 8px; }
+    
+    .carousel-dots {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+    
+    .carousel-dots button {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.3s;
+    }
+    
+    .carousel-dots button.active {
+      background: white;
+      border-color: white;
+      transform: scale(1.15);
+    }
+    
+    @media (max-width: 640px) {
+      .carousel-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 11px;
+      }
+      .carousel-btn.prev { left: 4px; }
+      .carousel-btn.next { right: 4px; }
+      .carousel-dots { gap: 5px; bottom: 8px; }
+      .carousel-dots button { width: 8px; height: 8px; }
+    }
+    
+    /* -------- OTHER STYLES -------- */
+    .product-card { transition: all 0.3s ease; cursor: pointer; }
     .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
     .nav-link { position: relative; }
     .nav-link:after { content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 0; background-color: #9f1239; transition: all 0.3s ease; }
     .nav-link:hover:after { width: 100%; }
-    .carousel-container { position: relative; overflow: hidden; width: 100%; height: 50vh; min-height: 300px; max-height: 70vh; background: #f3f4f6; }
     .dropdown-group:hover .dropdown-menu { display: block; }
     .dropdown-menu { display: none; min-width: 160px; }
     .category-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-    .category-grid-3 .cat-item .cat-bg { height: 200px; border-radius: 1rem; background-size: cover; background-position: center; }
+    .category-grid-3 .cat-item .cat-bg { height: 200px; border-radius: 1rem; background-size: cover; background-position: center; cursor: pointer; }
     .category-grid-3 .cat-item .cat-overlay { padding: 1rem; }
     .category-grid-3 .cat-item h3 { font-size: 1.25rem; line-height: 1.4; }
     .category-product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
@@ -29,12 +139,8 @@
     .thumb-img { transition: all 0.2s; cursor: pointer; }
     .thumb-img:hover { opacity: 0.7; }
     .thumb-img.active { border: 2px solid #9f1239; }
-    /* -------- mobile + desktop hero perfect fit -------- */
+    
     @media (max-width: 640px) {
-      .carousel-container { height: 40vh !important; min-height: 220px !important; max-height: 50vh !important; }
-      .hero-slide { background-size: cover !important; background-position: center center !important; }
-      .carousel-container button { padding: 0.4rem !important; font-size: 0.65rem !important; }
-      .carousel-container .fa-chevron-left, .carousel-container .fa-chevron-right { font-size: 0.7rem !important; }
       .category-grid-3 { gap: 0.5rem; }
       .category-grid-3 .cat-item .cat-bg { height: 120px !important; border-radius: 0.75rem; }
       .category-grid-3 .cat-item h3 { font-size: 0.75rem !important; padding: 0.25rem 0.2rem !important; text-align: center; word-break: break-word; }
@@ -52,7 +158,6 @@
       .filter-sidebar .filter-group label { font-size: 0.8rem !important; }
     }
     @media (min-width: 641px) and (max-width: 1024px) {
-      .carousel-container { height: 55vh !important; min-height: 350px !important; }
       .category-grid-3 .cat-item .cat-bg { height: 160px !important; }
       .category-grid-3 .cat-item h3 { font-size: 1rem !important; }
       .category-product-grid { grid-template-columns: repeat(3, 1fr); }
@@ -105,23 +210,28 @@
 </header>
 <!-- ========= HOME ========= -->
 <div id="homePageContent">
-  <!-- HERO CAROUSEL - full image on mobile & desktop -->
-  <section class="carousel-container relative w-full">
-    <div id="slide1" class="hero-slide absolute inset-0 flex items-center" style="background-image: url('https://sareestoredemo.netlify.app/banner%201.webp');"></div>
-    <div id="slide2" class="hero-slide absolute inset-0 flex items-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%202.1.webp');"></div>
-    <div id="slide3" class="hero-slide absolute inset-0 flex items-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%203.webp');"></div>
-    <div id="slide4" class="hero-slide absolute inset-0 flex items-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%204.webp');"></div>
-    <div id="slide5" class="hero-slide absolute inset-0 flex items-center hidden" style="background-image: url('https://sareestoredemo.netlify.app/banner%205.webp');"></div>
-    <button onclick="prevSlide()" class="absolute left-1.5 sm:left-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-red-900 p-1.5 sm:p-3 rounded-full text-xs sm:text-base shadow-lg z-10 transition-all"><i class="fa-solid fa-chevron-left"></i></button>
-    <button onclick="nextSlide()" class="absolute right-1.5 sm:right-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-red-900 p-1.5 sm:p-3 rounded-full text-xs sm:text-base shadow-lg z-10 transition-all"><i class="fa-solid fa-chevron-right"></i></button>
-    <div class="absolute bottom-2 sm:bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5 sm:gap-3 z-10">
-      <button onclick="goToSlide(1)" class="w-2 h-2 sm:w-3.5 sm:h-3.5 rounded-full bg-white border border-white" id="dot1"></button>
-      <button onclick="goToSlide(2)" class="w-2 h-2 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot2"></button>
-      <button onclick="goToSlide(3)" class="w-2 h-2 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot3"></button>
-      <button onclick="goToSlide(4)" class="w-2 h-2 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot4"></button>
-      <button onclick="goToSlide(5)" class="w-2 h-2 sm:w-3.5 sm:h-3.5 rounded-full bg-white/50 hover:bg-white/80" id="dot5"></button>
+  <!-- HERO CAROUSEL - PROPER MOBILE FRIENDLY -->
+  <section class="carousel-container">
+    <div class="carousel-track" id="carouselTrack">
+      <div class="carousel-slide"><img src="https://sareestoredemo.netlify.app/banner%201.webp" alt="Banner 1" loading="lazy" /></div>
+      <div class="carousel-slide"><img src="https://sareestoredemo.netlify.app/banner%202.1.webp" alt="Banner 2" loading="lazy" /></div>
+      <div class="carousel-slide"><img src="https://sareestoredemo.netlify.app/banner%203.webp" alt="Banner 3" loading="lazy" /></div>
+      <div class="carousel-slide"><img src="https://sareestoredemo.netlify.app/banner%204.webp" alt="Banner 4" loading="lazy" /></div>
+      <div class="carousel-slide"><img src="https://sareestoredemo.netlify.app/banner%205.webp" alt="Banner 5" loading="lazy" /></div>
+    </div>
+    
+    <button class="carousel-btn prev" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="carousel-btn next" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
+    
+    <div class="carousel-dots" id="carouselDots">
+      <button class="active" data-index="0"></button>
+      <button data-index="1"></button>
+      <button data-index="2"></button>
+      <button data-index="3"></button>
+      <button data-index="4"></button>
     </div>
   </section>
+  
   <!-- CATEGORIES -->
   <section class="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-16">
     <h2 class="text-xl sm:text-4xl heading-font font-bold text-center mb-4 sm:mb-12">Shop by Category</h2>
@@ -188,7 +298,9 @@
     <div class="border-t border-gray-800 mt-6 sm:mt-12 pt-4 sm:pt-8 text-[8px] sm:text-xs flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3"><p>© 2026 saree store demo. All rights reserved.</p><div class="flex gap-3 sm:gap-6 text-sm sm:text-base"><i class="fa-brands fa-instagram cursor-pointer hover:text-white"></i><i class="fa-brands fa-facebook cursor-pointer hover:text-white"></i><i class="fa-brands fa-whatsapp cursor-pointer hover:text-white"></i></div></div>
   </div>
 </footer>
+
 <script>
+  // -------- PRODUCT DATA --------
   const products = [
     { id: 1, name: "Off White Linen Ikkat Saree", price: "₹899", image: "https://sareestoredemo.netlify.app/ikkat%20printed%20saree.webp", category: "Ikat" },
     { id: 6, name: "C J Enterprise Women's Pure Kanjivaram Silk Saree (Pari122-51)", price: "₹497", image: "https://sareestoredemo.aamir68599.workers.dev/Kanjivaram%204.jpg", category: "Kanjivaram" },
@@ -196,18 +308,21 @@
     { id: 8, name: "Noel Dual Shade Butter Chiffon Saree with Self Blouse", price: "₹3,030", image: "https://sareestoredemo.aamir68599.workers.dev/Chiffon.jpg", category: "Chiffon" },
     { id: 9, name: "Kanchivaram Bridal Saree (Heavy Gold Zari Woven)", price: "₹1,599", image: "https://sareestoredemo.aamir68599.workers.dev/Bridal%20Sarees.webp", category: "Bridal" }
   ];
+
   function getCategoryProducts(category) { return products.filter(p => p.category === category); }
+
   function renderProducts(containerId, items) {
     const container = document.getElementById(containerId); if (!container) return;
     container.innerHTML = '';
     items.forEach(product => {
       const card = document.createElement('div');
-      card.className = 'product-card bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-gray-100 cursor-pointer';
+      card.className = 'product-card bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-gray-100';
       card.innerHTML = `<div class="relative"><img src="${product.image}" class="w-full h-40 sm:h-64 lg:h-80 object-cover" alt="${product.name}" loading="lazy" /><div class="absolute top-1 sm:top-4 right-1 sm:right-4 bg-white px-1.5 sm:px-3 py-0.5 text-[8px] sm:text-xs font-medium rounded-full shadow">${product.category}</div></div><div class="p-2 sm:p-5"><h3 class="font-semibold leading-tight text-[10px] sm:text-base mb-0.5 line-clamp-2">${product.name}</h3><p class="text-red-900 font-bold text-sm sm:text-lg">${product.price}</p></div>`;
       card.onclick = () => { showProductPage(product); };
       container.appendChild(card);
     });
   }
+
   function renderCategoryProducts(category) {
     const container = document.getElementById('categoryProducts'); if (!container) return;
     const items = getCategoryProducts(category);
@@ -215,38 +330,82 @@
     if (items.length === 0) { container.innerHTML = '<p class="text-gray-500 col-span-full text-center py-10 text-sm">No products found in this category.</p>'; return; }
     items.forEach(product => {
       const card = document.createElement('div');
-      card.className = 'product-card bg-white rounded-xl overflow-hidden border border-gray-100 cursor-pointer';
+      card.className = 'product-card bg-white rounded-xl overflow-hidden border border-gray-100';
       card.innerHTML = `<div class="relative"><img src="${product.image}" class="w-full h-48 sm:h-64 object-cover" alt="${product.name}" loading="lazy" /><div class="absolute top-2 right-2 bg-white px-2 py-0.5 text-[8px] sm:text-[10px] font-medium rounded-full shadow">${product.category}</div></div><div class="p-2 sm:p-3"><h3 class="font-semibold text-[10px] sm:text-sm mb-0.5 line-clamp-2">${product.name}</h3><p class="text-red-900 font-bold text-sm sm:text-base">${product.price}</p></div>`;
       card.onclick = () => { showProductPage(product); };
       container.appendChild(card);
     });
     document.getElementById('productCount').textContent = `${items.length} product${items.length > 1 ? 's' : ''}`;
   }
+
   function renderShopProducts() {
     const container = document.getElementById('shopProducts'); if (!container) return;
     container.innerHTML = '';
     products.forEach(product => {
       const card = document.createElement('div');
-      card.className = 'product-card bg-white rounded-xl overflow-hidden border border-gray-100 cursor-pointer';
+      card.className = 'product-card bg-white rounded-xl overflow-hidden border border-gray-100';
       card.innerHTML = `<div class="relative"><img src="${product.image}" class="w-full h-48 sm:h-64 object-cover" alt="${product.name}" loading="lazy" /><div class="absolute top-2 right-2 bg-white px-2 py-0.5 text-[8px] sm:text-[10px] font-medium rounded-full shadow">${product.category}</div></div><div class="p-2 sm:p-3"><h3 class="font-semibold text-[10px] sm:text-sm mb-0.5 line-clamp-2">${product.name}</h3><p class="text-red-900 font-bold text-sm sm:text-base">${product.price}</p></div>`;
       card.onclick = () => { showProductPage(product); };
       container.appendChild(card);
     });
     document.getElementById('shopProductCount').textContent = `${products.length} products`;
   }
+
+  // -------- NAVIGATION FUNCTIONS --------
   function showHomePage(e) { if (e) e.preventDefault(); document.getElementById('homePageContent').classList.remove('hidden'); document.getElementById('categoryPage').classList.add('hidden'); document.getElementById('shopPage').classList.add('hidden'); document.getElementById('productPage').classList.add('hidden'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
   function showShopPage(e) { if (e) e.preventDefault(); document.getElementById('homePageContent').classList.add('hidden'); document.getElementById('categoryPage').classList.add('hidden'); document.getElementById('shopPage').classList.remove('hidden'); document.getElementById('productPage').classList.add('hidden'); renderShopProducts(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
   function showCategoryPage(e, category) { if (e) e.preventDefault(); document.getElementById('homePageContent').classList.add('hidden'); document.getElementById('categoryPage').classList.remove('hidden'); document.getElementById('shopPage').classList.add('hidden'); document.getElementById('productPage').classList.add('hidden'); document.getElementById('categoryBreadcrumb').textContent = category + ' Sarees'; document.getElementById('categoryTitle').textContent = category + ' Sarees'; renderCategoryProducts(category); window.scrollTo({ top: 0, behavior: 'smooth' }); }
   function showProductPage(product) { document.getElementById('homePageContent').classList.add('hidden'); document.getElementById('categoryPage').classList.add('hidden'); document.getElementById('shopPage').classList.add('hidden'); document.getElementById('productPage').classList.remove('hidden'); document.getElementById('productNameBreadcrumb').textContent = product.name; document.getElementById('productDetailName').textContent = product.name; document.getElementById('productDetailPrice').textContent = product.price; document.getElementById('mainProductImage').src = product.image; window.scrollTo({ top: 0, behavior: 'smooth' }); }
   function changeImage(el) { document.getElementById('mainProductImage').src = el.src; document.querySelectorAll('.thumb-img').forEach(img => { img.classList.remove('active', 'border-red-900'); img.classList.add('border-transparent'); }); el.classList.add('active'); el.classList.remove('border-transparent'); el.classList.add('border-red-900'); }
-  // Carousel
-  let currentSlide = 1; const totalSlides = 5;
-  function showSlide(slideIndex) { for (let i = 1; i <= totalSlides; i++) { const slide = document.getElementById(`slide${i}`); const dot = document.getElementById(`dot${i}`); if (slide) slide.classList.add('hidden'); if (dot) { dot.classList.remove('bg-white', 'border', 'border-white'); dot.classList.add('bg-white/50'); } } const activeSlide = document.getElementById(`slide${slideIndex}`); const activeDot = document.getElementById(`dot${slideIndex}`); if (activeSlide) activeSlide.classList.remove('hidden'); if (activeDot) { activeDot.classList.add('bg-white', 'border', 'border-white'); activeDot.classList.remove('bg-white/50'); } currentSlide = slideIndex; }
-  function nextSlide() { let next = currentSlide + 1; if (next > totalSlides) next = 1; showSlide(next); }
-  function prevSlide() { let prev = currentSlide - 1; if (prev < 1) prev = totalSlides; showSlide(prev); }
-  function goToSlide(n) { showSlide(n); }
-  setInterval(() => { nextSlide(); }, 5000);
-  showSlide(1);
+
+  // -------- CAROUSEL LOGIC --------
+  let currentIndex = 0;
+  const totalSlides = 5;
+  const track = document.getElementById('carouselTrack');
+  const dots = document.querySelectorAll('.carousel-dots button');
+
+  function goToSlide(index) {
+    if (index < 0) index = totalSlides - 1;
+    if (index >= totalSlides) index = 0;
+    currentIndex = index;
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentIndex);
+    });
+  }
+
+  function nextSlide() { goToSlide(currentIndex + 1); }
+  function prevSlide() { goToSlide(currentIndex - 1); }
+
+  // Dot clicks
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => goToSlide(i));
+  });
+
+  // Auto slide
+  let autoSlide = setInterval(nextSlide, 5000);
+
+  // Pause on hover
+  const container = document.querySelector('.carousel-container');
+  container.addEventListener('mouseenter', () => clearInterval(autoSlide));
+  container.addEventListener('mouseleave', () => { autoSlide = setInterval(nextSlide, 5000); });
+
+  // Touch support for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+  container.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+  container.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) nextSlide();
+      else prevSlide();
+    }
+  });
+
+  // -------- RENDER PRODUCTS --------
   renderProducts('featuredProducts', products);
   renderProducts('bestSellers', products);
 </script>
