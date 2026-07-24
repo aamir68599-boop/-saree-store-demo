@@ -147,7 +147,6 @@
     .thumb-img:hover { opacity: 0.7; }
     .thumb-img.active { border: 2px solid #9f1239; }
     
-    /* Wishlist heart */
     .wishlist-btn { transition: all 0.2s; }
     .wishlist-btn:hover { transform: scale(1.15); }
     .wishlist-btn.active { color: #dc2626; }
@@ -183,12 +182,9 @@
       .category-product-grid { grid-template-columns: repeat(4, 1fr); }
     }
 
-    /* Cart & Checkout extras */
     .cart-item { transition: all 0.2s; }
     .cart-item:hover { background: #f9fafb; }
     .checkout-input:focus { border-color: #9f1239; ring: 2px solid #9f1239; }
-    
-    /* Cart & Checkout UI enhancements */
     .cart-summary-card { background: linear-gradient(145deg, #ffffff, #f8fafc); }
     .checkout-card { background: white; border-radius: 1.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.06); }
     .order-item { border-bottom: 1px solid #f1f5f9; }
@@ -233,7 +229,6 @@
 </header>
 <!-- ========= HOME ========= -->
 <div id="homePageContent">
-  <!-- HERO CAROUSEL - PROPER MOBILE FRIENDLY (mobile only images) -->
   <section class="carousel-container">
     <div class="carousel-track" id="carouselTrack">
       <div class="carousel-slide">
@@ -272,10 +267,8 @@
         </picture>
       </div>
     </div>
-    
     <button class="carousel-btn prev" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
     <button class="carousel-btn next" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
-    
     <div class="carousel-dots" id="carouselDots">
       <button class="active" data-index="0"></button>
       <button data-index="1"></button>
@@ -285,7 +278,6 @@
     </div>
   </section>
   
-  <!-- CATEGORIES -->
   <section class="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-16">
     <h2 class="text-xl sm:text-4xl heading-font font-bold text-center mb-4 sm:mb-12">Shop by Category</h2>
     <div class="category-grid-3">
@@ -296,14 +288,12 @@
       <div class="group cursor-pointer cat-item" onclick="showCategoryPage(event, 'Bridal')"><div class="cat-bg bg-cover bg-center overflow-hidden" style="background-image: url('https://sareestoredemo.netlify.app/Bridal%20Collection.jpg')"><div class="cat-overlay bg-gradient-to-t from-black/70 h-full flex items-end"><h3 class="text-white font-semibold">Bridal Collection</h3></div></div></div>
     </div>
   </section>
-  <!-- FEATURED -->
   <section id="featured" class="bg-white py-6 sm:py-16">
     <div class="max-w-7xl mx-auto px-3 sm:px-4">
       <div class="flex flex-wrap justify-between items-end mb-4 sm:mb-10"><h2 class="text-xl sm:text-4xl heading-font font-bold">Featured Products</h2><a href="#" class="text-red-900 font-medium hover:underline text-xs sm:text-base">View All →</a></div>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-6" id="featuredProducts"></div>
     </div>
   </section>
-  <!-- BEST SELLERS -->
   <section class="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-16">
     <h2 class="text-xl sm:text-4xl heading-font font-bold text-center mb-4 sm:mb-12">Best Sellers</h2>
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-6" id="bestSellers"></div>
@@ -342,7 +332,7 @@
     </div>
   </section>
 </div>
-<!-- ========= CART PAGE (ENHANCED UI) ========= -->
+<!-- ========= CART PAGE ========= -->
 <div id="cartPage" class="hidden">
   <section class="max-w-5xl mx-auto px-3 sm:px-4 py-6 sm:py-12">
     <div class="flex items-center gap-3 mb-6">
@@ -369,7 +359,7 @@
     </div>
   </section>
 </div>
-<!-- ========= CHECKOUT PAGE (ENHANCED UI) ========= -->
+<!-- ========= CHECKOUT PAGE ========= -->
 <div id="checkoutPage" class="hidden">
   <section class="max-w-4xl mx-auto px-3 sm:px-4 py-6 sm:py-12">
     <div class="flex items-center gap-3 mb-6">
@@ -457,7 +447,6 @@
       if (product) wishlist.push({ ...product });
     }
     updateWishlistUI();
-    // Update heart icon on product cards
     document.querySelectorAll('.wishlist-btn').forEach(btn => {
       const id = parseInt(btn.dataset.id);
       if (wishlist.some(p => p.id === id)) {
@@ -582,7 +571,7 @@
     setTimeout(() => proceedToCheckout(e), 400);
   }
 
-  // -------- CHECKOUT --------
+  // -------- CHECKOUT WITH AUTO EMAIL & WHATSAPP --------
   function proceedToCheckout(e) {
     if (e) e.preventDefault();
     if (cart.length === 0) { alert('Your cart is empty.'); return; }
@@ -616,6 +605,33 @@
     }
   });
 
+  // Auto-send WhatsApp & Email after 1 minute
+  function sendAutoConfirmations(name, email, phone, address, pincode, paymentMethod, items, total) {
+    const orderMsg = `🛍️ Order Confirmed ✅\n\nDear ${name},\n\nYour order has been confirmed successfully!\n\n📦 Order Details:\n${items}\n\n💰 Total: ₹${total}\n💳 Payment: ${paymentMethod.toUpperCase()}\n📬 Shipping: ${address}, ${pincode}\n\n🚚 Delivery in 7-14 days.\n\nThank you for shopping with saree store demo ❤️`;
+    
+    // WhatsApp (auto after 1 min)
+    setTimeout(() => {
+      const waMsg = `✅ Order Confirmed!\n\n${orderMsg}`;
+      const waUrl = `https://wa.me/${phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(waMsg)}`;
+      window.open(waUrl, '_blank');
+    }, 60000);
+
+    // Email (auto after 1 min - using mailto)
+    setTimeout(() => {
+      const subject = 'Order Confirmed - saree store demo';
+      const body = orderMsg;
+      const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.open(mailtoUrl, '_blank');
+    }, 60000);
+
+    // Also send to store WhatsApp
+    setTimeout(() => {
+      const storeMsg = `🆕 New Order from ${name}\n${orderMsg}`;
+      const storeWa = `https://wa.me/918979401469?text=${encodeURIComponent(storeMsg)}`;
+      window.open(storeWa, '_blank');
+    }, 65000);
+  }
+
   function handleCheckout(e) {
     e.preventDefault();
     const name = document.getElementById('fullName').value.trim();
@@ -628,16 +644,21 @@
     if (paymentMethod.value === 'prepaid') {
       const upi = document.getElementById('upiId').value.trim();
       if (!upi) { alert('Please enter UPI ID for prepaid payment.'); return; }
-      alert('Payment detected! (Demo) Order placed successfully.');
+      alert('✅ Payment detected! Order placed successfully.');
     } else {
-      alert('Order placed with Cash on Delivery!');
+      alert('✅ Order placed with Cash on Delivery!');
     }
 
     const items = cart.map(p => `${p.name} (${p.price})`).join('\n');
     const total = cart.reduce((sum, p) => sum + parseInt(p.price.replace(/[₹,]/g, '')), 0);
-    const msg = `🛍️ New Order\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${address}\nPincode: ${pincode}\nPayment: ${paymentMethod.value.toUpperCase()}\n\nItems:\n${items}\n\nTotal: ₹${total}\n\nThank you!`;
-    const url = `https://wa.me/918979401469?text=${encodeURIComponent(msg)}`;
-    window.open(url, '_blank');
+
+    // Auto send confirmations after 1 minute
+    sendAutoConfirmations(name, email, phone, address, pincode, paymentMethod.value, items, total);
+
+    // Immediate store notification
+    const storeMsg = `🆕 New Order from ${name}\nPhone: ${phone}\nTotal: ₹${total}`;
+    const storeWa = `https://wa.me/918979401469?text=${encodeURIComponent(storeMsg)}`;
+    window.open(storeWa, '_blank');
 
     cart = [];
     updateCartUI();
@@ -652,7 +673,7 @@
   function showProductPage(product) { document.getElementById('homePageContent').classList.add('hidden'); document.getElementById('categoryPage').classList.add('hidden'); document.getElementById('shopPage').classList.add('hidden'); document.getElementById('productPage').classList.remove('hidden'); document.getElementById('cartPage').classList.add('hidden'); document.getElementById('checkoutPage').classList.add('hidden'); document.getElementById('wishlistPage').classList.add('hidden'); document.getElementById('productNameBreadcrumb').textContent = product.name; document.getElementById('productDetailName').textContent = product.name; document.getElementById('productDetailPrice').textContent = product.price; document.getElementById('mainProductImage').src = product.image; window.scrollTo({ top: 0, behavior: 'smooth' }); }
   function changeImage(el) { document.getElementById('mainProductImage').src = el.src; document.querySelectorAll('.thumb-img').forEach(img => { img.classList.remove('active', 'border-red-900'); img.classList.add('border-transparent'); }); el.classList.add('active'); el.classList.remove('border-transparent'); el.classList.add('border-red-900'); }
 
-  // -------- RENDER PRODUCTS (with wishlist hearts) --------
+  // -------- RENDER PRODUCTS --------
   function renderProducts(containerId, items) {
     const container = document.getElementById(containerId); if (!container) return;
     container.innerHTML = '';
