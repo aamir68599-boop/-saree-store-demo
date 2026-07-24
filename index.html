@@ -147,6 +147,11 @@
     .thumb-img:hover { opacity: 0.7; }
     .thumb-img.active { border: 2px solid #9f1239; }
     
+    /* Wishlist heart */
+    .wishlist-btn { transition: all 0.2s; }
+    .wishlist-btn:hover { transform: scale(1.15); }
+    .wishlist-btn.active { color: #dc2626; }
+    
     @media (max-width: 640px) {
       .category-grid-3 { gap: 0.5rem; }
       .category-grid-3 .cat-item .cat-bg { height: 120px !important; border-radius: 0.75rem; }
@@ -202,7 +207,7 @@
       </div>
       <div class="flex items-center gap-3 sm:gap-6 text-base sm:text-xl">
         <a href="#" class="hover:text-red-900 transition-colors"><i class="fa-regular fa-user"></i></a>
-        <a href="#" class="relative hover:text-red-900 transition-colors"><i class="fa-regular fa-heart"></i><span class="absolute -top-1 -right-1.5 bg-red-600 text-white text-[8px] sm:text-[10px] w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center">3</span></a>
+        <a href="#" onclick="openWishlist(event)" class="relative hover:text-red-900 transition-colors"><i class="fa-regular fa-heart"></i><span class="absolute -top-1 -right-1.5 bg-red-600 text-white text-[8px] sm:text-[10px] w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center" id="wishlistCount">0</span></a>
         <a href="#" onclick="openCart(event)" class="relative hover:text-red-900 transition-colors"><i class="fa-solid fa-bag-shopping"></i><span class="absolute -top-1 -right-1.5 bg-red-600 text-white text-[8px] sm:text-[10px] w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center" id="cartCount">0</span></a>
       </div>
     </div>
@@ -231,7 +236,6 @@
   <!-- HERO CAROUSEL - PROPER MOBILE FRIENDLY (mobile only images) -->
   <section class="carousel-container">
     <div class="carousel-track" id="carouselTrack">
-      <!-- Desktop: separate images, Mobile: separate images -->
       <div class="carousel-slide">
         <picture>
           <source media="(max-width: 640px)" srcset="https://sareestoredemo.aamir68599.workers.dev/mobile%201.jpeg" />
@@ -347,11 +351,9 @@
       <span class="ml-auto text-sm text-gray-500" id="cartItemCountLabel">0 items</span>
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <!-- Cart Items -->
       <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm p-4 sm:p-6">
         <div id="cartItemsContainer" class="divide-y divide-gray-100"></div>
       </div>
-      <!-- Order Summary -->
       <div class="lg:col-span-1">
         <div class="bg-white rounded-2xl shadow-sm p-5 cart-summary-card sticky top-24">
           <h3 class="font-bold text-lg mb-4 heading-font">Order Summary</h3>
@@ -375,7 +377,6 @@
       <h2 class="text-2xl sm:text-3xl heading-font font-bold">Checkout</h2>
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
-      <!-- Form -->
       <div class="lg:col-span-3">
         <form id="checkoutForm" onsubmit="handleCheckout(event)" class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm checkout-card space-y-5">
           <div class="flex items-center gap-2 border-b pb-3"><i class="fa-regular fa-user text-red-900"></i><span class="font-semibold text-sm">Personal Details</span></div>
@@ -395,7 +396,6 @@
           <button type="submit" class="w-full bg-red-900 text-white py-3 rounded-full font-semibold text-base hover:bg-red-800 transition">Place Order</button>
         </form>
       </div>
-      <!-- Order Items Summary -->
       <div class="lg:col-span-2">
         <div class="bg-white rounded-2xl shadow-sm p-5 cart-summary-card sticky top-24">
           <h4 class="font-bold text-md mb-3 heading-font">Your Order</h4>
@@ -406,6 +406,18 @@
         </div>
       </div>
     </div>
+  </section>
+</div>
+<!-- ========= WISHLIST PAGE ========= -->
+<div id="wishlistPage" class="hidden">
+  <section class="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-12">
+    <div class="flex items-center gap-3 mb-6">
+      <i class="fa-regular fa-heart text-2xl text-red-900"></i>
+      <h2 class="text-2xl sm:text-3xl heading-font font-bold">Your Wishlist</h2>
+      <span class="ml-auto text-sm text-gray-500" id="wishlistItemCount">0 items</span>
+    </div>
+    <div id="wishlistContainer" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6"></div>
+    <div class="mt-6"><button onclick="showHomePage(event)" class="text-red-900 hover:underline"><i class="fa-solid fa-arrow-left mr-1"></i> Continue Shopping</button></div>
   </section>
 </div>
 <!-- FOOTER -->
@@ -433,7 +445,67 @@
 
   // -------- CART STATE --------
   let cart = [];
+  let wishlist = [];
 
+  // -------- WISHLIST FUNCTIONS --------
+  function toggleWishlist(productId) {
+    const idx = wishlist.findIndex(p => p.id === productId);
+    if (idx > -1) {
+      wishlist.splice(idx, 1);
+    } else {
+      const product = products.find(p => p.id === productId);
+      if (product) wishlist.push({ ...product });
+    }
+    updateWishlistUI();
+    // Update heart icon on product cards
+    document.querySelectorAll('.wishlist-btn').forEach(btn => {
+      const id = parseInt(btn.dataset.id);
+      if (wishlist.some(p => p.id === id)) {
+        btn.classList.add('active');
+        btn.innerHTML = '<i class="fa-solid fa-heart"></i>';
+      } else {
+        btn.classList.remove('active');
+        btn.innerHTML = '<i class="fa-regular fa-heart"></i>';
+      }
+    });
+  }
+
+  function updateWishlistUI() {
+    const count = document.getElementById('wishlistCount');
+    if (count) count.textContent = wishlist.length;
+    const itemCount = document.getElementById('wishlistItemCount');
+    if (itemCount) itemCount.textContent = `${wishlist.length} items`;
+    const container = document.getElementById('wishlistContainer');
+    if (container) {
+      if (wishlist.length === 0) {
+        container.innerHTML = '<div class="col-span-full text-center py-12 text-gray-500"><i class="fa-regular fa-heart text-4xl mb-3 block"></i>Your wishlist is empty.<br><span class="text-sm">Save your favorite sarees!</span></div>';
+        return;
+      }
+      container.innerHTML = '';
+      wishlist.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card bg-white rounded-xl overflow-hidden border border-gray-100';
+        card.innerHTML = `<div class="relative"><img src="${product.image}" class="w-full h-48 sm:h-64 object-cover" alt="${product.name}" loading="lazy" /><div class="absolute top-2 right-2"><button onclick="event.stopPropagation(); toggleWishlist(${product.id})" class="wishlist-btn active text-red-600 text-lg bg-white/90 rounded-full w-8 h-8 flex items-center justify-center shadow"><i class="fa-solid fa-heart"></i></button></div></div><div class="p-3"><h3 class="font-semibold text-sm mb-0.5 line-clamp-2">${product.name}</h3><p class="text-red-900 font-bold">${product.price}</p></div>`;
+        card.onclick = () => { showProductPage(product); };
+        container.appendChild(card);
+      });
+    }
+  }
+
+  function openWishlist(e) {
+    if (e) e.preventDefault();
+    document.getElementById('homePageContent').classList.add('hidden');
+    document.getElementById('categoryPage').classList.add('hidden');
+    document.getElementById('shopPage').classList.add('hidden');
+    document.getElementById('productPage').classList.add('hidden');
+    document.getElementById('cartPage').classList.add('hidden');
+    document.getElementById('checkoutPage').classList.add('hidden');
+    document.getElementById('wishlistPage').classList.remove('hidden');
+    updateWishlistUI();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // -------- CART FUNCTIONS --------
   function updateCartUI() {
     const count = document.getElementById('cartCount');
     if (count) count.textContent = cart.length;
@@ -484,6 +556,7 @@
     document.getElementById('productPage').classList.add('hidden');
     document.getElementById('cartPage').classList.remove('hidden');
     document.getElementById('checkoutPage').classList.add('hidden');
+    document.getElementById('wishlistPage').classList.add('hidden');
     updateCartUI();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -513,7 +586,6 @@
   function proceedToCheckout(e) {
     if (e) e.preventDefault();
     if (cart.length === 0) { alert('Your cart is empty.'); return; }
-    // Populate checkout order items
     const container = document.getElementById('checkoutOrderItems');
     let html = '';
     let total = 0;
@@ -527,10 +599,10 @@
     
     document.getElementById('cartPage').classList.add('hidden');
     document.getElementById('checkoutPage').classList.remove('hidden');
+    document.getElementById('wishlistPage').classList.add('hidden');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Payment method toggle
   document.addEventListener('change', function(e) {
     if (e.target && e.target.name === 'payment') {
       const upiSection = document.getElementById('upiSection');
@@ -561,11 +633,10 @@
       alert('Order placed with Cash on Delivery!');
     }
 
-    // Prepare WhatsApp message
     const items = cart.map(p => `${p.name} (${p.price})`).join('\n');
     const total = cart.reduce((sum, p) => sum + parseInt(p.price.replace(/[₹,]/g, '')), 0);
     const msg = `🛍️ New Order\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${address}\nPincode: ${pincode}\nPayment: ${paymentMethod.value.toUpperCase()}\n\nItems:\n${items}\n\nTotal: ₹${total}\n\nThank you!`;
-    const url = `https://wa.me/919999999999?text=${encodeURIComponent(msg)}`;
+    const url = `https://wa.me/918979401469?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
 
     cart = [];
@@ -575,20 +646,21 @@
   }
 
   // -------- NAVIGATION FUNCTIONS --------
-  function showHomePage(e) { if (e) e.preventDefault(); document.getElementById('homePageContent').classList.remove('hidden'); document.getElementById('categoryPage').classList.add('hidden'); document.getElementById('shopPage').classList.add('hidden'); document.getElementById('productPage').classList.add('hidden'); document.getElementById('cartPage').classList.add('hidden'); document.getElementById('checkoutPage').classList.add('hidden'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-  function showShopPage(e) { if (e) e.preventDefault(); document.getElementById('homePageContent').classList.add('hidden'); document.getElementById('categoryPage').classList.add('hidden'); document.getElementById('shopPage').classList.remove('hidden'); document.getElementById('productPage').classList.add('hidden'); document.getElementById('cartPage').classList.add('hidden'); document.getElementById('checkoutPage').classList.add('hidden'); renderShopProducts(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-  function showCategoryPage(e, category) { if (e) e.preventDefault(); document.getElementById('homePageContent').classList.add('hidden'); document.getElementById('categoryPage').classList.remove('hidden'); document.getElementById('shopPage').classList.add('hidden'); document.getElementById('productPage').classList.add('hidden'); document.getElementById('cartPage').classList.add('hidden'); document.getElementById('checkoutPage').classList.add('hidden'); document.getElementById('categoryBreadcrumb').textContent = category + ' Sarees'; document.getElementById('categoryTitle').textContent = category + ' Sarees'; renderCategoryProducts(category); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-  function showProductPage(product) { document.getElementById('homePageContent').classList.add('hidden'); document.getElementById('categoryPage').classList.add('hidden'); document.getElementById('shopPage').classList.add('hidden'); document.getElementById('productPage').classList.remove('hidden'); document.getElementById('cartPage').classList.add('hidden'); document.getElementById('checkoutPage').classList.add('hidden'); document.getElementById('productNameBreadcrumb').textContent = product.name; document.getElementById('productDetailName').textContent = product.name; document.getElementById('productDetailPrice').textContent = product.price; document.getElementById('mainProductImage').src = product.image; window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function showHomePage(e) { if (e) e.preventDefault(); document.getElementById('homePageContent').classList.remove('hidden'); document.getElementById('categoryPage').classList.add('hidden'); document.getElementById('shopPage').classList.add('hidden'); document.getElementById('productPage').classList.add('hidden'); document.getElementById('cartPage').classList.add('hidden'); document.getElementById('checkoutPage').classList.add('hidden'); document.getElementById('wishlistPage').classList.add('hidden'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function showShopPage(e) { if (e) e.preventDefault(); document.getElementById('homePageContent').classList.add('hidden'); document.getElementById('categoryPage').classList.add('hidden'); document.getElementById('shopPage').classList.remove('hidden'); document.getElementById('productPage').classList.add('hidden'); document.getElementById('cartPage').classList.add('hidden'); document.getElementById('checkoutPage').classList.add('hidden'); document.getElementById('wishlistPage').classList.add('hidden'); renderShopProducts(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function showCategoryPage(e, category) { if (e) e.preventDefault(); document.getElementById('homePageContent').classList.add('hidden'); document.getElementById('categoryPage').classList.remove('hidden'); document.getElementById('shopPage').classList.add('hidden'); document.getElementById('productPage').classList.add('hidden'); document.getElementById('cartPage').classList.add('hidden'); document.getElementById('checkoutPage').classList.add('hidden'); document.getElementById('wishlistPage').classList.add('hidden'); document.getElementById('categoryBreadcrumb').textContent = category + ' Sarees'; document.getElementById('categoryTitle').textContent = category + ' Sarees'; renderCategoryProducts(category); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function showProductPage(product) { document.getElementById('homePageContent').classList.add('hidden'); document.getElementById('categoryPage').classList.add('hidden'); document.getElementById('shopPage').classList.add('hidden'); document.getElementById('productPage').classList.remove('hidden'); document.getElementById('cartPage').classList.add('hidden'); document.getElementById('checkoutPage').classList.add('hidden'); document.getElementById('wishlistPage').classList.add('hidden'); document.getElementById('productNameBreadcrumb').textContent = product.name; document.getElementById('productDetailName').textContent = product.name; document.getElementById('productDetailPrice').textContent = product.price; document.getElementById('mainProductImage').src = product.image; window.scrollTo({ top: 0, behavior: 'smooth' }); }
   function changeImage(el) { document.getElementById('mainProductImage').src = el.src; document.querySelectorAll('.thumb-img').forEach(img => { img.classList.remove('active', 'border-red-900'); img.classList.add('border-transparent'); }); el.classList.add('active'); el.classList.remove('border-transparent'); el.classList.add('border-red-900'); }
 
-  // -------- RENDER PRODUCTS --------
+  // -------- RENDER PRODUCTS (with wishlist hearts) --------
   function renderProducts(containerId, items) {
     const container = document.getElementById(containerId); if (!container) return;
     container.innerHTML = '';
     items.forEach(product => {
+      const isWishlisted = wishlist.some(p => p.id === product.id);
       const card = document.createElement('div');
       card.className = 'product-card bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-gray-100';
-      card.innerHTML = `<div class="relative"><img src="${product.image}" class="w-full h-40 sm:h-64 lg:h-80 object-cover" alt="${product.name}" loading="lazy" /><div class="absolute top-1 sm:top-4 right-1 sm:right-4 bg-white px-1.5 sm:px-3 py-0.5 text-[8px] sm:text-xs font-medium rounded-full shadow">${product.category}</div></div><div class="p-2 sm:p-5"><h3 class="font-semibold leading-tight text-[10px] sm:text-base mb-0.5 line-clamp-2">${product.name}</h3><p class="text-red-900 font-bold text-sm sm:text-lg">${product.price}</p></div>`;
+      card.innerHTML = `<div class="relative"><img src="${product.image}" class="w-full h-40 sm:h-64 lg:h-80 object-cover" alt="${product.name}" loading="lazy" /><div class="absolute top-1 sm:top-4 right-1 sm:right-4 bg-white px-1.5 sm:px-3 py-0.5 text-[8px] sm:text-xs font-medium rounded-full shadow">${product.category}</div><div class="absolute top-1 sm:top-4 left-1 sm:left-4"><button onclick="event.stopPropagation(); toggleWishlist(${product.id})" class="wishlist-btn ${isWishlisted ? 'active text-red-600' : 'text-gray-500'} text-base sm:text-lg bg-white/90 rounded-full w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center shadow hover:scale-110 transition">${isWishlisted ? '<i class="fa-solid fa-heart"></i>' : '<i class="fa-regular fa-heart"></i>'}</button></div></div><div class="p-2 sm:p-5"><h3 class="font-semibold leading-tight text-[10px] sm:text-base mb-0.5 line-clamp-2">${product.name}</h3><p class="text-red-900 font-bold text-sm sm:text-lg">${product.price}</p></div>`;
       card.onclick = () => { showProductPage(product); };
       container.appendChild(card);
     });
@@ -600,9 +672,10 @@
     container.innerHTML = '';
     if (items.length === 0) { container.innerHTML = '<p class="text-gray-500 col-span-full text-center py-10 text-sm">No products found in this category.</p>'; return; }
     items.forEach(product => {
+      const isWishlisted = wishlist.some(p => p.id === product.id);
       const card = document.createElement('div');
       card.className = 'product-card bg-white rounded-xl overflow-hidden border border-gray-100';
-      card.innerHTML = `<div class="relative"><img src="${product.image}" class="w-full h-48 sm:h-64 object-cover" alt="${product.name}" loading="lazy" /><div class="absolute top-2 right-2 bg-white px-2 py-0.5 text-[8px] sm:text-[10px] font-medium rounded-full shadow">${product.category}</div></div><div class="p-2 sm:p-3"><h3 class="font-semibold text-[10px] sm:text-sm mb-0.5 line-clamp-2">${product.name}</h3><p class="text-red-900 font-bold text-sm sm:text-base">${product.price}</p></div>`;
+      card.innerHTML = `<div class="relative"><img src="${product.image}" class="w-full h-48 sm:h-64 object-cover" alt="${product.name}" loading="lazy" /><div class="absolute top-2 right-2 bg-white px-2 py-0.5 text-[8px] sm:text-[10px] font-medium rounded-full shadow">${product.category}</div><div class="absolute top-2 left-2"><button onclick="event.stopPropagation(); toggleWishlist(${product.id})" class="wishlist-btn ${isWishlisted ? 'active text-red-600' : 'text-gray-500'} text-sm bg-white/90 rounded-full w-7 h-7 flex items-center justify-center shadow">${isWishlisted ? '<i class="fa-solid fa-heart"></i>' : '<i class="fa-regular fa-heart"></i>'}</button></div></div><div class="p-2 sm:p-3"><h3 class="font-semibold text-[10px] sm:text-sm mb-0.5 line-clamp-2">${product.name}</h3><p class="text-red-900 font-bold text-sm sm:text-base">${product.price}</p></div>`;
       card.onclick = () => { showProductPage(product); };
       container.appendChild(card);
     });
@@ -613,9 +686,10 @@
     const container = document.getElementById('shopProducts'); if (!container) return;
     container.innerHTML = '';
     products.forEach(product => {
+      const isWishlisted = wishlist.some(p => p.id === product.id);
       const card = document.createElement('div');
       card.className = 'product-card bg-white rounded-xl overflow-hidden border border-gray-100';
-      card.innerHTML = `<div class="relative"><img src="${product.image}" class="w-full h-48 sm:h-64 object-cover" alt="${product.name}" loading="lazy" /><div class="absolute top-2 right-2 bg-white px-2 py-0.5 text-[8px] sm:text-[10px] font-medium rounded-full shadow">${product.category}</div></div><div class="p-2 sm:p-3"><h3 class="font-semibold text-[10px] sm:text-sm mb-0.5 line-clamp-2">${product.name}</h3><p class="text-red-900 font-bold text-sm sm:text-base">${product.price}</p></div>`;
+      card.innerHTML = `<div class="relative"><img src="${product.image}" class="w-full h-48 sm:h-64 object-cover" alt="${product.name}" loading="lazy" /><div class="absolute top-2 right-2 bg-white px-2 py-0.5 text-[8px] sm:text-[10px] font-medium rounded-full shadow">${product.category}</div><div class="absolute top-2 left-2"><button onclick="event.stopPropagation(); toggleWishlist(${product.id})" class="wishlist-btn ${isWishlisted ? 'active text-red-600' : 'text-gray-500'} text-sm bg-white/90 rounded-full w-7 h-7 flex items-center justify-center shadow">${isWishlisted ? '<i class="fa-solid fa-heart"></i>' : '<i class="fa-regular fa-heart"></i>'}</button></div></div><div class="p-2 sm:p-3"><h3 class="font-semibold text-[10px] sm:text-sm mb-0.5 line-clamp-2">${product.name}</h3><p class="text-red-900 font-bold text-sm sm:text-base">${product.price}</p></div>`;
       card.onclick = () => { showProductPage(product); };
       container.appendChild(card);
     });
@@ -661,6 +735,7 @@
   renderProducts('featuredProducts', products);
   renderProducts('bestSellers', products);
   updateCartUI();
+  updateWishlistUI();
 </script>
 </body>
 </html>
