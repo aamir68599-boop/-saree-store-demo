@@ -177,6 +177,11 @@
     @media (min-width: 1024px) {
       .category-product-grid { grid-template-columns: repeat(4, 1fr); }
     }
+
+    /* Cart & Checkout extras */
+    .cart-item { transition: all 0.2s; }
+    .cart-item:hover { background: #f9fafb; }
+    .checkout-input:focus { border-color: #9f1239; ring: 2px solid #9f1239; }
   </style>
 </head>
 <body class="tail-container bg-gray-50 text-gray-800">
@@ -192,7 +197,7 @@
       <div class="flex items-center gap-3 sm:gap-6 text-base sm:text-xl">
         <a href="#" class="hover:text-red-900 transition-colors"><i class="fa-regular fa-user"></i></a>
         <a href="#" class="relative hover:text-red-900 transition-colors"><i class="fa-regular fa-heart"></i><span class="absolute -top-1 -right-1.5 bg-red-600 text-white text-[8px] sm:text-[10px] w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center">3</span></a>
-        <a href="#" class="relative hover:text-red-900 transition-colors"><i class="fa-solid fa-bag-shopping"></i><span class="absolute -top-1 -right-1.5 bg-red-600 text-white text-[8px] sm:text-[10px] w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center">2</span></a>
+        <a href="#" onclick="openCart(event)" class="relative hover:text-red-900 transition-colors"><i class="fa-solid fa-bag-shopping"></i><span class="absolute -top-1 -right-1.5 bg-red-600 text-white text-[8px] sm:text-[10px] w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center" id="cartCount">0</span></a>
       </div>
     </div>
     <nav class="border-t border-gray-200">
@@ -320,8 +325,45 @@
     <div class="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4"><a href="#" onclick="showHomePage(event)" class="hover:text-red-900">Home</a><span class="mx-2">/</span><a href="#" onclick="showCategoryPage(event, 'Ikat')" class="hover:text-red-900">Ikat Sarees</a><span class="mx-2">/</span><span class="text-gray-700" id="productNameBreadcrumb">Off White Linen Ikkat Printed Saree</span></div>
     <div class="flex flex-col lg:flex-row gap-6 lg:gap-12">
       <div class="lg:w-1/2"><div class="bg-white rounded-2xl overflow-hidden shadow-sm"><img id="mainProductImage" src="https://sareestoredemo.netlify.app/ikkat%20printed%20saree.webp" alt="Off White Linen Ikkat Printed Saree" class="w-full h-auto object-cover" /></div><div class="flex gap-2 sm:gap-3 mt-3 sm:mt-4"><img src="https://sareestoredemo.netlify.app/ikkat%20printed%20saree.webp" onclick="changeImage(this)" class="thumb-img w-16 h-16 sm:w-24 sm:h-24 rounded-lg border-2 border-red-900 object-cover active" /><img src="https://sareestoredemo.netlify.app/ikkat%20printed%20saree%202.webp" onclick="changeImage(this)" class="thumb-img w-16 h-16 sm:w-24 sm:h-24 rounded-lg border-2 border-transparent object-cover" /><img src="https://sareestoredemo.netlify.app/ikkat%20printed%20saree%203.webp" onclick="changeImage(this)" class="thumb-img w-16 h-16 sm:w-24 sm:h-24 rounded-lg border-2 border-transparent object-cover" /></div></div>
-      <div class="lg:w-1/2"><h1 class="text-xl sm:text-4xl heading-font font-bold text-gray-800" id="productDetailName">Off White Linen Ikkat Printed Saree</h1><div class="flex items-center gap-2 sm:gap-4 mt-2 sm:mt-3"><span class="text-2xl sm:text-4xl font-bold text-red-900" id="productDetailPrice">₹899</span><span class="text-lg sm:text-2xl text-gray-400 line-through">₹1,644</span><span class="bg-green-100 text-green-700 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-sm font-semibold">45% OFF</span></div><p class="text-xs sm:text-sm text-gray-500 mt-1">Inclusive of all taxes.</p><div class="flex items-center gap-2 sm:gap-4 mt-2 sm:mt-3 text-xs sm:text-sm"><span class="text-yellow-500">★★★★☆</span><span class="text-gray-600">(6)</span><span class="text-red-600 font-medium"><i class="fa-regular fa-eye mr-1"></i>367 People viewing</span></div><div class="bg-red-50 border border-red-200 rounded-xl p-3 sm:p-4 mt-3 sm:mt-4"><p class="font-semibold text-red-900 text-sm sm:text-base">Exclusive Discounts + Gifts</p><p class="text-xs sm:text-sm text-gray-700">Only on App: <a href="#" class="text-red-900 font-bold">DOWNLOAD NOW</a></p><div class="flex flex-wrap items-center gap-2 sm:gap-4 mt-1 sm:mt-2"><span class="bg-green-600 text-white text-[10px] sm:text-sm px-2 sm:px-3 py-0.5 sm:py-1 rounded-full font-semibold">Get For ₹809</span><span class="text-xs sm:text-sm text-gray-700">Extra 10% OFF</span></div></div><div class="mt-3 sm:mt-4 p-3 sm:p-4 border border-gray-200 rounded-xl bg-white"><p class="font-medium text-gray-700 text-sm sm:text-base">Check Delivery Details</p><div class="flex items-center gap-2 mt-2"><input type="text" value="233226" class="border border-gray-300 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 w-24 sm:w-32 text-xs sm:text-sm" /><button class="bg-red-900 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium hover:bg-red-800">Check</button></div><div class="mt-2 text-xs sm:text-sm text-gray-600"><p><i class="fa-regular fa-calendar mr-2"></i>Delivery between 27th and 28th Jul</p><p class="text-green-600 font-medium"><i class="fa-regular fa-circle-check mr-1"></i>Cash On Delivery available</p></div></div><div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-4 sm:mt-6"><button class="flex-1 bg-red-900 text-white py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:bg-red-800 transition-colors">ADD TO CART</button><button class="flex-1 bg-black text-white py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:bg-gray-800 transition-colors">BUY IT NOW</button></div><div class="mt-3 sm:mt-4 p-2 sm:p-3 bg-red-50 border border-red-200 rounded-lg flex flex-wrap items-center gap-2 sm:gap-3"><span class="font-bold text-red-900 text-sm sm:text-base">SALE ENDS IN</span><span class="bg-red-900 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg font-mono text-base sm:text-lg">11</span><span class="text-red-900 font-bold">:</span><span class="bg-red-900 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg font-mono text-base sm:text-lg">50</span><span class="text-red-900 font-bold">:</span><span class="bg-red-900 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg font-mono text-base sm:text-lg">45</span></div><div class="mt-4 sm:mt-6 text-center"><button onclick="showCategoryPage(event, 'Ikat')" class="text-red-900 font-medium hover:underline text-xs sm:text-sm"><i class="fa-solid fa-arrow-left mr-1"></i> Back to Ikat Sarees</button></div></div>
+      <div class="lg:w-1/2"><h1 class="text-xl sm:text-4xl heading-font font-bold text-gray-800" id="productDetailName">Off White Linen Ikkat Printed Saree</h1><div class="flex items-center gap-2 sm:gap-4 mt-2 sm:mt-3"><span class="text-2xl sm:text-4xl font-bold text-red-900" id="productDetailPrice">₹899</span><span class="text-lg sm:text-2xl text-gray-400 line-through">₹1,644</span><span class="bg-green-100 text-green-700 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-sm font-semibold">45% OFF</span></div><p class="text-xs sm:text-sm text-gray-500 mt-1">Inclusive of all taxes.</p><div class="flex items-center gap-2 sm:gap-4 mt-2 sm:mt-3 text-xs sm:text-sm"><span class="text-yellow-500">★★★★☆</span><span class="text-gray-600">(6)</span><span class="text-red-600 font-medium"><i class="fa-regular fa-eye mr-1"></i>367 People viewing</span></div><div class="bg-red-50 border border-red-200 rounded-xl p-3 sm:p-4 mt-3 sm:mt-4"><p class="font-semibold text-red-900 text-sm sm:text-base">Exclusive Discounts + Gifts</p><p class="text-xs sm:text-sm text-gray-700">Only on App: <a href="#" class="text-red-900 font-bold">DOWNLOAD NOW</a></p><div class="flex flex-wrap items-center gap-2 sm:gap-4 mt-1 sm:mt-2"><span class="bg-green-600 text-white text-[10px] sm:text-sm px-2 sm:px-3 py-0.5 sm:py-1 rounded-full font-semibold">Get For ₹809</span><span class="text-xs sm:text-sm text-gray-700">Extra 10% OFF</span></div></div><div class="mt-3 sm:mt-4 p-3 sm:p-4 border border-gray-200 rounded-xl bg-white"><p class="font-medium text-gray-700 text-sm sm:text-base">Check Delivery Details</p><div class="flex items-center gap-2 mt-2"><input type="text" value="233226" class="border border-gray-300 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 w-24 sm:w-32 text-xs sm:text-sm" /><button class="bg-red-900 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium hover:bg-red-800">Check</button></div><div class="mt-2 text-xs sm:text-sm text-gray-600"><p><i class="fa-regular fa-calendar mr-2"></i>Delivery between 27th and 28th Jul</p><p class="text-green-600 font-medium"><i class="fa-regular fa-circle-check mr-1"></i>Cash On Delivery available</p></div></div><div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-4 sm:mt-6">
+        <button class="flex-1 bg-red-900 text-white py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:bg-red-800 transition-colors" onclick="addToCartFromProduct(event)">ADD TO CART</button>
+        <button class="flex-1 bg-black text-white py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:bg-gray-800 transition-colors" onclick="buyNowFromProduct(event)">BUY IT NOW</button>
+      </div><div class="mt-3 sm:mt-4 p-2 sm:p-3 bg-red-50 border border-red-200 rounded-lg flex flex-wrap items-center gap-2 sm:gap-3"><span class="font-bold text-red-900 text-sm sm:text-base">SALE ENDS IN</span><span class="bg-red-900 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg font-mono text-base sm:text-lg">11</span><span class="text-red-900 font-bold">:</span><span class="bg-red-900 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg font-mono text-base sm:text-lg">50</span><span class="text-red-900 font-bold">:</span><span class="bg-red-900 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg font-mono text-base sm:text-lg">45</span></div><div class="mt-4 sm:mt-6 text-center"><button onclick="showCategoryPage(event, 'Ikat')" class="text-red-900 font-medium hover:underline text-xs sm:text-sm"><i class="fa-solid fa-arrow-left mr-1"></i> Back to Ikat Sarees</button></div></div>
     </div>
+  </section>
+</div>
+<!-- ========= CART PAGE ========= -->
+<div id="cartPage" class="hidden">
+  <section class="max-w-4xl mx-auto px-3 sm:px-4 py-6 sm:py-12">
+    <div class="flex items-center gap-3 mb-6"><i class="fa-solid fa-bag-shopping text-2xl text-red-900"></i><h2 class="text-2xl sm:text-3xl heading-font font-bold">Your Cart</h2></div>
+    <div id="cartItemsContainer" class="bg-white rounded-xl shadow-sm divide-y divide-gray-100 mb-6"></div>
+    <div class="flex flex-wrap justify-between items-center bg-gray-50 p-4 rounded-xl">
+      <span class="font-bold text-lg">Total: <span id="cartTotal" class="text-red-900">₹0</span></span>
+      <button onclick="proceedToCheckout(event)" class="bg-red-900 text-white px-6 py-2.5 rounded-full font-semibold hover:bg-red-800 transition">Proceed to Checkout</button>
+    </div>
+    <div class="mt-4"><button onclick="showHomePage(event)" class="text-red-900 hover:underline"><i class="fa-solid fa-arrow-left mr-1"></i> Continue Shopping</button></div>
+  </section>
+</div>
+<!-- ========= CHECKOUT PAGE ========= -->
+<div id="checkoutPage" class="hidden">
+  <section class="max-w-3xl mx-auto px-3 sm:px-4 py-6 sm:py-12">
+    <h2 class="text-2xl sm:text-3xl heading-font font-bold mb-6">Checkout</h2>
+    <form id="checkoutForm" onsubmit="handleCheckout(event)" class="bg-white p-4 sm:p-8 rounded-xl shadow-sm space-y-5">
+      <div><label class="block text-sm font-medium mb-1">Full Name</label><input type="text" id="fullName" required class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-red-900 focus:border-red-900 checkout-input" placeholder="Your Name" /></div>
+      <div><label class="block text-sm font-medium mb-1">Email</label><input type="email" id="email" required class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-red-900 focus:border-red-900 checkout-input" placeholder="you@example.com" /></div>
+      <div><label class="block text-sm font-medium mb-1">Phone Number</label><input type="tel" id="phone" required class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-red-900 focus:border-red-900 checkout-input" placeholder="+91 9876543210" /></div>
+      <div><label class="block text-sm font-medium mb-1">Shipping Address</label><textarea id="address" rows="2" required class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-red-900 focus:border-red-900 checkout-input" placeholder="Street, locality, landmark"></textarea></div>
+      <div><label class="block text-sm font-medium mb-1">Pincode</label><input type="text" id="pincode" required class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-red-900 focus:border-red-900 checkout-input" placeholder="110001" /></div>
+      <div><label class="block text-sm font-medium mb-2">Payment Method</label>
+        <div class="flex flex-wrap gap-4"><label class="flex items-center gap-2"><input type="radio" name="payment" value="cod" checked class="w-4 h-4 text-red-900" /> Cash on Delivery</label><label class="flex items-center gap-2"><input type="radio" name="payment" value="prepaid" class="w-4 h-4 text-red-900" /> Prepaid (UPI)</label></div>
+      </div>
+      <div id="upiSection" class="hidden border-t pt-4 mt-2">
+        <p class="text-sm font-medium mb-2">Enter UPI ID to proceed</p>
+        <input type="text" id="upiId" placeholder="example@upi" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-red-900 focus:border-red-900 checkout-input" />
+        <div id="qrCodeContainer" class="mt-4 hidden"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=payments@demo" alt="QR Code" class="w-48 h-48 mx-auto" /><p class="text-center text-sm text-gray-600 mt-2">Scan to pay</p></div>
+      </div>
+      <button type="submit" class="w-full bg-red-900 text-white py-3 rounded-full font-semibold text-base hover:bg-red-800 transition">Place Order</button>
+    </form>
   </section>
 </div>
 <!-- FOOTER -->
@@ -347,8 +389,145 @@
     { id: 9, name: "Kanchivaram Bridal Saree (Heavy Gold Zari Woven)", price: "₹1,599", image: "https://sareestoredemo.aamir68599.workers.dev/Bridal%20Sarees.webp", category: "Bridal" }
   ];
 
-  function getCategoryProducts(category) { return products.filter(p => p.category === category); }
+  // -------- CART STATE --------
+  let cart = [];
 
+  function updateCartUI() {
+    const count = document.getElementById('cartCount');
+    if (count) count.textContent = cart.length;
+    const container = document.getElementById('cartItemsContainer');
+    if (container) {
+      if (cart.length === 0) {
+        container.innerHTML = '<div class="p-6 text-center text-gray-500">Your cart is empty.</div>';
+        document.getElementById('cartTotal').textContent = '₹0';
+        return;
+      }
+      let html = '';
+      let total = 0;
+      cart.forEach((item, index) => {
+        const priceNum = parseInt(item.price.replace(/[₹,]/g, ''));
+        total += priceNum;
+        html += `<div class="flex flex-wrap items-center gap-3 py-4 cart-item px-2">
+          <img src="${item.image}" class="w-16 h-16 rounded-lg object-cover" />
+          <div class="flex-1"><p class="font-medium text-sm">${item.name}</p><p class="text-red-900 font-bold">${item.price}</p></div>
+          <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 text-sm"><i class="fa-regular fa-trash-can"></i></button>
+        </div>`;
+      });
+      container.innerHTML = html;
+      document.getElementById('cartTotal').textContent = `₹${total}`;
+    }
+  }
+
+  function addToCart(product) {
+    cart.push(product);
+    updateCartUI();
+    // Show notification
+    alert(`${product.name} added to cart!`);
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartUI();
+  }
+
+  function openCart(e) {
+    if (e) e.preventDefault();
+    document.getElementById('homePageContent').classList.add('hidden');
+    document.getElementById('categoryPage').classList.add('hidden');
+    document.getElementById('shopPage').classList.add('hidden');
+    document.getElementById('productPage').classList.add('hidden');
+    document.getElementById('cartPage').classList.remove('hidden');
+    document.getElementById('checkoutPage').classList.add('hidden');
+    updateCartUI();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function addToCartFromProduct(e) {
+    e.preventDefault();
+    const name = document.getElementById('productDetailName').textContent;
+    const price = document.getElementById('productDetailPrice').textContent;
+    const image = document.getElementById('mainProductImage').src;
+    const category = document.querySelector('.thumb-img.active') ? 'Ikat' : 'Ikat';
+    const product = { id: Date.now(), name, price, image, category };
+    addToCart(product);
+  }
+
+  function buyNowFromProduct(e) {
+    e.preventDefault();
+    const name = document.getElementById('productDetailName').textContent;
+    const price = document.getElementById('productDetailPrice').textContent;
+    const image = document.getElementById('mainProductImage').src;
+    const category = 'Ikat';
+    const product = { id: Date.now(), name, price, image, category };
+    cart = [product];
+    updateCartUI();
+    openCart(e);
+    setTimeout(() => proceedToCheckout(e), 300);
+  }
+
+  // -------- CHECKOUT --------
+  function proceedToCheckout(e) {
+    if (e) e.preventDefault();
+    if (cart.length === 0) { alert('Your cart is empty.'); return; }
+    document.getElementById('cartPage').classList.add('hidden');
+    document.getElementById('checkoutPage').classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Payment method toggle
+  document.addEventListener('change', function(e) {
+    if (e.target && e.target.name === 'payment') {
+      const upiSection = document.getElementById('upiSection');
+      if (e.target.value === 'prepaid') {
+        upiSection.classList.remove('hidden');
+        document.getElementById('qrCodeContainer').classList.remove('hidden');
+      } else {
+        upiSection.classList.add('hidden');
+        document.getElementById('qrCodeContainer').classList.add('hidden');
+      }
+    }
+  });
+
+  function handleCheckout(e) {
+    e.preventDefault();
+    const name = document.getElementById('fullName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const pincode = document.getElementById('pincode').value.trim();
+    const paymentMethod = document.querySelector('input[name="payment"]:checked');
+    if (!name || !email || !phone || !address || !pincode) { alert('Please fill all required fields.'); return; }
+    if (paymentMethod.value === 'prepaid') {
+      const upi = document.getElementById('upiId').value.trim();
+      if (!upi) { alert('Please enter UPI ID for prepaid payment.'); return; }
+      // Show QR (already shown)
+      alert('Payment detected! (Demo) Order placed successfully.');
+    } else {
+      alert('Order placed with Cash on Delivery!');
+    }
+
+    // Prepare WhatsApp message
+    const items = cart.map(p => `${p.name} (${p.price})`).join('\n');
+    const total = cart.reduce((sum, p) => sum + parseInt(p.price.replace(/[₹,]/g, '')), 0);
+    const msg = `🛍️ New Order\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${address}\nPincode: ${pincode}\nPayment: ${paymentMethod.value.toUpperCase()}\n\nItems:\n${items}\n\nTotal: ₹${total}\n\nThank you!`;
+    const url = `https://wa.me/919999999999?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+
+    // Reset cart
+    cart = [];
+    updateCartUI();
+    document.getElementById('checkoutPage').classList.add('hidden');
+    showHomePage(e);
+  }
+
+  // -------- NAVIGATION FUNCTIONS --------
+  function showHomePage(e) { if (e) e.preventDefault(); document.getElementById('homePageContent').classList.remove('hidden'); document.getElementById('categoryPage').classList.add('hidden'); document.getElementById('shopPage').classList.add('hidden'); document.getElementById('productPage').classList.add('hidden'); document.getElementById('cartPage').classList.add('hidden'); document.getElementById('checkoutPage').classList.add('hidden'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function showShopPage(e) { if (e) e.preventDefault(); document.getElementById('homePageContent').classList.add('hidden'); document.getElementById('categoryPage').classList.add('hidden'); document.getElementById('shopPage').classList.remove('hidden'); document.getElementById('productPage').classList.add('hidden'); document.getElementById('cartPage').classList.add('hidden'); document.getElementById('checkoutPage').classList.add('hidden'); renderShopProducts(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function showCategoryPage(e, category) { if (e) e.preventDefault(); document.getElementById('homePageContent').classList.add('hidden'); document.getElementById('categoryPage').classList.remove('hidden'); document.getElementById('shopPage').classList.add('hidden'); document.getElementById('productPage').classList.add('hidden'); document.getElementById('cartPage').classList.add('hidden'); document.getElementById('checkoutPage').classList.add('hidden'); document.getElementById('categoryBreadcrumb').textContent = category + ' Sarees'; document.getElementById('categoryTitle').textContent = category + ' Sarees'; renderCategoryProducts(category); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function showProductPage(product) { document.getElementById('homePageContent').classList.add('hidden'); document.getElementById('categoryPage').classList.add('hidden'); document.getElementById('shopPage').classList.add('hidden'); document.getElementById('productPage').classList.remove('hidden'); document.getElementById('cartPage').classList.add('hidden'); document.getElementById('checkoutPage').classList.add('hidden'); document.getElementById('productNameBreadcrumb').textContent = product.name; document.getElementById('productDetailName').textContent = product.name; document.getElementById('productDetailPrice').textContent = product.price; document.getElementById('mainProductImage').src = product.image; window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function changeImage(el) { document.getElementById('mainProductImage').src = el.src; document.querySelectorAll('.thumb-img').forEach(img => { img.classList.remove('active', 'border-red-900'); img.classList.add('border-transparent'); }); el.classList.add('active'); el.classList.remove('border-transparent'); el.classList.add('border-red-900'); }
+
+  // -------- RENDER PRODUCTS --------
   function renderProducts(containerId, items) {
     const container = document.getElementById(containerId); if (!container) return;
     container.innerHTML = '';
@@ -363,7 +542,7 @@
 
   function renderCategoryProducts(category) {
     const container = document.getElementById('categoryProducts'); if (!container) return;
-    const items = getCategoryProducts(category);
+    const items = products.filter(p => p.category === category);
     container.innerHTML = '';
     if (items.length === 0) { container.innerHTML = '<p class="text-gray-500 col-span-full text-center py-10 text-sm">No products found in this category.</p>'; return; }
     items.forEach(product => {
@@ -389,13 +568,6 @@
     document.getElementById('shopProductCount').textContent = `${products.length} products`;
   }
 
-  // -------- NAVIGATION FUNCTIONS --------
-  function showHomePage(e) { if (e) e.preventDefault(); document.getElementById('homePageContent').classList.remove('hidden'); document.getElementById('categoryPage').classList.add('hidden'); document.getElementById('shopPage').classList.add('hidden'); document.getElementById('productPage').classList.add('hidden'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-  function showShopPage(e) { if (e) e.preventDefault(); document.getElementById('homePageContent').classList.add('hidden'); document.getElementById('categoryPage').classList.add('hidden'); document.getElementById('shopPage').classList.remove('hidden'); document.getElementById('productPage').classList.add('hidden'); renderShopProducts(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-  function showCategoryPage(e, category) { if (e) e.preventDefault(); document.getElementById('homePageContent').classList.add('hidden'); document.getElementById('categoryPage').classList.remove('hidden'); document.getElementById('shopPage').classList.add('hidden'); document.getElementById('productPage').classList.add('hidden'); document.getElementById('categoryBreadcrumb').textContent = category + ' Sarees'; document.getElementById('categoryTitle').textContent = category + ' Sarees'; renderCategoryProducts(category); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-  function showProductPage(product) { document.getElementById('homePageContent').classList.add('hidden'); document.getElementById('categoryPage').classList.add('hidden'); document.getElementById('shopPage').classList.add('hidden'); document.getElementById('productPage').classList.remove('hidden'); document.getElementById('productNameBreadcrumb').textContent = product.name; document.getElementById('productDetailName').textContent = product.name; document.getElementById('productDetailPrice').textContent = product.price; document.getElementById('mainProductImage').src = product.image; window.scrollTo({ top: 0, behavior: 'smooth' }); }
-  function changeImage(el) { document.getElementById('mainProductImage').src = el.src; document.querySelectorAll('.thumb-img').forEach(img => { img.classList.remove('active', 'border-red-900'); img.classList.add('border-transparent'); }); el.classList.add('active'); el.classList.remove('border-transparent'); el.classList.add('border-red-900'); }
-
   // -------- CAROUSEL LOGIC --------
   let currentIndex = 0;
   const totalSlides = 5;
@@ -415,37 +587,26 @@
   function nextSlide() { goToSlide(currentIndex + 1); }
   function prevSlide() { goToSlide(currentIndex - 1); }
 
-  // Dot clicks
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => goToSlide(i));
   });
 
-  // Auto slide
   let autoSlide = setInterval(nextSlide, 5000);
-
-  // Pause on hover
   const container = document.querySelector('.carousel-container');
   container.addEventListener('mouseenter', () => clearInterval(autoSlide));
   container.addEventListener('mouseleave', () => { autoSlide = setInterval(nextSlide, 5000); });
 
-  // Touch support for mobile
   let touchStartX = 0;
-  let touchEndX = 0;
-  container.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  });
+  container.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; });
   container.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) nextSlide();
-      else prevSlide();
-    }
+    const diff = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 50) { if (diff > 0) nextSlide(); else prevSlide(); }
   });
 
-  // -------- RENDER PRODUCTS --------
+  // -------- INIT --------
   renderProducts('featuredProducts', products);
   renderProducts('bestSellers', products);
+  updateCartUI();
 </script>
 </body>
 </html>
