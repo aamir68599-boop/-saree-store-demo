@@ -436,6 +436,7 @@
   // -------- CART STATE --------
   let cart = [];
   let wishlist = [];
+  let orderCounter = 1001;
 
   // -------- WISHLIST FUNCTIONS --------
   function toggleWishlist(productId) {
@@ -571,7 +572,7 @@
     setTimeout(() => proceedToCheckout(e), 400);
   }
 
-  // -------- CHECKOUT WITH AUTO EMAIL (from aamir68599@gmail.com) & WHATSAPP --------
+  // -------- CHECKOUT --------
   function proceedToCheckout(e) {
     if (e) e.preventDefault();
     if (cart.length === 0) { alert('Your cart is empty.'); return; }
@@ -605,33 +606,6 @@
     }
   });
 
-  // Auto-send WhatsApp & Email after 1 minute (from aamir68599@gmail.com)
-  function sendAutoConfirmations(name, email, phone, address, pincode, paymentMethod, items, total) {
-    const orderMsg = `🛍️ Order Confirmed ✅\n\nDear ${name},\n\nYour order has been confirmed successfully!\n\n📦 Order Details:\n${items}\n\n💰 Total: ₹${total}\n💳 Payment: ${paymentMethod.toUpperCase()}\n📬 Shipping Address: ${address}, ${pincode}\n\n🚚 Delivery Date: ${new Date(Date.now() + 10*24*60*60*1000).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })} (7-14 days)\n\nThank you for shopping with saree store demo ❤️`;
-    
-    // WhatsApp to customer (auto after 1 min)
-    setTimeout(() => {
-      const waMsg = `✅ Order Confirmed!\n\n${orderMsg}`;
-      const waUrl = `https://wa.me/${phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(waMsg)}`;
-      window.open(waUrl, '_blank');
-    }, 60000);
-
-    // Email to customer from aamir68599@gmail.com (auto after 1 min)
-    setTimeout(() => {
-      const subject = 'Order Confirmed - saree store demo';
-      const body = `Dear ${name},\n\nYour order has been confirmed successfully!\n\nOrder Details:\n${items}\n\nTotal: ₹${total}\nPayment: ${paymentMethod.toUpperCase()}\nShipping Address: ${address}, ${pincode}\n\nDelivery Date: ${new Date(Date.now() + 10*24*60*60*1000).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })} (7-14 days)\n\nThank you for shopping with saree store demo ❤️\n\n- Team saree store demo`;
-      const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}&cc=aamir68599@gmail.com`;
-      window.open(mailtoUrl, '_blank');
-    }, 60000);
-
-    // Also send to store WhatsApp
-    setTimeout(() => {
-      const storeMsg = `🆕 New Order from ${name}\nPhone: ${phone}\nEmail: ${email}\nTotal: ₹${total}\n${orderMsg}`;
-      const storeWa = `https://wa.me/918979401469?text=${encodeURIComponent(storeMsg)}`;
-      window.open(storeWa, '_blank');
-    }, 65000);
-  }
-
   function handleCheckout(e) {
     e.preventDefault();
     const name = document.getElementById('fullName').value.trim();
@@ -649,11 +623,34 @@
       alert('✅ Order placed with Cash on Delivery!');
     }
 
+    const orderNumber = 'ORD-' + orderCounter++;
     const items = cart.map(p => `${p.name} (${p.price})`).join('\n');
     const total = cart.reduce((sum, p) => sum + parseInt(p.price.replace(/[₹,]/g, '')), 0);
+    const deliveryDate = new Date(Date.now() + 10*24*60*60*1000).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
 
-    // Auto send confirmations after 1 minute
-    sendAutoConfirmations(name, email, phone, address, pincode, paymentMethod.value, items, total);
+    // WhatsApp message with all details
+    const msg = `🛍️ *ORDER PLACED SUCCESSFULLY* ✅\n\n` +
+                `📋 *Order Number:* ${orderNumber}\n` +
+                `👤 *Name:* ${name}\n` +
+                `📧 *Email:* ${email}\n` +
+                `📱 *Phone:* ${phone}\n` +
+                `📬 *Shipping Address:* ${address}, ${pincode}\n` +
+                `💳 *Payment Method:* ${paymentMethod.value.toUpperCase()}\n\n` +
+                `📦 *Order Details:*\n${items}\n\n` +
+                `💰 *Total Amount:* ₹${total}\n` +
+                `🚚 *Delivery:* 7-14 days (by ${deliveryDate})\n\n` +
+                `🙏 *Thank you for shopping with saree store demo!* ❤️`;
+
+    // Redirect to WhatsApp
+    const waUrl = `https://wa.me/${phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(msg)}`;
+    window.open(waUrl, '_blank');
+
+    // Also send to store WhatsApp
+    setTimeout(() => {
+      const storeMsg = `🆕 *New Order Received*\n\nOrder #: ${orderNumber}\nName: ${name}\nPhone: ${phone}\nTotal: ₹${total}`;
+      const storeWa = `https://wa.me/918979401469?text=${encodeURIComponent(storeMsg)}`;
+      window.open(storeWa, '_blank');
+    }, 3000);
 
     cart = [];
     updateCartUI();
