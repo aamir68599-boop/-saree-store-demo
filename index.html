@@ -182,6 +182,12 @@
     .cart-item { transition: all 0.2s; }
     .cart-item:hover { background: #f9fafb; }
     .checkout-input:focus { border-color: #9f1239; ring: 2px solid #9f1239; }
+    
+    /* Cart & Checkout UI enhancements */
+    .cart-summary-card { background: linear-gradient(145deg, #ffffff, #f8fafc); }
+    .checkout-card { background: white; border-radius: 1.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.06); }
+    .order-item { border-bottom: 1px solid #f1f5f9; }
+    .order-item:last-child { border-bottom: none; }
   </style>
 </head>
 <body class="tail-container bg-gray-50 text-gray-800">
@@ -332,38 +338,74 @@
     </div>
   </section>
 </div>
-<!-- ========= CART PAGE ========= -->
+<!-- ========= CART PAGE (ENHANCED UI) ========= -->
 <div id="cartPage" class="hidden">
-  <section class="max-w-4xl mx-auto px-3 sm:px-4 py-6 sm:py-12">
-    <div class="flex items-center gap-3 mb-6"><i class="fa-solid fa-bag-shopping text-2xl text-red-900"></i><h2 class="text-2xl sm:text-3xl heading-font font-bold">Your Cart</h2></div>
-    <div id="cartItemsContainer" class="bg-white rounded-xl shadow-sm divide-y divide-gray-100 mb-6"></div>
-    <div class="flex flex-wrap justify-between items-center bg-gray-50 p-4 rounded-xl">
-      <span class="font-bold text-lg">Total: <span id="cartTotal" class="text-red-900">₹0</span></span>
-      <button onclick="proceedToCheckout(event)" class="bg-red-900 text-white px-6 py-2.5 rounded-full font-semibold hover:bg-red-800 transition">Proceed to Checkout</button>
+  <section class="max-w-5xl mx-auto px-3 sm:px-4 py-6 sm:py-12">
+    <div class="flex items-center gap-3 mb-6">
+      <i class="fa-solid fa-bag-shopping text-2xl text-red-900"></i>
+      <h2 class="text-2xl sm:text-3xl heading-font font-bold">Your Cart</h2>
+      <span class="ml-auto text-sm text-gray-500" id="cartItemCountLabel">0 items</span>
     </div>
-    <div class="mt-4"><button onclick="showHomePage(event)" class="text-red-900 hover:underline"><i class="fa-solid fa-arrow-left mr-1"></i> Continue Shopping</button></div>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Cart Items -->
+      <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm p-4 sm:p-6">
+        <div id="cartItemsContainer" class="divide-y divide-gray-100"></div>
+      </div>
+      <!-- Order Summary -->
+      <div class="lg:col-span-1">
+        <div class="bg-white rounded-2xl shadow-sm p-5 cart-summary-card sticky top-24">
+          <h3 class="font-bold text-lg mb-4 heading-font">Order Summary</h3>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between"><span class="text-gray-600">Subtotal</span><span id="cartSubtotal" class="font-medium">₹0</span></div>
+            <div class="flex justify-between"><span class="text-gray-600">Shipping</span><span class="text-green-600">FREE</span></div>
+            <div class="flex justify-between border-t border-gray-200 pt-3 mt-3 font-bold text-base"><span>Total</span><span id="cartTotalSummary" class="text-red-900">₹0</span></div>
+          </div>
+          <button onclick="proceedToCheckout(event)" class="w-full mt-5 bg-red-900 text-white py-3 rounded-full font-semibold hover:bg-red-800 transition">Proceed to Checkout</button>
+          <button onclick="showHomePage(event)" class="w-full mt-2 text-red-900 hover:underline text-sm"><i class="fa-solid fa-arrow-left mr-1"></i> Continue Shopping</button>
+        </div>
+      </div>
+    </div>
   </section>
 </div>
-<!-- ========= CHECKOUT PAGE ========= -->
+<!-- ========= CHECKOUT PAGE (ENHANCED UI) ========= -->
 <div id="checkoutPage" class="hidden">
-  <section class="max-w-3xl mx-auto px-3 sm:px-4 py-6 sm:py-12">
-    <h2 class="text-2xl sm:text-3xl heading-font font-bold mb-6">Checkout</h2>
-    <form id="checkoutForm" onsubmit="handleCheckout(event)" class="bg-white p-4 sm:p-8 rounded-xl shadow-sm space-y-5">
-      <div><label class="block text-sm font-medium mb-1">Full Name</label><input type="text" id="fullName" required class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-red-900 focus:border-red-900 checkout-input" placeholder="Your Name" /></div>
-      <div><label class="block text-sm font-medium mb-1">Email</label><input type="email" id="email" required class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-red-900 focus:border-red-900 checkout-input" placeholder="you@example.com" /></div>
-      <div><label class="block text-sm font-medium mb-1">Phone Number</label><input type="tel" id="phone" required class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-red-900 focus:border-red-900 checkout-input" placeholder="+91 9876543210" /></div>
-      <div><label class="block text-sm font-medium mb-1">Shipping Address</label><textarea id="address" rows="2" required class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-red-900 focus:border-red-900 checkout-input" placeholder="Street, locality, landmark"></textarea></div>
-      <div><label class="block text-sm font-medium mb-1">Pincode</label><input type="text" id="pincode" required class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-red-900 focus:border-red-900 checkout-input" placeholder="110001" /></div>
-      <div><label class="block text-sm font-medium mb-2">Payment Method</label>
-        <div class="flex flex-wrap gap-4"><label class="flex items-center gap-2"><input type="radio" name="payment" value="cod" checked class="w-4 h-4 text-red-900" /> Cash on Delivery</label><label class="flex items-center gap-2"><input type="radio" name="payment" value="prepaid" class="w-4 h-4 text-red-900" /> Prepaid (UPI)</label></div>
+  <section class="max-w-4xl mx-auto px-3 sm:px-4 py-6 sm:py-12">
+    <div class="flex items-center gap-3 mb-6">
+      <i class="fa-solid fa-credit-card text-2xl text-red-900"></i>
+      <h2 class="text-2xl sm:text-3xl heading-font font-bold">Checkout</h2>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+      <!-- Form -->
+      <div class="lg:col-span-3">
+        <form id="checkoutForm" onsubmit="handleCheckout(event)" class="bg-white p-5 sm:p-7 rounded-2xl shadow-sm checkout-card space-y-5">
+          <div class="flex items-center gap-2 border-b pb-3"><i class="fa-regular fa-user text-red-900"></i><span class="font-semibold text-sm">Personal Details</span></div>
+          <div><label class="block text-sm font-medium mb-1">Full Name</label><input type="text" id="fullName" required class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-red-900 focus:border-red-900 checkout-input" placeholder="Your Name" /></div>
+          <div><label class="block text-sm font-medium mb-1">Email</label><input type="email" id="email" required class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-red-900 focus:border-red-900 checkout-input" placeholder="you@example.com" /></div>
+          <div><label class="block text-sm font-medium mb-1">Phone Number</label><input type="tel" id="phone" required class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-red-900 focus:border-red-900 checkout-input" placeholder="+91 9876543210" /></div>
+          <div><label class="block text-sm font-medium mb-1">Shipping Address</label><textarea id="address" rows="2" required class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-red-900 focus:border-red-900 checkout-input" placeholder="Street, locality, landmark"></textarea></div>
+          <div><label class="block text-sm font-medium mb-1">Pincode</label><input type="text" id="pincode" required class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-red-900 focus:border-red-900 checkout-input" placeholder="110001" /></div>
+          <div><label class="block text-sm font-medium mb-2">Payment Method</label>
+            <div class="flex flex-wrap gap-5"><label class="flex items-center gap-2"><input type="radio" name="payment" value="cod" checked class="w-4 h-4 text-red-900" /> Cash on Delivery</label><label class="flex items-center gap-2"><input type="radio" name="payment" value="prepaid" class="w-4 h-4 text-red-900" /> Prepaid (UPI)</label></div>
+          </div>
+          <div id="upiSection" class="hidden border-t pt-4 mt-2">
+            <p class="text-sm font-medium mb-2">Enter UPI ID to proceed</p>
+            <input type="text" id="upiId" placeholder="example@upi" class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-red-900 focus:border-red-900 checkout-input" />
+            <div id="qrCodeContainer" class="mt-4 hidden"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=payments@demo" alt="QR Code" class="w-48 h-48 mx-auto" /><p class="text-center text-sm text-gray-600 mt-2">Scan to pay</p></div>
+          </div>
+          <button type="submit" class="w-full bg-red-900 text-white py-3 rounded-full font-semibold text-base hover:bg-red-800 transition">Place Order</button>
+        </form>
       </div>
-      <div id="upiSection" class="hidden border-t pt-4 mt-2">
-        <p class="text-sm font-medium mb-2">Enter UPI ID to proceed</p>
-        <input type="text" id="upiId" placeholder="example@upi" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-red-900 focus:border-red-900 checkout-input" />
-        <div id="qrCodeContainer" class="mt-4 hidden"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=payments@demo" alt="QR Code" class="w-48 h-48 mx-auto" /><p class="text-center text-sm text-gray-600 mt-2">Scan to pay</p></div>
+      <!-- Order Items Summary -->
+      <div class="lg:col-span-2">
+        <div class="bg-white rounded-2xl shadow-sm p-5 cart-summary-card sticky top-24">
+          <h4 class="font-bold text-md mb-3 heading-font">Your Order</h4>
+          <div id="checkoutOrderItems" class="space-y-3 max-h-80 overflow-y-auto"></div>
+          <div class="border-t border-gray-200 pt-3 mt-3">
+            <div class="flex justify-between font-bold text-base"><span>Total</span><span id="checkoutTotal" class="text-red-900">₹0</span></div>
+          </div>
+        </div>
       </div>
-      <button type="submit" class="w-full bg-red-900 text-white py-3 rounded-full font-semibold text-base hover:bg-red-800 transition">Place Order</button>
-    </form>
+    </div>
   </section>
 </div>
 <!-- FOOTER -->
@@ -396,10 +438,14 @@
     const count = document.getElementById('cartCount');
     if (count) count.textContent = cart.length;
     const container = document.getElementById('cartItemsContainer');
+    const itemCountLabel = document.getElementById('cartItemCountLabel');
+    if (itemCountLabel) itemCountLabel.textContent = `${cart.length} items`;
+    
     if (container) {
       if (cart.length === 0) {
-        container.innerHTML = '<div class="p-6 text-center text-gray-500">Your cart is empty.</div>';
-        document.getElementById('cartTotal').textContent = '₹0';
+        container.innerHTML = '<div class="p-8 text-center text-gray-500"><i class="fa-regular fa-face-frown text-3xl mb-3 block"></i>Your cart is empty.<br><span class="text-sm">Start shopping now!</span></div>';
+        document.getElementById('cartSubtotal').textContent = '₹0';
+        document.getElementById('cartTotalSummary').textContent = '₹0';
         return;
       }
       let html = '';
@@ -407,21 +453,21 @@
       cart.forEach((item, index) => {
         const priceNum = parseInt(item.price.replace(/[₹,]/g, ''));
         total += priceNum;
-        html += `<div class="flex flex-wrap items-center gap-3 py-4 cart-item px-2">
-          <img src="${item.image}" class="w-16 h-16 rounded-lg object-cover" />
+        html += `<div class="flex flex-wrap items-center gap-3 py-4 cart-item px-1 order-item">
+          <img src="${item.image}" class="w-16 h-16 rounded-xl object-cover" />
           <div class="flex-1"><p class="font-medium text-sm">${item.name}</p><p class="text-red-900 font-bold">${item.price}</p></div>
-          <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 text-sm"><i class="fa-regular fa-trash-can"></i></button>
+          <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 text-sm w-8 h-8 rounded-full hover:bg-red-50 flex items-center justify-center transition"><i class="fa-regular fa-trash-can"></i></button>
         </div>`;
       });
       container.innerHTML = html;
-      document.getElementById('cartTotal').textContent = `₹${total}`;
+      document.getElementById('cartSubtotal').textContent = `₹${total}`;
+      document.getElementById('cartTotalSummary').textContent = `₹${total}`;
     }
   }
 
   function addToCart(product) {
     cart.push(product);
     updateCartUI();
-    // Show notification
     alert(`${product.name} added to cart!`);
   }
 
@@ -447,8 +493,7 @@
     const name = document.getElementById('productDetailName').textContent;
     const price = document.getElementById('productDetailPrice').textContent;
     const image = document.getElementById('mainProductImage').src;
-    const category = document.querySelector('.thumb-img.active') ? 'Ikat' : 'Ikat';
-    const product = { id: Date.now(), name, price, image, category };
+    const product = { id: Date.now(), name, price, image, category: 'Ikat' };
     addToCart(product);
   }
 
@@ -457,18 +502,29 @@
     const name = document.getElementById('productDetailName').textContent;
     const price = document.getElementById('productDetailPrice').textContent;
     const image = document.getElementById('mainProductImage').src;
-    const category = 'Ikat';
-    const product = { id: Date.now(), name, price, image, category };
+    const product = { id: Date.now(), name, price, image, category: 'Ikat' };
     cart = [product];
     updateCartUI();
     openCart(e);
-    setTimeout(() => proceedToCheckout(e), 300);
+    setTimeout(() => proceedToCheckout(e), 400);
   }
 
   // -------- CHECKOUT --------
   function proceedToCheckout(e) {
     if (e) e.preventDefault();
     if (cart.length === 0) { alert('Your cart is empty.'); return; }
+    // Populate checkout order items
+    const container = document.getElementById('checkoutOrderItems');
+    let html = '';
+    let total = 0;
+    cart.forEach(item => {
+      const priceNum = parseInt(item.price.replace(/[₹,]/g, ''));
+      total += priceNum;
+      html += `<div class="flex items-center gap-3 text-sm"><img src="${item.image}" class="w-12 h-12 rounded-lg object-cover" /><div class="flex-1"><p class="font-medium truncate">${item.name}</p><p class="text-red-900 font-bold">${item.price}</p></div></div>`;
+    });
+    container.innerHTML = html;
+    document.getElementById('checkoutTotal').textContent = `₹${total}`;
+    
     document.getElementById('cartPage').classList.add('hidden');
     document.getElementById('checkoutPage').classList.remove('hidden');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -500,7 +556,6 @@
     if (paymentMethod.value === 'prepaid') {
       const upi = document.getElementById('upiId').value.trim();
       if (!upi) { alert('Please enter UPI ID for prepaid payment.'); return; }
-      // Show QR (already shown)
       alert('Payment detected! (Demo) Order placed successfully.');
     } else {
       alert('Order placed with Cash on Delivery!');
@@ -513,7 +568,6 @@
     const url = `https://wa.me/919999999999?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
 
-    // Reset cart
     cart = [];
     updateCartUI();
     document.getElementById('checkoutPage').classList.add('hidden');
