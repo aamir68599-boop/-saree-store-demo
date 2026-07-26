@@ -24,6 +24,161 @@
     .wishlist-btn:hover { transform: scale(1.15); }
     .wishlist-btn.active { color: #dc2626; }
     
+    /* -------- MOBILE FILTER TOGGLE -------- */
+    .filter-toggle-btn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 40;
+      background: #9f1239;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      font-size: 20px;
+      box-shadow: 0 4px 12px rgba(159, 18, 57, 0.4);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .filter-toggle-btn:hover {
+      transform: scale(1.05);
+      background: #7f1d1d;
+    }
+    .filter-toggle-btn i {
+      font-size: 22px;
+    }
+    
+    .filter-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 45;
+    }
+    .filter-overlay.active {
+      display: block;
+    }
+    
+    .filter-drawer {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 85%;
+      max-width: 340px;
+      height: 100%;
+      background: white;
+      z-index: 50;
+      overflow-y: auto;
+      transition: left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      padding: 1.5rem;
+      box-shadow: 2px 0 12px rgba(0,0,0,0.15);
+    }
+    .filter-drawer.active {
+      left: 0;
+    }
+    .filter-drawer .close-btn {
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #374151;
+      cursor: pointer;
+      padding: 4px 8px;
+      float: right;
+    }
+    .filter-drawer .close-btn:hover {
+      color: #9f1239;
+    }
+    .filter-drawer h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 0.5rem;
+    }
+    .filter-drawer .filter-group {
+      margin-bottom: 1.25rem;
+    }
+    .filter-drawer .filter-group h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 0.5rem;
+    }
+    .filter-drawer .filter-group label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: #4b5563;
+      padding: 0.2rem 0;
+      cursor: pointer;
+    }
+    .filter-drawer .filter-group label input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #9f1239;
+      cursor: pointer;
+    }
+    .filter-drawer .apply-btn {
+      width: 100%;
+      background: #9f1239;
+      color: white;
+      border: none;
+      border-radius: 9999px;
+      padding: 0.75rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 0.5rem;
+    }
+    .filter-drawer .apply-btn:hover {
+      background: #7f1d1d;
+    }
+    .filter-drawer .clear-btn {
+      width: 100%;
+      background: transparent;
+      color: #9f1239;
+      border: 1px solid #9f1239;
+      border-radius: 9999px;
+      padding: 0.7rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 0.5rem;
+    }
+    .filter-drawer .clear-btn:hover {
+      background: #fef2f2;
+    }
+
+    @media (max-width: 768px) {
+      .filter-toggle-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .filter-sidebar {
+        display: none;
+      }
+      .filter-drawer {
+        padding: 1.25rem;
+      }
+      .filter-drawer h3 {
+        font-size: 1.1rem;
+      }
+      .filter-drawer .filter-group label {
+        font-size: 0.8rem;
+      }
+    }
+    
+    @media (min-width: 769px) {
+      .filter-overlay, .filter-drawer, .filter-toggle-btn {
+        display: none !important;
+      }
+    }
+
     @media (max-width: 640px) {
       .product-card img { height: 200px !important; }
       .product-card .p-3 { padding: 0.5rem !important; }
@@ -32,9 +187,6 @@
       .heading-font.text-4xl { font-size: 1.8rem !important; }
       .text-3xl { font-size: 1.5rem !important; }
       .px-4 { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
-      .filter-sidebar { padding: 1rem !important; }
-      .filter-sidebar h3 { font-size: 1.1rem !important; }
-      .filter-sidebar .filter-group label { font-size: 0.8rem !important; }
     }
     @media (min-width: 641px) and (max-width: 1024px) {
       .category-product-grid { grid-template-columns: repeat(3, 1fr); }
@@ -60,10 +212,39 @@
       display: grid;
       gap: 1.5rem;
     }
+
+    /* Active filter chip */
+    .filter-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #fef2f2;
+      color: #9f1239;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid #fecaca;
+    }
+    .filter-chip .remove {
+      cursor: pointer;
+      font-size: 0.7rem;
+      color: #dc2626;
+    }
+    .filter-chip .remove:hover {
+      color: #7f1d1d;
+    }
+    .active-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
   </style>
 </head>
 <body class="tail-container bg-gray-50 text-gray-800">
-<!-- HEADER -->
+
+<!-- ========= HEADER ========= -->
 <header class="bg-white shadow-sm sticky top-0 z-50">
   <div class="max-w-7xl mx-auto">
     <div class="bg-red-900 text-white text-xs sm:text-sm py-2 px-2 text-center tracking-wide">Free Shipping above ₹4,999 (India) · Timeless Elegance · 200 New Arrivals Today</div>
@@ -92,13 +273,71 @@
               <a href="#" onclick="filterCategory('All')" class="block px-3 sm:px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-[10px] sm:text-sm font-semibold text-red-900">All Sarees</a>
             </div>
           </li>
-          <li><a href="https://sareestoredemo.aamir68599.workers.dev/about" class="nav-link hover:text-red-900 transition-colors">ABOUT US</a></li>
-          <li><a href="https://sareestoredemo.aamir68599.workers.dev/contact" class="nav-link hover:text-red-900 transition-colors">CONTACT</a></li>
+          <li><a href="about.html" class="nav-link hover:text-red-900 transition-colors">ABOUT US</a></li>
+          <li><a href="contact.html" class="nav-link hover:text-red-900 transition-colors">CONTACT</a></li>
         </ul>
       </div>
     </nav>
   </div>
 </header>
+
+<!-- ========= MOBILE FILTER TOGGLE BUTTON ========= -->
+<button class="filter-toggle-btn" onclick="toggleFilterDrawer()">
+  <i class="fa-solid fa-sliders-h"></i>
+</button>
+
+<!-- ========= FILTER OVERLAY ========= -->
+<div class="filter-overlay" id="filterOverlay" onclick="toggleFilterDrawer()"></div>
+
+<!-- ========= FILTER DRAWER (MOBILE) ========= -->
+<div class="filter-drawer" id="filterDrawer">
+  <button class="close-btn" onclick="toggleFilterDrawer()">&times;</button>
+  <h3 class="text-lg sm:text-xl heading-font font-bold">Filter Products</h3>
+  <p class="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">Refine your search</p>
+  
+  <div class="filter-group mb-4">
+    <h4 class="font-semibold text-gray-700 mb-1 sm:mb-2 text-sm">Sort By: Featured</h4>
+  </div>
+  
+  <div class="filter-group mb-4">
+    <h4 class="text-sm font-medium mb-1">Price</h4>
+    <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="under-1000" onchange="applyFilters()" /> Under ₹1,000</label>
+    <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="1000-5000" onchange="applyFilters()" /> ₹1,000 - ₹5,000</label>
+    <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="5000-10000" onchange="applyFilters()" /> ₹5,000 - ₹10,000</label>
+    <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="above-10000" onchange="applyFilters()" /> Above ₹10,000</label>
+  </div>
+  
+  <div class="filter-group mb-4">
+    <h4 class="text-sm font-medium mb-1">Categories</h4>
+    <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Ikat" checked onchange="applyFilters()" /> Ikat</label>
+    <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Kanjivaram" checked onchange="applyFilters()" /> Kanjivaram</label>
+    <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Banarasi" checked onchange="applyFilters()" /> Banarasi</label>
+    <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Chiffon" checked onchange="applyFilters()" /> Chiffon</label>
+    <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Bridal" checked onchange="applyFilters()" /> Bridal</label>
+  </div>
+  
+  <div class="filter-group mb-4">
+    <h4 class="text-sm font-medium mb-1">Color</h4>
+    <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="White" onchange="applyFilters()" /> White</label>
+    <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Blue" onchange="applyFilters()" /> Blue</label>
+    <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Red" onchange="applyFilters()" /> Red</label>
+    <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Green" onchange="applyFilters()" /> Green</label>
+  </div>
+  
+  <div class="filter-group mb-4">
+    <h4 class="text-sm font-medium mb-1">Fabric</h4>
+    <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Cotton" onchange="applyFilters()" /> Cotton</label>
+    <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Silk" onchange="applyFilters()" /> Silk</label>
+    <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Chiffon" onchange="applyFilters()" /> Chiffon</label>
+  </div>
+  
+  <button class="apply-btn" onclick="applyFilters(); closeFilterDrawer();">Apply Filters</button>
+  <button class="clear-btn" onclick="clearAllFilters()">Clear All Filters</button>
+  
+  <div class="mt-3 p-2 sm:p-3 bg-gray-100 rounded-lg text-[10px] sm:text-xs text-gray-600">
+    <i class="fa-solid fa-cookie-bite mr-1"></i> We use cookies to give you the best shopping experience.
+  </div>
+</div>
 
 <!-- ========= SHOP PAGE CONTENT ========= -->
 <div id="shopPageContent">
@@ -110,7 +349,7 @@
     </div>
     
     <div class="flex flex-col lg:flex-row gap-4 sm:gap-8">
-      <!-- SIDEBAR FILTERS -->
+      <!-- SIDEBAR FILTERS (Desktop) -->
       <div class="lg:w-1/4">
         <div class="filter-sidebar">
           <h3 class="text-lg sm:text-xl heading-font font-bold">Filter Products</h3>
@@ -122,35 +361,38 @@
           
           <div class="filter-group mb-4">
             <h4 class="text-sm font-medium mb-1">Price</h4>
-            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" /> Under ₹1,000</label>
-            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" /> ₹1,000 - ₹5,000</label>
-            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" /> ₹5,000 - ₹10,000</label>
-            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" /> Above ₹10,000</label>
+            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="under-1000" onchange="applyFilters()" /> Under ₹1,000</label>
+            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="1000-5000" onchange="applyFilters()" /> ₹1,000 - ₹5,000</label>
+            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="5000-10000" onchange="applyFilters()" /> ₹5,000 - ₹10,000</label>
+            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="above-10000" onchange="applyFilters()" /> Above ₹10,000</label>
           </div>
           
           <div class="filter-group mb-4">
             <h4 class="text-sm font-medium mb-1">Categories</h4>
-            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" checked /> Ikat</label>
-            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" /> Kanjivaram</label>
-            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" /> Banarasi</label>
-            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" /> Chiffon</label>
-            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" /> Bridal</label>
+            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Ikat" checked onchange="applyFilters()" /> Ikat</label>
+            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Kanjivaram" checked onchange="applyFilters()" /> Kanjivaram</label>
+            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Banarasi" checked onchange="applyFilters()" /> Banarasi</label>
+            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Chiffon" checked onchange="applyFilters()" /> Chiffon</label>
+            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Bridal" checked onchange="applyFilters()" /> Bridal</label>
           </div>
           
           <div class="filter-group mb-4">
             <h4 class="text-sm font-medium mb-1">Color</h4>
-            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" /> White</label>
-            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" /> Blue</label>
-            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" /> Red</label>
-            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" /> Green</label>
+            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="White" onchange="applyFilters()" /> White</label>
+            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Blue" onchange="applyFilters()" /> Blue</label>
+            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Red" onchange="applyFilters()" /> Red</label>
+            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Green" onchange="applyFilters()" /> Green</label>
           </div>
           
           <div class="filter-group mb-4">
             <h4 class="text-sm font-medium mb-1">Fabric</h4>
-            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" /> Cotton</label>
-            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" /> Silk</label>
-            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" /> Chiffon</label>
+            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Cotton" onchange="applyFilters()" /> Cotton</label>
+            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Silk" onchange="applyFilters()" /> Silk</label>
+            <label class="flex items-center gap-2 text-xs sm:text-sm"><input type="checkbox" value="Chiffon" onchange="applyFilters()" /> Chiffon</label>
           </div>
+          
+          <button class="w-full bg-red-900 text-white py-2 rounded-full font-semibold text-sm hover:bg-red-800 transition" onclick="applyFilters()">Apply Filters</button>
+          <button class="w-full mt-2 text-red-900 py-2 rounded-full font-semibold text-sm border border-red-900 hover:bg-red-50 transition" onclick="clearAllFilters()">Clear All</button>
           
           <div class="mt-3 p-2 sm:p-3 bg-gray-100 rounded-lg text-[10px] sm:text-xs text-gray-600">
             <i class="fa-solid fa-cookie-bite mr-1"></i> We use cookies to give you the best shopping experience.
@@ -164,6 +406,9 @@
           <h2 class="text-lg sm:text-2xl heading-font font-bold" id="shopTitle">All Sarees</h2>
           <span class="text-xs sm:text-sm text-gray-500" id="shopProductCount">5 products</span>
         </div>
+        
+        <!-- Active Filters -->
+        <div class="active-filters" id="activeFilters"></div>
         
         <div class="category-product-grid" id="shopProducts"></div>
       </div>
@@ -327,13 +572,13 @@
   </section>
 </div>
 
-<!-- FOOTER -->
+<!-- ========= FOOTER ========= -->
 <footer class="bg-gray-900 text-gray-300">
   <div class="max-w-7xl mx-auto px-3 sm:px-6 pt-8 sm:pt-16 pb-4 sm:pb-8">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-10">
       <div class="col-span-2 sm:col-span-1"><div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-6"><div class="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center text-red-900 font-bold text-sm sm:text-lg">N</div><span class="text-lg sm:text-2xl font-bold text-white heading-font">Nalli</span></div><p class="text-[10px] sm:text-sm">Handpicked finest silk sarees from the heart of India since 1928.</p></div>
       <div><h4 class="font-semibold text-white mb-2 sm:mb-4 text-sm sm:text-base">Shop</h4><ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-sm"><li><a href="shop.html" class="hover:text-white">All Sarees</a></li><li><a href="shop.html" class="hover:text-white">New Arrivals</a></li><li><a href="shop.html" class="hover:text-white">Best Sellers</a></li><li><a href="shop.html" class="hover:text-white">Sale</a></li></ul></div>
-      <div><h4 class="font-semibold text-white mb-2 sm:mb-4 text-sm sm:text-base">Explore</h4><ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-sm"><li><a href="#" class="hover:text-white">About Us</a></li><li><a href="#" class="hover:text-white">Our Heritage</a></li><li><a href="#" class="hover:text-white">Blog</a></li><li><a href="#" class="hover:text-white">Contact</a></li></ul></div>
+      <div><h4 class="font-semibold text-white mb-2 sm:mb-4 text-sm sm:text-base">Explore</h4><ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-sm"><li><a href="about.html" class="hover:text-white">About Us</a></li><li><a href="contact.html" class="hover:text-white">Contact</a></li><li><a href="#" class="hover:text-white">Blog</a></li><li><a href="#" class="hover:text-white">Our Heritage</a></li></ul></div>
       <div><h4 class="font-semibold text-white mb-2 sm:mb-4 text-sm sm:text-base">Support</h4><ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-sm"><li><a href="#" class="hover:text-white">Shipping Policy</a></li><li><a href="#" class="hover:text-white">Returns</a></li><li><a href="#" class="hover:text-white">Track Order</a></li><li><a href="#" class="hover:text-white">FAQs</a></li></ul></div>
     </div>
     <div class="border-t border-gray-800 mt-6 sm:mt-12 pt-4 sm:pt-8 text-[8px] sm:text-xs flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3"><p>© 2026 saree store demo. All rights reserved.</p><div class="flex gap-3 sm:gap-6 text-sm sm:text-base"><i class="fa-brands fa-instagram cursor-pointer hover:text-white"></i><i class="fa-brands fa-facebook cursor-pointer hover:text-white"></i><i class="fa-brands fa-whatsapp cursor-pointer hover:text-white"></i></div></div>
@@ -343,17 +588,158 @@
 <script>
   // -------- PRODUCT DATA --------
   const products = [
-    { id: 1, name: "Off White Linen Ikkat Saree", price: "₹899", image: "https://sareestoredemo.netlify.app/ikkat%20printed%20saree.webp", category: "Ikat" },
-    { id: 6, name: "C J Enterprise Women's Pure Kanjivaram Silk Saree (Pari122-51)", price: "₹497", image: "https://sareestoredemo.aamir68599.workers.dev/Kanjivaram%204.jpg", category: "Kanjivaram" },
-    { id: 7, name: "Mehrang Women's Banarasi Silk Kanjivaram Saree (Pure Zari, Woven)", price: "₹999", image: "https://sareestoredemo.aamir68599.workers.dev/Banarasi%20%201.jpg", category: "Banarasi" },
-    { id: 8, name: "Noel Dual Shade Butter Chiffon Saree with Self Blouse", price: "₹3,030", image: "https://sareestoredemo.aamir68599.workers.dev/Chiffon.jpg", category: "Chiffon" },
-    { id: 9, name: "Kanchivaram Bridal Saree (Heavy Gold Zari Woven)", price: "₹1,599", image: "https://sareestoredemo.aamir68599.workers.dev/Bridal%20Sarees.webp", category: "Bridal" }
+    { id: 1, name: "Off White Linen Ikkat Saree", price: "₹899", priceNum: 899, image: "https://sareestoredemo.netlify.app/ikkat%20printed%20saree.webp", category: "Ikat", color: "White", fabric: "Linen" },
+    { id: 6, name: "C J Enterprise Women's Pure Kanjivaram Silk Saree (Pari122-51)", price: "₹497", priceNum: 497, image: "https://sareestoredemo.aamir68599.workers.dev/Kanjivaram%204.jpg", category: "Kanjivaram", color: "Red", fabric: "Silk" },
+    { id: 7, name: "Mehrang Women's Banarasi Silk Kanjivaram Saree (Pure Zari, Woven)", price: "₹999", priceNum: 999, image: "https://sareestoredemo.aamir68599.workers.dev/Banarasi%20%201.jpg", category: "Banarasi", color: "Blue", fabric: "Silk" },
+    { id: 8, name: "Noel Dual Shade Butter Chiffon Saree with Self Blouse", price: "₹3,030", priceNum: 3030, image: "https://sareestoredemo.aamir68599.workers.dev/Chiffon.jpg", category: "Chiffon", color: "Green", fabric: "Chiffon" },
+    { id: 9, name: "Kanchivaram Bridal Saree (Heavy Gold Zari Woven)", price: "₹1,599", priceNum: 1599, image: "https://sareestoredemo.aamir68599.workers.dev/Bridal%20Sarees.webp", category: "Bridal", color: "Red", fabric: "Silk" }
   ];
 
   // -------- CART STATE --------
   let cart = [];
   let wishlist = [];
   let currentFilter = 'All';
+  let activeFilters = { categories: ['Ikat', 'Kanjivaram', 'Banarasi', 'Chiffon', 'Bridal'], price: [], color: [], fabric: [] };
+
+  // -------- FILTER FUNCTIONS --------
+  function getFilterValues() {
+    const categories = [];
+    const price = [];
+    const color = [];
+    const fabric = [];
+    
+    document.querySelectorAll('.filter-sidebar input[type="checkbox"], .filter-drawer input[type="checkbox"]').forEach(cb => {
+      const value = cb.value;
+      if (cb.checked) {
+        if (['Ikat', 'Kanjivaram', 'Banarasi', 'Chiffon', 'Bridal'].includes(value)) categories.push(value);
+        else if (['under-1000', '1000-5000', '5000-10000', 'above-10000'].includes(value)) price.push(value);
+        else if (['White', 'Blue', 'Red', 'Green'].includes(value)) color.push(value);
+        else if (['Cotton', 'Silk', 'Chiffon'].includes(value)) fabric.push(value);
+      }
+    });
+    
+    return { categories, price, color, fabric };
+  }
+
+  function applyFilters() {
+    const filters = getFilterValues();
+    activeFilters = filters;
+    renderShopProducts();
+    updateActiveFiltersUI();
+  }
+
+  function clearAllFilters() {
+    document.querySelectorAll('.filter-sidebar input[type="checkbox"], .filter-drawer input[type="checkbox"]').forEach(cb => {
+      if (['Ikat', 'Kanjivaram', 'Banarasi', 'Chiffon', 'Bridal'].includes(cb.value)) {
+        cb.checked = true;
+      } else {
+        cb.checked = false;
+      }
+    });
+    activeFilters = { categories: ['Ikat', 'Kanjivaram', 'Banarasi', 'Chiffon', 'Bridal'], price: [], color: [], fabric: [] };
+    renderShopProducts();
+    updateActiveFiltersUI();
+    closeFilterDrawer();
+  }
+
+  function removeFilter(type, value) {
+    if (type === 'category') {
+      const idx = activeFilters.categories.indexOf(value);
+      if (idx > -1) activeFilters.categories.splice(idx, 1);
+      document.querySelectorAll(`.filter-sidebar input[value="${value}"], .filter-drawer input[value="${value}"]`).forEach(cb => cb.checked = false);
+    } else if (type === 'price') {
+      const idx = activeFilters.price.indexOf(value);
+      if (idx > -1) activeFilters.price.splice(idx, 1);
+      document.querySelectorAll(`.filter-sidebar input[value="${value}"], .filter-drawer input[value="${value}"]`).forEach(cb => cb.checked = false);
+    } else if (type === 'color') {
+      const idx = activeFilters.color.indexOf(value);
+      if (idx > -1) activeFilters.color.splice(idx, 1);
+      document.querySelectorAll(`.filter-sidebar input[value="${value}"], .filter-drawer input[value="${value}"]`).forEach(cb => cb.checked = false);
+    } else if (type === 'fabric') {
+      const idx = activeFilters.fabric.indexOf(value);
+      if (idx > -1) activeFilters.fabric.splice(idx, 1);
+      document.querySelectorAll(`.filter-sidebar input[value="${value}"], .filter-drawer input[value="${value}"]`).forEach(cb => cb.checked = false);
+    }
+    renderShopProducts();
+    updateActiveFiltersUI();
+  }
+
+  function updateActiveFiltersUI() {
+    const container = document.getElementById('activeFilters');
+    if (!container) return;
+    let html = '';
+    const allFilters = [
+      ...activeFilters.categories.map(c => ({ type: 'category', label: c, value: c })),
+      ...activeFilters.price.map(p => ({ type: 'price', label: getPriceLabel(p), value: p })),
+      ...activeFilters.color.map(c => ({ type: 'color', label: c, value: c })),
+      ...activeFilters.fabric.map(f => ({ type: 'fabric', label: f, value: f }))
+    ];
+    allFilters.forEach(f => {
+      html += `<span class="filter-chip">${f.label} <span class="remove" onclick="removeFilter('${f.type}','${f.value}')">&times;</span></span>`;
+    });
+    container.innerHTML = html;
+  }
+
+  function getPriceLabel(value) {
+    const labels = {
+      'under-1000': 'Under ₹1,000',
+      '1000-5000': '₹1,000 - ₹5,000',
+      '5000-10000': '₹5,000 - ₹10,000',
+      'above-10000': 'Above ₹10,000'
+    };
+    return labels[value] || value;
+  }
+
+  function getFilteredProducts() {
+    let filtered = products;
+    
+    // Category filter
+    if (activeFilters.categories && activeFilters.categories.length > 0) {
+      filtered = filtered.filter(p => activeFilters.categories.includes(p.category));
+    }
+    
+    // Price filter
+    if (activeFilters.price && activeFilters.price.length > 0) {
+      filtered = filtered.filter(p => {
+        return activeFilters.price.some(range => {
+          if (range === 'under-1000') return p.priceNum < 1000;
+          if (range === '1000-5000') return p.priceNum >= 1000 && p.priceNum <= 5000;
+          if (range === '5000-10000') return p.priceNum > 5000 && p.priceNum <= 10000;
+          if (range === 'above-10000') return p.priceNum > 10000;
+          return false;
+        });
+      });
+    }
+    
+    // Color filter
+    if (activeFilters.color && activeFilters.color.length > 0) {
+      filtered = filtered.filter(p => activeFilters.color.includes(p.color));
+    }
+    
+    // Fabric filter
+    if (activeFilters.fabric && activeFilters.fabric.length > 0) {
+      filtered = filtered.filter(p => activeFilters.fabric.includes(p.fabric));
+    }
+    
+    return filtered;
+  }
+
+  // -------- MOBILE FILTER DRAWER --------
+  function toggleFilterDrawer() {
+    const drawer = document.getElementById('filterDrawer');
+    const overlay = document.getElementById('filterOverlay');
+    drawer.classList.toggle('active');
+    overlay.classList.toggle('active');
+    document.body.style.overflow = drawer.classList.contains('active') ? 'hidden' : 'auto';
+  }
+
+  function closeFilterDrawer() {
+    const drawer = document.getElementById('filterDrawer');
+    const overlay = document.getElementById('filterOverlay');
+    drawer.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
 
   // -------- WISHLIST FUNCTIONS --------
   function toggleWishlist(productId) {
@@ -469,7 +855,7 @@
     const name = document.getElementById('productDetailName').textContent;
     const price = document.getElementById('productDetailPrice').textContent;
     const image = document.getElementById('mainProductImage').src;
-    const product = { id: Date.now(), name, price, image, category: 'Ikat' };
+    const product = { id: Date.now(), name, price, priceNum: parseInt(price.replace(/[₹,]/g, '')), image, category: 'Ikat', color: 'White', fabric: 'Linen' };
     addToCart(product);
   }
 
@@ -478,7 +864,7 @@
     const name = document.getElementById('productDetailName').textContent;
     const price = document.getElementById('productDetailPrice').textContent;
     const image = document.getElementById('mainProductImage').src;
-    const product = { id: Date.now(), name, price, image, category: 'Ikat' };
+    const product = { id: Date.now(), name, price, priceNum: parseInt(price.replace(/[₹,]/g, '')), image, category: 'Ikat', color: 'White', fabric: 'Linen' };
     cart = [product];
     updateCartUI();
     openCart(e);
@@ -597,23 +983,27 @@
 
   function filterCategory(category) {
     currentFilter = category;
-    renderShopProducts(category);
     document.getElementById('shopTitle').textContent = category === 'All' ? 'All Sarees' : category + ' Sarees';
+    
+    // Update checkboxes
+    document.querySelectorAll('.filter-sidebar input[type="checkbox"], .filter-drawer input[type="checkbox"]').forEach(cb => {
+      if (['Ikat', 'Kanjivaram', 'Banarasi', 'Chiffon', 'Bridal'].includes(cb.value)) {
+        cb.checked = (category === 'All' || cb.value === category);
+      }
+    });
+    applyFilters();
   }
 
   // -------- RENDER SHOP PRODUCTS --------
-  function renderShopProducts(category = 'All') {
+  function renderShopProducts() {
     const container = document.getElementById('shopProducts'); 
     if (!container) return;
     
-    let filteredProducts = products;
-    if (category !== 'All') {
-      filteredProducts = products.filter(p => p.category === category);
-    }
+    const filteredProducts = getFilteredProducts();
     
     container.innerHTML = '';
     if (filteredProducts.length === 0) {
-      container.innerHTML = '<p class="text-gray-500 col-span-full text-center py-10 text-sm">No products found in this category.</p>';
+      container.innerHTML = '<p class="text-gray-500 col-span-full text-center py-10 text-sm">No products found with selected filters.</p>';
       document.getElementById('shopProductCount').textContent = '0 products';
       return;
     }
@@ -630,9 +1020,10 @@
   }
 
   // -------- INIT --------
-  renderShopProducts('All');
+  renderShopProducts();
   updateCartUI();
   updateWishlistUI();
+  updateActiveFiltersUI();
 </script>
 </body>
 </html>
