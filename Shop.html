@@ -82,7 +82,7 @@
       <div class="max-w-7xl mx-auto px-2 sm:px-3">
         <ul class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-8 md:gap-12 text-[10px] sm:text-sm font-medium py-2 sm:py-3 nav-menu">
           <li><a href="index.html" class="nav-link hover:text-red-900 transition-colors">HOME</a></li>
-          <li class="relative dropdown-group"><a href="#" class="nav-link text-red-900 font-semibold flex items-center gap-0.5" onclick="showShopPage(event)">SHOP <i class="fa-solid fa-chevron-down text-[6px] sm:text-[10px] ml-0.5"></i></a>
+          <li class="relative dropdown-group"><a href="shop.html" class="nav-link text-red-900 font-semibold flex items-center gap-0.5">SHOP <i class="fa-solid fa-chevron-down text-[6px] sm:text-[10px] ml-0.5"></i></a>
             <div class="dropdown-menu absolute left-0 top-full mt-1 bg-white shadow-lg rounded-xl border border-gray-100 py-1.5 z-40 w-36 sm:w-44">
               <a href="#" onclick="filterCategory('Ikat')" class="block px-3 sm:px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-[10px] sm:text-sm">Ikat</a>
               <a href="#" onclick="filterCategory('Kanjivaram')" class="block px-3 sm:px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-[10px] sm:text-sm">Kanjivaram</a>
@@ -100,7 +100,7 @@
   </div>
 </header>
 
-<!-- ========= SHOP PAGE (MAIN CONTENT) ========= -->
+<!-- ========= SHOP PAGE CONTENT ========= -->
 <div id="shopPageContent">
   <section class="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
     <div class="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6">
@@ -171,11 +171,13 @@
   </section>
 </div>
 
-<!-- ========= PRODUCT PAGE (OVERLAY) ========= -->
+<!-- ========= PRODUCT PAGE ========= -->
 <div id="productPage" class="hidden">
   <section class="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-12">
     <div class="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">
-      <a href="#" onclick="showShopPage(event)" class="hover:text-red-900">Shop</a>
+      <a href="index.html" class="hover:text-red-900">Home</a>
+      <span class="mx-2">/</span>
+      <a href="shop.html" class="hover:text-red-900">Shop</a>
       <span class="mx-2">/</span>
       <span class="text-gray-700" id="productNameBreadcrumb">Off White Linen Ikkat Printed Saree</span>
     </div>
@@ -235,7 +237,7 @@
           <span class="bg-red-900 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg font-mono text-base sm:text-lg">45</span>
         </div>
         <div class="mt-4 sm:mt-6 text-center">
-          <button onclick="showShopPage(event)" class="text-red-900 font-medium hover:underline text-xs sm:text-sm">
+          <button onclick="window.location.href='shop.html'" class="text-red-900 font-medium hover:underline text-xs sm:text-sm">
             <i class="fa-solid fa-arrow-left mr-1"></i> Back to Shop
           </button>
         </div>
@@ -265,7 +267,7 @@
             <div class="flex justify-between border-t border-gray-200 pt-3 mt-3 font-bold text-base"><span>Total</span><span id="cartTotalSummary" class="text-red-900">₹0</span></div>
           </div>
           <button onclick="proceedToCheckout(event)" class="w-full mt-5 bg-red-900 text-white py-3 rounded-full font-semibold hover:bg-red-800 transition">Proceed to Checkout</button>
-          <button onclick="showShopPage(event)" class="w-full mt-2 text-red-900 hover:underline text-sm"><i class="fa-solid fa-arrow-left mr-1"></i> Continue Shopping</button>
+          <button onclick="window.location.href='shop.html'" class="w-full mt-2 text-red-900 hover:underline text-sm"><i class="fa-solid fa-arrow-left mr-1"></i> Continue Shopping</button>
         </div>
       </div>
     </div>
@@ -321,7 +323,7 @@
       <span class="ml-auto text-sm text-gray-500" id="wishlistItemCount">0 items</span>
     </div>
     <div id="wishlistContainer" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6"></div>
-    <div class="mt-6"><button onclick="showShopPage(event)" class="text-red-900 hover:underline"><i class="fa-solid fa-arrow-left mr-1"></i> Continue Shopping</button></div>
+    <div class="mt-6"><button onclick="window.location.href='shop.html'" class="text-red-900 hover:underline"><i class="fa-solid fa-arrow-left mr-1"></i> Continue Shopping</button></div>
   </section>
 </div>
 
@@ -330,7 +332,7 @@
   <div class="max-w-7xl mx-auto px-3 sm:px-6 pt-8 sm:pt-16 pb-4 sm:pb-8">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-10">
       <div class="col-span-2 sm:col-span-1"><div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-6"><div class="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center text-red-900 font-bold text-sm sm:text-lg">N</div><span class="text-lg sm:text-2xl font-bold text-white heading-font">Nalli</span></div><p class="text-[10px] sm:text-sm">Handpicked finest silk sarees from the heart of India since 1928.</p></div>
-      <div><h4 class="font-semibold text-white mb-2 sm:mb-4 text-sm sm:text-base">Shop</h4><ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-sm"><li><a href="#" class="hover:text-white">All Sarees</a></li><li><a href="#" class="hover:text-white">New Arrivals</a></li><li><a href="#" class="hover:text-white">Best Sellers</a></li><li><a href="#" class="hover:text-white">Sale</a></li></ul></div>
+      <div><h4 class="font-semibold text-white mb-2 sm:mb-4 text-sm sm:text-base">Shop</h4><ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-sm"><li><a href="shop.html" class="hover:text-white">All Sarees</a></li><li><a href="shop.html" class="hover:text-white">New Arrivals</a></li><li><a href="shop.html" class="hover:text-white">Best Sellers</a></li><li><a href="shop.html" class="hover:text-white">Sale</a></li></ul></div>
       <div><h4 class="font-semibold text-white mb-2 sm:mb-4 text-sm sm:text-base">Explore</h4><ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-sm"><li><a href="#" class="hover:text-white">About Us</a></li><li><a href="#" class="hover:text-white">Our Heritage</a></li><li><a href="#" class="hover:text-white">Blog</a></li><li><a href="#" class="hover:text-white">Contact</a></li></ul></div>
       <div><h4 class="font-semibold text-white mb-2 sm:mb-4 text-sm sm:text-base">Support</h4><ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-sm"><li><a href="#" class="hover:text-white">Shipping Policy</a></li><li><a href="#" class="hover:text-white">Returns</a></li><li><a href="#" class="hover:text-white">Track Order</a></li><li><a href="#" class="hover:text-white">FAQs</a></li></ul></div>
     </div>
@@ -565,21 +567,10 @@
     cart = [];
     updateCartUI();
     document.getElementById('checkoutPage').classList.add('hidden');
-    showShopPage(e);
+    window.location.href = 'shop.html';
   }
 
   // -------- NAVIGATION FUNCTIONS --------
-  function showShopPage(e) { 
-    if (e) e.preventDefault(); 
-    document.getElementById('shopPageContent').classList.remove('hidden'); 
-    document.getElementById('productPage').classList.add('hidden'); 
-    document.getElementById('cartPage').classList.add('hidden'); 
-    document.getElementById('checkoutPage').classList.add('hidden'); 
-    document.getElementById('wishlistPage').classList.add('hidden'); 
-    renderShopProducts(currentFilter); 
-    window.scrollTo({ top: 0, behavior: 'smooth' }); 
-  }
-
   function showProductPage(product) { 
     document.getElementById('shopPageContent').classList.add('hidden'); 
     document.getElementById('productPage').classList.remove('hidden'); 
