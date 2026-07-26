@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>About Us · saree store demo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    .tail-container { font-family: 'Inter', system-ui, sans-serif; }
+    .heading-font { font-family: 'Playfair Display', sans-serif; }
+    
+    .nav-link { position: relative; }
+    .nav-link:after { content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 0; background-color: #9f1239; transition: all 0.3s ease; }
+    .nav-link:hover:after { width: 100%; }
+    .dropdown-group:hover .dropdown-menu { display: block; }
+    .dropdown-menu { display: none; min-width: 160px; }
+    
+    .about-hero {
+      background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 50%, #7f1d1d 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .about-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    
+    .stat-card {
+      transition: all 0.3s ease;
+      background: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.15);
+    }
+    
+    .timeline-item {
+      border-left: 3px solid #9f1239;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -7px;
+      top: 0;
+      width: 12px;
+      height: 12px;
+      background: #9f1239;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+    
+    .value-card {
+      transition: all 0.3s ease;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      background: white;
+      border: 1px solid #f3f4f6;
+      text-align: center;
+    }
+    .value-card:hover {
+      border-color: #9f1239;
+      box-shadow: 0 8px 20px rgba(159, 18, 57, 0.1);
+    }
+    .value-card .icon-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #fef2f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.5rem;
+      color: #9f1239;
+    }
+    
+    .team-card {
+      transition: all 0.3s ease;
+      background: white;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .team-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.15);
+    }
+    .team-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+    
+    @media (max-width: 640px) {
+      .heading-font.text-4xl { font-size: 1.8rem !important; }
+      .text-3xl { font-size: 1.5rem !important; }
+      .px-4 { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
+      .stat-card { padding: 1rem !important; }
+      .stat-card .text-3xl { font-size: 1.5rem !important; }
+      .value-card { padding: 1rem !important; }
+      .value-card .icon-circle { width: 48px; height: 48px; font-size: 1.2rem; }
+      .team-card img { height: 180px; }
+    }
+    @media (max-width: 768px) {
+      .nav-menu { gap: 0.75rem !important; flex-wrap: wrap; justify-content: center; }
+      .dropdown-menu { left: 0; right: auto; min-width: 140px; }
+    }
+
+    .cart-item { transition: all 0.2s; }
+    .cart-item:hover { background: #f9fafb; }
+    .checkout-input:focus { border-color: #9f1239; ring: 2px solid #9f1239; }
+    .cart-summary-card { background: linear-gradient(145deg, #ffffff, #f8fafc); }
+    .checkout-card { background: white; border-radius: 1.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.06); }
+    .order-item { border-bottom: 1px solid #f1f5f9; }
+    .order-item:last-child { border-bottom: none; }
+  </style>
+</head>
+<body class="tail-container bg-gray-50 text-gray-800">
+
+<!-- ========= HEADER ========= -->
+<header class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto">
+    <div class="bg-red-900 text-white text-xs sm:text-sm py-2 px-2 text-center tracking-wide">Free Shipping above ₹4,999 (India) · Timeless Elegance · 200 New Arrivals Today</div>
+    <div class="flex flex-wrap items-center justify-between px-3 sm:px-4 py-2 sm:py-3 gap-2">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 sm:w-10 sm:h-10 bg-red-900 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-2xl shadow-md">N</div>
+        <div><span class="text-lg sm:text-3xl font-bold tracking-tight heading-font text-red-900">saree store demo</span><span class="block text-[6px] sm:text-[10px] uppercase tracking-widest text-gray-500 -mt-0.5">since 1928</span></div>
+      </div>
+      <div class="flex items-center gap-3 sm:gap-6 text-base sm:text-xl">
+        <a href="#" class="hover:text-red-900 transition-colors"><i class="fa-regular fa-user"></i></a>
+        <a href="#" onclick="openWishlist(event)" class="relative hover:text-red-900 transition-colors"><i class="fa-regular fa-heart"></i><span class="absolute -top-1 -right-1.5 bg-red-600 text-white text-[8px] sm:text-[10px] w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center" id="wishlistCount">0</span></a>
+        <a href="#" onclick="openCart(event)" class="relative hover:text-red-900 transition-colors"><i class="fa-solid fa-bag-shopping"></i><span class="absolute -top-1 -right-1.5 bg-red-600 text-white text-[8px] sm:text-[10px] w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center" id="cartCount">0</span></a>
+      </div>
+    </div>
+    <nav class="border-t border-gray-200">
+      <div class="max-w-7xl mx-auto px-2 sm:px-3">
+        <ul class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-8 md:gap-12 text-[10px] sm:text-sm font-medium py-2 sm:py-3 nav-menu">
+          <li><a href="index.html" class="nav-link hover:text-red-900 transition-colors">HOME</a></li>
+          <li class="relative dropdown-group"><a href="https://sareestoredemo.aamir68599.workers.dev/Shop" class="nav-link hover:text-red-900 transition-colors flex items-center gap-0.5">SHOP <i class="fa-solid fa-chevron-down text-[6px] sm:text-[10px] ml-0.5"></i></a>
+            <div class="dropdown-menu absolute left-0 top-full mt-1 bg-white shadow-lg rounded-xl border border-gray-100 py-1.5 z-40 w-36 sm:w-44">
+              <a href="https://sareestoredemo.aamir68599.workers.dev/Shop" class="block px-3 sm:px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-[10px] sm:text-sm">Ikat</a>
+              <a href="https://sareestoredemo.aamir68599.workers.dev/Shop" class="block px-3 sm:px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-[10px] sm:text-sm">Kanjivaram</a>
+              <a href="https://sareestoredemo.aamir68599.workers.dev/Shop" class="block px-3 sm:px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-[10px] sm:text-sm">Banarasi</a>
+              <a href="https://sareestoredemo.aamir68599.workers.dev/Shop" class="block px-3 sm:px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-[10px] sm:text-sm">Chiffon</a>
+              <a href="https://sareestoredemo.aamir68599.workers.dev/Shop" class="block px-3 sm:px-4 py-1.5 hover:bg-red-50 hover:text-red-900 text-[10px] sm:text-sm">Bridal Collection</a>
+            </div>
+          </li>
+          <li><a href="about.html" class="nav-link text-red-900 font-semibold">ABOUT US</a></li>
+          <li><a href="#" class="nav-link hover:text-red-900 transition-colors">CONTACT</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ========= ABOUT HERO ========= -->
+<section class="about-hero text-white py-12 sm:py-20 relative">
+  <div class="max-w-7xl mx-auto px-3 sm:px-6 relative z-10">
+    <div class="text-center max-w-3xl mx-auto">
+      <span class="inline-block bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-xs sm:text-sm font-medium mb-4">✨ Our Story</span>
+      <h1 class="text-3xl sm:text-5xl heading-font font-bold mb-4">Weaving Dreams Since 1928</h1>
+      <p class="text-base sm:text-lg text-white/90 leading-relaxed">From the heart of India, we bring you the finest silk sarees — handpicked, handcrafted, and steeped in tradition. Every saree tells a story of artistry, culture, and timeless elegance.</p>
+      <div class="flex flex-wrap justify-center gap-3 sm:gap-6 mt-6">
+        <div class="flex items-center gap-2 text-sm sm:text-base"><i class="fa-regular fa-circle-check text-yellow-400"></i> 10,000+ Happy Customers</div>
+        <div class="flex items-center gap-2 text-sm sm:text-base"><i class="fa-regular fa-circle-check text-yellow-400"></i> 95+ Years of Trust</div>
+        <div class="flex items-center gap-2 text-sm sm:text-base"><i class="fa-regular fa-circle-check text-yellow-400"></i> 100% Authentic Silk</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========= STATS ========= -->
+<section class="max-w-7xl mx-auto px-3 sm:px-6 -mt-6 sm:-mt-8 relative z-20">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
+    <div class="stat-card">
+      <div class="text-2xl sm:text-4xl font-bold text-red-900 heading-font">95+</div>
+      <p class="text-xs sm:text-sm text-gray-600">Years of Excellence</p>
+    </div>
+    <div class="stat-card">
+      <div class="text-2xl sm:text-4xl font-bold text-red-900 heading-font">10K+</div>
+      <p class="text-xs sm:text-sm text-gray-600">Happy Customers</p>
+    </div>
+    <div class="stat-card">
+      <div class="text-2xl sm:text-4xl font-bold text-red-900 heading-font">500+</div>
+      <p class="text-xs sm:text-sm text-gray-600">Saree Varieties</p>
+    </div>
+    <div class="stat-card">
+      <div class="text-2xl sm:text-4xl font-bold text-red-900 heading-font">4.9★</div>
+      <p class="text-xs sm:text-sm text-gray-600">Average Rating</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========= OUR JOURNEY ========= -->
+<section class="max-w-7xl mx-auto px-3 sm:px-6 py-12 sm:py-20">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+    <div>
+      <span class="text-red-900 font-semibold text-sm tracking-wider uppercase">Our Journey</span>
+      <h2 class="text-2xl sm:text-4xl heading-font font-bold mt-2 mb-4">From a Small Shop to a Global Legacy</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">What started as a small saree store in the heart of Tamil Nadu has now grown into a beloved brand — cherished by women across the globe. Our commitment to quality, authenticity, and customer delight has remained unwavering through generations.</p>
+      <p class="text-gray-600 leading-relaxed">Every saree we sell is a piece of art — woven by skilled artisans who have inherited this craft from their ancestors. We work directly with weavers to bring you the finest kanjivaram, banarasi, and ikat sarees at the most affordable prices.</p>
+      <div class="flex flex-wrap gap-3 sm:gap-4 mt-6">
+        <a href="https://sareestoredemo.aamir68599.workers.dev/Shop" class="bg-red-900 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-red-800 transition">Explore Our Collection</a>
+        <a href="#" class="border border-red-900 text-red-900 px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-red-50 transition">Watch Our Story</a>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-3">
+      <img src="https://sareestoredemo.netlify.app/Ikat%20Sarees.jpg" alt="Ikat Sarees" class="rounded-2xl w-full h-48 sm:h-64 object-cover shadow-md" />
+      <img src="https://sareestoredemo.netlify.app/Kanjivaram.jpg" alt="Kanjivaram Sarees" class="rounded-2xl w-full h-48 sm:h-64 object-cover shadow-md mt-4 sm:mt-8" />
+      <img src="https://sareestoredemo.netlify.app/Banarasi.jpg" alt="Banarasi Sarees" class="rounded-2xl w-full h-48 sm:h-64 object-cover shadow-md -mt-4 sm:-mt-8" />
+      <img src="https://sareestoredemo.netlify.app/Chiffon.jpg" alt="Chiffon Sarees" class="rounded-2xl w-full h-48 sm:h-64 object-cover shadow-md" />
+    </div>
+  </div>
+</section>
+
+<!-- ========= TIMELINE ========= -->
+<section class="bg-white py-12 sm:py-20">
+  <div class="max-w-7xl mx-auto px-3 sm:px-6">
+    <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+      <span class="text-red-900 font-semibold text-sm tracking-wider uppercase">Milestones</span>
+      <h2 class="text-2xl sm:text-4xl heading-font font-bold mt-2">Our Journey Through Time</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <div class="timeline-item">
+        <div class="text-red-900 font-bold text-lg heading-font">1928</div>
+        <h4 class="font-semibold text-gray-800">The Beginning</h4>
+        <p class="text-sm text-gray-600">Founded as a small saree shop in Kanchipuram, Tamil Nadu, with a vision to bring authentic silk to every Indian woman.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="text-red-900 font-bold text-lg heading-font">1965</div>
+        <h4 class="font-semibold text-gray-800">Expansion to Chennai</h4>
+        <p class="text-sm text-gray-600">Opened our first flagship store in Chennai, introducing the city to our exquisite Kanjivaram collection.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="text-red-900 font-bold text-lg heading-font">1998</div>
+        <h4 class="font-semibold text-gray-800">Going Digital</h4>
+        <p class="text-sm text-gray-600">Embraced technology to make our sarees accessible to women across India through our first online catalog.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="text-red-900 font-bold text-lg heading-font">2024</div>
+        <h4 class="font-semibold text-gray-800">Global Presence</h4>
+        <p class="text-sm text-gray-600">Now shipping to over 50 countries, bringing the beauty of Indian silk to the world.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========= OUR VALUES ========= -->
+<section class="max-w-7xl mx-auto px-3 sm:px-6 py-12 sm:py-20">
+  <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+    <span class="text-red-900 font-semibold text-sm tracking-wider uppercase">Our Values</span>
+    <h2 class="text-2xl sm:text-4xl heading-font font-bold mt-2">What Makes Us Different</h2>
+    <p class="text-gray-600 mt-3">These are the principles that guide everything we do — from sourcing to shipping.</p>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+    <div class="value-card">
+      <div class="icon-circle"><i class="fa-solid fa-hand-holding-heart"></i></div>
+      <h4 class="font-semibold text-gray-800">Authenticity</h4>
+      <p class="text-sm text-gray-600">100% genuine silk sarees sourced directly from master weavers.</p>
+    </div>
+    <div class="value-card">
+      <div class="icon-circle"><i class="fa-solid fa-award"></i></div>
+      <h4 class="font-semibold text-gray-800">Quality</h4>
+      <p class="text-sm text-gray-600">Rigorous quality checks to ensure every saree meets our high standards.</p>
+    </div>
+    <div class="value-card">
+      <div class="icon-circle"><i class="fa-solid fa-people-group"></i></div>
+      <h4 class="font-semibold text-gray-800">Community</h4>
+      <p class="text-sm text-gray-600">Empowering weavers with fair wages and sustainable livelihood.</p>
+    </div>
+    <div class="value-card">
+      <div class="icon-circle"><i class="fa-solid fa-leaf"></i></div>
+      <h4 class="font-semibold text-gray-800">Sustainability</h4>
+      <p class="text-sm text-gray-600">Eco-friendly packaging and practices for a greener future.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========= SAREE COLLECTIONS ========= -->
+<section class="bg-red-50 py-12 sm:py-20">
+  <div class="max-w-7xl mx-auto px-3 sm:px-6">
+    <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+      <span class="text-red-900 font-semibold text-sm tracking-wider uppercase">Our Collections</span>
+      <h2 class="text-2xl sm:text-4xl heading-font font-bold mt-2">The Art of Indian Weaving</h2>
+      <p class="text-gray-600 mt-3">Each of our collections celebrates a unique weaving tradition from different parts of India.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+        <img src="https://sareestoredemo.netlify.app/Ikat%20Sarees.jpg" alt="Ikat Sarees" class="w-full h-48 sm:h-56 object-cover" />
+        <div class="p-4 sm:p-6">
+          <h4 class="font-bold text-lg heading-font">Ikat Sarees</h4>
+          <p class="text-sm text-gray-600">Handloom wonders with distinctive patterns, crafted using the tie-and-dye technique from Odisha.</p>
+          <a href="https://sareestoredemo.aamir68599.workers.dev/Shop" class="inline-block mt-3 text-red-900 font-semibold text-sm hover:underline">Explore Ikat →</a>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+        <img src="https://sareestoredemo.netlify.app/Kanjivaram.jpg" alt="Kanjivaram Sarees" class="w-full h-48 sm:h-56 object-cover" />
+        <div class="p-4 sm:p-6">
+          <h4 class="font-bold text-lg heading-font">Kanjivaram Sarees</h4>
+          <p class="text-sm text-gray-600">Royal silk sarees from Tamil Nadu, known for their vibrant colors, heavy zari work, and timeless elegance.</p>
+          <a href="https://sareestoredemo.aamir68599.workers.dev/Shop" class="inline-block mt-3 text-red-900 font-semibold text-sm hover:underline">Explore Kanjivaram →</a>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+        <img src="https://sareestoredemo.netlify.app/Banarasi.jpg" alt="Banarasi Sarees" class="w-full h-48 sm:h-56 object-cover" />
+        <div class="p-4 sm:p-6">
+          <h4 class="font-bold text-lg heading-font">Banarasi Sarees</h4>
+          <p class="text-sm text-gray-600">Exquisite silk sarees from Varanasi, featuring intricate gold and silver brocade work.</p>
+          <a href="https://sareestoredemo.aamir68599.workers.dev/Shop" class="inline-block mt-3 text-red-900 font-semibold text-sm hover:underline">Explore Banarasi →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========= TESTIMONIALS ========= -->
+<section class="max-w-7xl mx-auto px-3 sm:px-6 py-12 sm:py-20">
+  <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+    <span class="text-red-900 font-semibold text-sm tracking-wider uppercase">Testimonials</span>
+    <h2 class="text-2xl sm:text-4xl heading-font font-bold mt-2">What Our Customers Say</h2>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+    <div class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-gray-100">
+      <div class="flex text-yellow-400 text-sm mb-2">★★★★★</div>
+      <p class="text-sm text-gray-700 italic">"The kanjivaram saree I ordered is absolutely stunning! The quality is exceptional and it arrived beautifully packaged. Thank you for making my wedding trousseau so special."</p>
+      <div class="mt-3 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-900 font-bold">P</div>
+        <div><p class="font-semibold text-sm">Priya Sharma</p><p class="text-xs text-gray-500">Delhi, India</p></div>
+      </div>
+    </div>
+    <div class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-gray-100">
+      <div class="flex text-yellow-400 text-sm mb-2">★★★★★</div>
+      <p class="text-sm text-gray-700 italic">"I've been buying sarees from saree store demo for over 10 years. The quality is consistently excellent and their customer service is unmatched. Highly recommended!"</p>
+      <div class="mt-3 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-900 font-bold">R</div>
+        <div><p class="font-semibold text-sm">Rajeshwari</p><p class="text-xs text-gray-500">Chennai, India</p></div>
+      </div>
+    </div>
+    <div class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-gray-100">
+      <div class="flex text-yellow-400 text-sm mb-2">★★★★★</div>
+      <p class="text-sm text-gray-700 italic">"Living in the US, I was skeptical about ordering sarees online. But saree store demo delivered authentic, high-quality sarees within a week. I'm a customer for life!"</p>
+      <div class="mt-3 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-900 font-bold">M</div>
+        <div><p class="font-semibold text-sm">Meera Patel</p><p class="text-xs text-gray-500">New York, USA</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========= CONTACT CTA ========= -->
+<section class="bg-red-900 text-white py-12 sm:py-16">
+  <div class="max-w-4xl mx-auto px-3 sm:px-6 text-center">
+    <h2 class="text-2xl sm:text-4xl heading-font font-bold mb-3">Have Questions? We're Here to Help</h2>
+    <p class="text-white/80 text-sm sm:text-base mb-6">Reach out to us for assistance with your order, styling tips, or any other queries.</p>
+    <div class="flex flex-wrap justify-center gap-3 sm:gap-4">
+      <a href="#" class="bg-white text-red-900 px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-gray-100 transition">Contact Us</a>
+      <a href="#" class="border border-white text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-white/10 transition"><i class="fa-brands fa-whatsapp mr-2"></i> WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========= CART PAGE ========= -->
+<div id="cartPage" class="hidden fixed inset-0 bg-black/50 z-50 overflow-y-auto">
+  <div class="min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl heading-font font-bold">Your Cart</h2>
+        <button onclick="closeCart()" class="text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+      </div>
+      <div id="cartItemsContainer" class="divide-y divide-gray-100"></div>
+      <div class="mt-4 pt-4 border-t">
+        <div class="flex justify-between font-bold text-lg"><span>Total</span><span id="cartTotalSummary" class="text-red-900">₹0</span></div>
+        <button onclick="proceedToCheckout(event)" class="w-full mt-4 bg-red-900 text-white py-3 rounded-full font-semibold hover:bg-red-800 transition">Proceed to Checkout</button>
+        <button onclick="closeCart()" class="w-full mt-2 text-red-900 hover:underline text-sm">Continue Shopping</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========= WISHLIST PAGE ========= -->
+<div id="wishlistPage" class="hidden fixed inset-0 bg-black/50 z-50 overflow-y-auto">
+  <div class="min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl heading-font font-bold">Your Wishlist</h2>
+        <button onclick="closeWishlist()" class="text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+      </div>
+      <div id="wishlistContainer" class="grid grid-cols-2 md:grid-cols-3 gap-4"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========= CHECKOUT MODAL ========= -->
+<div id="checkoutModal" class="hidden fixed inset-0 bg-black/50 z-50 overflow-y-auto">
+  <div class="min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl heading-font font-bold">Checkout</h2>
+        <button onclick="closeCheckout()" class="text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+      </div>
+      <form id="checkoutForm" onsubmit="handleCheckout(event)" class="space-y-4">
+        <div><label class="block text-sm font-medium mb-1">Full Name</label><input type="text" id="fullName" required class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-red-900 checkout-input" placeholder="Your Name" /></div>
+        <div><label class="block text-sm font-medium mb-1">Email</label><input type="email" id="email" required class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-red-900 checkout-input" placeholder="you@example.com" /></div>
+        <div><label class="block text-sm font-medium mb-1">Phone Number</label><input type="tel" id="phone" required class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-red-900 checkout-input" placeholder="+91 9876543210" /></div>
+        <div><label class="block text-sm font-medium mb-1">Shipping Address</label><textarea id="address" rows="2" required class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-red-900 checkout-input" placeholder="Street, locality, landmark"></textarea></div>
+        <div><label class="block text-sm font-medium mb-1">Pincode</label><input type="text" id="pincode" required class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-red-900 checkout-input" placeholder="110001" /></div>
+        <div><label class="block text-sm font-medium mb-2">Payment Method</label>
+          <div class="flex flex-wrap gap-5"><label class="flex items-center gap-2"><input type="radio" name="payment" value="cod" checked class="w-4 h-4 text-red-900" /> Cash on Delivery</label><label class="flex items-center gap-2"><input type="radio" name="payment" value="prepaid" class="w-4 h-4 text-red-900" /> Prepaid (UPI)</label></div>
+        </div>
+        <div id="upiSection" class="hidden border-t pt-4 mt-2">
+          <p class="text-sm font-medium mb-2">Enter UPI ID</p>
+          <input type="text" id="upiId" placeholder="example@upi" class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-red-900 checkout-input" />
+        </div>
+        <button type="submit" class="w-full bg-red-900 text-white py-3 rounded-full font-semibold text-base hover:bg-red-800 transition">Place Order</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ========= FOOTER ========= -->
+<footer class="bg-gray-900 text-gray-300">
+  <div class="max-w-7xl mx-auto px-3 sm:px-6 pt-8 sm:pt-16 pb-4 sm:pb-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-10">
+      <div class="col-span-2 sm:col-span-1"><div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-6"><div class="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center text-red-900 font-bold text-sm sm:text-lg">N</div><span class="text-lg sm:text-2xl font-bold text-white heading-font">Nalli</span></div><p class="text-[10px] sm:text-sm">Handpicked finest silk sarees from the heart of India since 1928.</p></div>
+      <div><h4 class="font-semibold text-white mb-2 sm:mb-4 text-sm sm:text-base">Shop</h4><ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-sm"><li><a href="https://sareestoredemo.aamir68599.workers.dev/Shop" class="hover:text-white">All Sarees</a></li><li><a href="https://sareestoredemo.aamir68599.workers.dev/Shop" class="hover:text-white">New Arrivals</a></li><li><a href="https://sareestoredemo.aamir68599.workers.dev/Shop" class="hover:text-white">Best Sellers</a></li><li><a href="https://sareestoredemo.aamir68599.workers.dev/Shop" class="hover:text-white">Sale</a></li></ul></div>
+      <div><h4 class="font-semibold text-white mb-2 sm:mb-4 text-sm sm:text-base">Explore</h4><ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-sm"><li><a href="about.html" class="hover:text-white">About Us</a></li><li><a href="#" class="hover:text-white">Our Heritage</a></li><li><a href="#" class="hover:text-white">Blog</a></li><li><a href="#" class="hover:text-white">Contact</a></li></ul></div>
+      <div><h4 class="font-semibold text-white mb-2 sm:mb-4 text-sm sm:text-base">Support</h4><ul class="space-y-1 sm:space-y-2 text-[10px] sm:text-sm"><li><a href="#" class="hover:text-white">Shipping Policy</a></li><li><a href="#" class="hover:text-white">Returns</a></li><li><a href="#" class="hover:text-white">Track Order</a></li><li><a href="#" class="hover:text-white">FAQs</a></li></ul></div>
+    </div>
+    <div class="border-t border-gray-800 mt-6 sm:mt-12 pt-4 sm:pt-8 text-[8px] sm:text-xs flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3"><p>© 2026 saree store demo. All rights reserved.</p><div class="flex gap-3 sm:gap-6 text-sm sm:text-base"><i class="fa-brands fa-instagram cursor-pointer hover:text-white"></i><i class="fa-brands fa-facebook cursor-pointer hover:text-white"></i><i class="fa-brands fa-whatsapp cursor-pointer hover:text-white"></i></div></div>
+  </div>
+</footer>
+
+<script>
+  // ======== PRODUCT DATA ========
+  const products = [
+    { id: 1, name: "Off White Linen Ikkat Saree", price: "₹899", image: "https://sareestoredemo.netlify.app/ikkat%20printed%20saree.webp", category: "Ikat" },
+    { id: 6, name: "C J Enterprise Women's Pure Kanjivaram Silk Saree (Pari122-51)", price: "₹497", image: "https://sareestoredemo.aamir68599.workers.dev/Kanjivaram%204.jpg", category: "Kanjivaram" },
+    { id: 7, name: "Mehrang Women's Banarasi Silk Kanjivaram Saree (Pure Zari, Woven)", price: "₹999", image: "https://sareestoredemo.aamir68599.workers.dev/Banarasi%20%201.jpg", category: "Banarasi" },
+    { id: 8, name: "Noel Dual Shade Butter Chiffon Saree with Self Blouse", price: "₹3,030", image: "https://sareestoredemo.aamir68599.workers.dev/Chiffon.jpg", category: "Chiffon" },
+    { id: 9, name: "Kanchivaram Bridal Saree (Heavy Gold Zari Woven)", price: "₹1,599", image: "https://sareestoredemo.aamir68599.workers.dev/Bridal%20Sarees.webp", category: "Bridal" }
+  ];
+
+  // ======== CART STATE ========
+  let cart = [];
+  let wishlist = [];
+
+  // ======== WISHLIST FUNCTIONS ========
+  function toggleWishlist(productId) {
+    const idx = wishlist.findIndex(p => p.id === productId);
+    if (idx > -1) {
+      wishlist.splice(idx, 1);
+    } else {
+      const product = products.find(p => p.id === productId);
+      if (product) wishlist.push({ ...product });
+    }
+    updateWishlistUI();
+  }
+
+  function updateWishlistUI() {
+    const count = document.getElementById('wishlistCount');
+    if (count) count.textContent = wishlist.length;
+    const container = document.getElementById('wishlistContainer');
+    if (container) {
+      if (wishlist.length === 0) {
+        container.innerHTML = '<div class="col-span-full text-center py-8 text-gray-500">Your wishlist is empty.</div>';
+        return;
+      }
+      container.innerHTML = '';
+      wishlist.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-xl overflow-hidden border border-gray-100';
+        card.innerHTML = `<img src="${product.image}" class="w-full h-40 object-cover" alt="${product.name}" /><div class="p-3"><h3 class="font-semibold text-sm line-clamp-2">${product.name}</h3><p class="text-red-900 font-bold">${product.price}</p><button onclick="event.stopPropagation(); toggleWishlist(${product.id})" class="mt-2 text-red-600 text-sm">Remove</button></div>`;
+        container.appendChild(card);
+      });
+    }
+  }
+
+  function openWishlist(e) {
+    if (e) e.preventDefault();
+    document.getElementById('wishlistPage').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    updateWishlistUI();
+  }
+
+  function closeWishlist() {
+    document.getElementById('wishlistPage').classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  }
+
+  // ======== CART FUNCTIONS ========
+  function updateCartUI() {
+    const count = document.getElementById('cartCount');
+    if (count) count.textContent = cart.length;
+    const container = document.getElementById('cartItemsContainer');
+    if (container) {
+      if (cart.length === 0) {
+        container.innerHTML = '<div class="p-4 text-center text-gray-500">Your cart is empty.</div>';
+        document.getElementById('cartTotalSummary').textContent = '₹0';
+        return;
+      }
+      let html = '';
+      let total = 0;
+      cart.forEach((item, index) => {
+        const priceNum = parseInt(item.price.replace(/[₹,]/g, ''));
+        total += priceNum;
+        html += `<div class="flex items-center gap-3 py-3 border-b"><img src="${item.image}" class="w-16 h-16 rounded-xl object-cover" /><div class="flex-1"><p class="font-medium text-sm">${item.name}</p><p class="text-red-900 font-bold">${item.price}</p></div><button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 text-sm"><i class="fa-regular fa-trash-can"></i></button></div>`;
+      });
+      container.innerHTML = html;
+      document.getElementById('cartTotalSummary').textContent = `₹${total}`;
+    }
+  }
+
+  function addToCart(product) {
+    cart.push(product);
+    updateCartUI();
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartUI();
+  }
+
+  function openCart(e) {
+    if (e) e.preventDefault();
+    document.getElementById('cartPage').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    updateCartUI();
+  }
+
+  function closeCart() {
+    document.getElementById('cartPage').classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  }
+
+  function proceedToCheckout(e) {
+    if (e) e.preventDefault();
+    if (cart.length === 0) { alert('Your cart is empty.'); return; }
+    closeCart();
+    document.getElementById('checkoutModal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    const total = cart.reduce((sum, p) => sum + parseInt(p.price.replace(/[₹,]/g, '')), 0);
+    document.getElementById('checkoutTotal')?.remove();
+    const totalEl = document.createElement('div');
+    totalEl.id = 'checkoutTotal';
+    totalEl.className = 'font-bold text-lg text-red-900 mt-2';
+    totalEl.textContent = `₹${total}`;
+  }
+
+  function closeCheckout() {
+    document.getElementById('checkoutModal').classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  }
+
+  document.addEventListener('change', function(e) {
+    if (e.target && e.target.name === 'payment') {
+      const upiSection = document.getElementById('upiSection');
+      if (e.target.value === 'prepaid') {
+        upiSection.classList.remove('hidden');
+      } else {
+        upiSection.classList.add('hidden');
+      }
+    }
+  });
+
+  function handleCheckout(e) {
+    e.preventDefault();
+    const name = document.getElementById('fullName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const pincode = document.getElementById('pincode').value.trim();
+    const paymentMethod = document.querySelector('input[name="payment"]:checked');
+    if (!name || !email || !phone || !address || !pincode) { alert('Please fill all required fields.'); return; }
+    if (paymentMethod.value === 'prepaid') {
+      const upi = document.getElementById('upiId').value.trim();
+      if (!upi) { alert('Please enter UPI ID for prepaid payment.'); return; }
+      alert('✅ Payment detected! Order placed successfully.');
+    } else {
+      alert('✅ Order placed with Cash on Delivery!');
+    }
+    cart = [];
+    updateCartUI();
+    closeCheckout();
+    alert('🎉 Thank you for your order! You will receive a confirmation email shortly.');
+  }
+</script>
+</body>
+</html>
