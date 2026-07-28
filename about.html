@@ -18,6 +18,50 @@
     .dropdown-group:hover .dropdown-menu { display: block; }
     .dropdown-menu { display: none; min-width: 160px; }
     
+    /* -------- SEARCH BAR STYLES -------- */
+    .search-input:focus { outline: none; border-color: #9f1239; box-shadow: 0 0 0 3px rgba(159,18,57,0.2); }
+    .header-search-wrap { flex: 1 1 auto; min-width: 120px; }
+    
+    @media (max-width: 640px) {
+      .header-search-wrap { flex: 1 1 100% !important; order: 3; margin-top: 0.25rem; }
+      .header-search-wrap form { width: 100%; }
+    }
+    @media (min-width: 641px) {
+      .header-search-wrap { order: 0; }
+    }
+    
+    /* search results dropdown */
+    #searchResults {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+      margin-top: 0.25rem;
+      background: white;
+      border-radius: 0.75rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+      border: 1px solid #e5e7eb;
+      max-height: 280px;
+      overflow-y: auto;
+      display: none;
+      z-index: 60;
+    }
+    #searchResults .result-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-bottom: 1px solid #f3f4f6;
+      transition: background 0.15s;
+    }
+    #searchResults .result-item:last-child { border-bottom: none; }
+    #searchResults .result-item:hover { background: #f9fafb; }
+    #searchResults .result-item img { width: 40px; height: 40px; border-radius: 0.5rem; object-fit: cover; }
+    #searchResults .result-item .name { font-size: 0.85rem; font-weight: 500; color: #1f2937; }
+    #searchResults .result-item .price { font-size: 0.75rem; font-weight: 600; color: #9f1239; }
+    #searchResults .no-results { padding: 1.5rem; text-align: center; color: #6b7280; font-size: 0.9rem; }
+    
     .about-hero {
       background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 50%, #7f1d1d 100%);
       position: relative;
@@ -149,10 +193,23 @@
   <div class="max-w-7xl mx-auto">
     <div class="bg-red-900 text-white text-xs sm:text-sm py-2 px-2 text-center tracking-wide">Free Shipping above ₹4,999 (India) · Timeless Elegance · 200 New Arrivals Today</div>
     <div class="flex flex-wrap items-center justify-between px-3 sm:px-4 py-2 sm:py-3 gap-2">
+      <!-- LEFT: Logo -->
       <div class="flex items-center gap-2">
         <div class="w-8 h-8 sm:w-10 sm:h-10 bg-red-900 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-2xl shadow-md">N</div>
         <div><span class="text-lg sm:text-3xl font-bold tracking-tight heading-font text-red-900">saree store demo</span><span class="block text-[6px] sm:text-[10px] uppercase tracking-widest text-gray-500 -mt-0.5">since 1928</span></div>
       </div>
+      
+      <!-- SEARCH BAR - MIDDLE (responsive) -->
+      <div class="header-search-wrap flex-1 max-w-xs sm:max-w-md mx-2 sm:mx-4 w-full sm:w-auto relative">
+        <form onsubmit="searchProducts(event)" class="relative flex items-center">
+          <input type="text" id="searchInput" placeholder="Search sarees..." class="search-input w-full border border-gray-300 rounded-full py-1.5 sm:py-2 px-4 pr-10 text-sm bg-gray-50 focus:bg-white transition" />
+          <button type="submit" class="absolute right-2 text-gray-500 hover:text-red-900 transition"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        <!-- search results dropdown -->
+        <div id="searchResults"></div>
+      </div>
+
+      <!-- RIGHT: Icons -->
       <div class="flex items-center gap-3 sm:gap-6 text-base sm:text-xl">
         <a href="#" class="hover:text-red-900 transition-colors"><i class="fa-regular fa-user"></i></a>
         <a href="#" onclick="openWishlist(event)" class="relative hover:text-red-900 transition-colors"><i class="fa-regular fa-heart"></i><span class="absolute -top-1 -right-1.5 bg-red-600 text-white text-[8px] sm:text-[10px] w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center" id="wishlistCount">0</span></a>
@@ -386,10 +443,10 @@
   </div>
 </section>
 
-<!-- ========= CART PAGE ========= -->
-<div id="cartPage" class="hidden fixed inset-0 bg-black/50 z-50 overflow-y-auto">
+<!-- ========= CART MODAL ========= -->
+<div id="cartModal" class="hidden fixed inset-0 bg-black/50 z-50 overflow-y-auto">
   <div class="min-h-screen flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6">
       <div class="flex justify-between items-center mb-4">
         <h2 class="text-2xl heading-font font-bold">Your Cart</h2>
         <button onclick="closeCart()" class="text-gray-500 hover:text-gray-700 text-xl">&times;</button>
@@ -404,10 +461,10 @@
   </div>
 </div>
 
-<!-- ========= WISHLIST PAGE ========= -->
-<div id="wishlistPage" class="hidden fixed inset-0 bg-black/50 z-50 overflow-y-auto">
+<!-- ========= WISHLIST MODAL ========= -->
+<div id="wishlistModal" class="hidden fixed inset-0 bg-black/50 z-50 overflow-y-auto">
   <div class="min-h-screen flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6">
+    <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6">
       <div class="flex justify-between items-center mb-4">
         <h2 class="text-2xl heading-font font-bold">Your Wishlist</h2>
         <button onclick="closeWishlist()" class="text-gray-500 hover:text-gray-700 text-xl">&times;</button>
@@ -467,6 +524,68 @@
     { id: 9, name: "Kanchivaram Bridal Saree (Heavy Gold Zari Woven)", price: "₹1,599", image: "https://sareestoredemo.aamir68599.workers.dev/Bridal%20Sarees.webp", category: "Bridal" }
   ];
 
+  // ======== SEARCH FUNCTIONALITY ========
+  function searchProducts(e) {
+    e.preventDefault();
+    const query = document.getElementById('searchInput').value.trim().toLowerCase();
+    const results = document.getElementById('searchResults');
+    if (!query) { results.style.display = 'none'; return; }
+    
+    const matched = products.filter(p => p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
+    if (matched.length === 0) {
+      results.innerHTML = '<div class="no-results">No products found</div>';
+    } else {
+      let html = '';
+      matched.forEach(p => {
+        html += `<div class="result-item" onclick="showProduct(${p.id})">
+          <img src="${p.image}" alt="${p.name}" />
+          <div><div class="name">${p.name}</div><div class="price">${p.price}</div></div>
+        </div>`;
+      });
+      results.innerHTML = html;
+    }
+    results.style.display = 'block';
+  }
+
+  // Close search on outside click
+  document.addEventListener('click', function(e) {
+    const searchWrap = document.querySelector('.header-search-wrap');
+    if (searchWrap && !searchWrap.contains(e.target)) {
+      document.getElementById('searchResults').style.display = 'none';
+    }
+  });
+
+  // Live search on input
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const query = this.value.trim().toLowerCase();
+    const results = document.getElementById('searchResults');
+    if (!query) { results.style.display = 'none'; return; }
+    const matched = products.filter(p => p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
+    if (matched.length === 0) {
+      results.innerHTML = '<div class="no-results">No products found</div>';
+    } else {
+      let html = '';
+      matched.forEach(p => {
+        html += `<div class="result-item" onclick="showProduct(${p.id})">
+          <img src="${p.image}" alt="${p.name}" />
+          <div><div class="name">${p.name}</div><div class="price">${p.price}</div></div>
+        </div>`;
+      });
+      results.innerHTML = html;
+    }
+    results.style.display = 'block';
+  });
+
+  function showProduct(id) {
+    const product = products.find(p => p.id === id);
+    if (product) {
+      alert(`Viewing: ${product.name}\nPrice: ${product.price}\nCategory: ${product.category}`);
+      // Close search results
+      document.getElementById('searchResults').style.display = 'none';
+      document.getElementById('searchInput').value = '';
+    }
+  }
+
   // ======== CART STATE ========
   let cart = [];
   let wishlist = [];
@@ -504,13 +623,13 @@
 
   function openWishlist(e) {
     if (e) e.preventDefault();
-    document.getElementById('wishlistPage').classList.remove('hidden');
+    document.getElementById('wishlistModal').classList.remove('hidden');
     document.body.style.overflow = 'hidden';
     updateWishlistUI();
   }
 
   function closeWishlist() {
-    document.getElementById('wishlistPage').classList.add('hidden');
+    document.getElementById('wishlistModal').classList.add('hidden');
     document.body.style.overflow = 'auto';
   }
 
@@ -540,6 +659,7 @@
   function addToCart(product) {
     cart.push(product);
     updateCartUI();
+    alert(`${product.name} added to cart!`);
   }
 
   function removeFromCart(index) {
@@ -549,13 +669,13 @@
 
   function openCart(e) {
     if (e) e.preventDefault();
-    document.getElementById('cartPage').classList.remove('hidden');
+    document.getElementById('cartModal').classList.remove('hidden');
     document.body.style.overflow = 'hidden';
     updateCartUI();
   }
 
   function closeCart() {
-    document.getElementById('cartPage').classList.add('hidden');
+    document.getElementById('cartModal').classList.add('hidden');
     document.body.style.overflow = 'auto';
   }
 
@@ -565,12 +685,6 @@
     closeCart();
     document.getElementById('checkoutModal').classList.remove('hidden');
     document.body.style.overflow = 'hidden';
-    const total = cart.reduce((sum, p) => sum + parseInt(p.price.replace(/[₹,]/g, '')), 0);
-    document.getElementById('checkoutTotal')?.remove();
-    const totalEl = document.createElement('div');
-    totalEl.id = 'checkoutTotal';
-    totalEl.className = 'font-bold text-lg text-red-900 mt-2';
-    totalEl.textContent = `₹${total}`;
   }
 
   function closeCheckout() {
