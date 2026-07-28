@@ -12,7 +12,7 @@
     .tail-container { font-family: 'Inter', system-ui, sans-serif; }
     .heading-font { font-family: 'Playfair Display', sans-serif; }
     
-    /* -------- CAROUSEL - PERFECT FOR MOBILE -------- */
+    /* -------- CAROUSEL - PERFECT FOR MOBILE & TABLET -------- */
     .carousel-container {
       position: relative;
       width: 100%;
@@ -51,7 +51,17 @@
       }
     }
     
-    @media (min-width: 1024px) {
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .carousel-slide {
+        aspect-ratio: 16 / 9;
+      }
+      .carousel-slide img,
+      .carousel-slide picture img {
+        object-fit: cover;
+      }
+    }
+    
+    @media (min-width: 1025px) {
       .carousel-slide {
         aspect-ratio: 21 / 9;
       }
@@ -61,50 +71,52 @@
       }
     }
     
-    /* -------- BUTTONS & DOTS -------- */
+    /* -------- BUTTONS ALWAYS VISIBLE ON ALL SCREENS -------- */
     .carousel-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       background: rgba(255,255,255,0.85);
       border: none;
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       cursor: pointer;
       z-index: 10;
-      display: none;
+      display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
+      font-size: 16px;
       color: #9f1239;
       transition: all 0.2s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+      backdrop-filter: blur(2px);
     }
     
     .carousel-btn:hover {
       background: white;
-      transform: translateY(-50%) scale(1.05);
+      transform: translateY(-50%) scale(1.06);
+      box-shadow: 0 4px 16px rgba(159,18,57,0.25);
     }
     
-    .carousel-btn.prev { left: 8px; }
-    .carousel-btn.next { right: 8px; }
+    .carousel-btn.prev { left: 12px; }
+    .carousel-btn.next { right: 12px; }
     
     .carousel-dots {
       position: absolute;
-      bottom: 12px;
+      bottom: 14px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 8px;
+      gap: 10px;
       z-index: 10;
     }
     
     .carousel-dots button {
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
-      border: 2px solid rgba(255,255,255,0.8);
+      border: 2px solid rgba(255,255,255,0.9);
       background: rgba(255,255,255,0.3);
       cursor: pointer;
       padding: 0;
@@ -114,22 +126,35 @@
     .carousel-dots button.active {
       background: white;
       border-color: white;
-      transform: scale(1.15);
+      transform: scale(1.2);
     }
     
+    /* -------- TABLET & MOBILE BUTTON SIZING -------- */
     @media (max-width: 640px) {
       .carousel-btn {
-        width: 30px;
-        height: 30px;
-        font-size: 11px;
+        width: 34px;
+        height: 34px;
+        font-size: 13px;
       }
-      .carousel-btn.prev { left: 4px; }
-      .carousel-btn.next { right: 4px; }
-      .carousel-dots { gap: 5px; bottom: 8px; }
-      .carousel-dots button { width: 8px; height: 8px; }
+      .carousel-btn.prev { left: 6px; }
+      .carousel-btn.next { right: 6px; }
+      .carousel-dots { gap: 6px; bottom: 8px; }
+      .carousel-dots button { width: 9px; height: 9px; }
     }
     
-    /* -------- OTHER STYLES -------- */
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .carousel-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 15px;
+      }
+      .carousel-btn.prev { left: 10px; }
+      .carousel-btn.next { right: 10px; }
+      .carousel-dots { gap: 8px; bottom: 12px; }
+      .carousel-dots button { width: 11px; height: 11px; }
+    }
+    
+    /* -------- OTHER STYLES (unchanged) -------- */
     .product-card { transition: all 0.3s ease; cursor: pointer; }
     .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
     .nav-link { position: relative; }
@@ -146,7 +171,6 @@
     .thumb-img { transition: all 0.2s; cursor: pointer; }
     .thumb-img:hover { opacity: 0.7; }
     .thumb-img.active { border: 2px solid #9f1239; }
-    
     .wishlist-btn { transition: all 0.2s; }
     .wishlist-btn:hover { transform: scale(1.15); }
     .wishlist-btn.active { color: #dc2626; }
@@ -712,7 +736,7 @@
     document.getElementById('shopProductCount').textContent = `${products.length} products`;
   }
 
-  // -------- CAROUSEL LOGIC --------
+  // -------- CAROUSEL LOGIC (always visible arrows) --------
   let currentIndex = 0;
   const totalSlides = 5;
   const track = document.getElementById('carouselTrack');
@@ -735,14 +759,16 @@
     dot.addEventListener('click', () => goToSlide(i));
   });
 
+  // Auto-slide
   let autoSlide = setInterval(nextSlide, 5000);
-  const container = document.querySelector('.carousel-container');
-  container.addEventListener('mouseenter', () => clearInterval(autoSlide));
-  container.addEventListener('mouseleave', () => { autoSlide = setInterval(nextSlide, 5000); });
+  const carouselContainer = document.querySelector('.carousel-container');
+  carouselContainer.addEventListener('mouseenter', () => clearInterval(autoSlide));
+  carouselContainer.addEventListener('mouseleave', () => { autoSlide = setInterval(nextSlide, 5000); });
 
+  // Touch support
   let touchStartX = 0;
-  container.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; });
-  container.addEventListener('touchend', (e) => {
+  carouselContainer.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; });
+  carouselContainer.addEventListener('touchend', (e) => {
     const diff = touchStartX - e.changedTouches[0].screenX;
     if (Math.abs(diff) > 50) { if (diff > 0) nextSlide(); else prevSlide(); }
   });
